@@ -2,7 +2,7 @@ import _ from 'underscore';
 import wireDebugPlugin from 'essential-wire/source/debug';
 import requestPlugin from '../../plugins/api/request';
 
-import { getEndpoint, getArticleEndpoint } from '../../config/api';
+import { getEndpoint } from '../../config/api';
 import controller from './controller';
 
 export default {
@@ -10,8 +10,6 @@ export default {
         // wireDebugPlugin,
         requestPlugin,
     ],
-
-    specName: 'article',
 
     articleEndpoint: {
         create: {

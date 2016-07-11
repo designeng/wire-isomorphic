@@ -41,6 +41,7 @@
     "extend": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-handlebars": "^4.0.0",
+    "gulp-wrap": "^0.13.0",
     "handlebars-template-loader": "^0.5.4",
     "rimraf": "^2.5.1",
     "webpack": "^1.12.12",
