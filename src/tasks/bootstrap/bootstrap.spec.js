@@ -6,11 +6,8 @@ import requestPlugin from '../../plugins/api/request';
 import { getEndpoint, getLocalEndpoint } from '../../config/api';
 import getCarcassFn from './getCarcassFn';
 
-import splitToTokens from '../../utils/express/splitToTokens';
-
 export default {
     $plugins: [
-        // {module: debugPlugin, verbose: true},
         requestPlugin,
     ],
 
