@@ -1,0 +1,50 @@
+{
+  "name": "isomorphic",
+  "version": "0.0.1",
+  "description": "",
+  "main": "runner.js",
+  "scripts": {
+    "build": "gulp build",
+    "build-tpl": "gulp tpl && npm start",
+    "clean": "rimraf -rf public/build",
+    "webpack": "npm run clean & webpack --watch --config webpack.config.js",
+    "start": "PROTOCOL=http HOST=localhost PORT=3000 NODE_ENV=dev node ./runner",
+    "debug": "NODE_ENV=dev iron-node ./runner.js",
+    "test": "node ./test/routes",
+    "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install"
+  },
+  "keywords": [],
+  "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "adler-32": "^0.3.0",
+    "axios": "^0.12.0",
+    "body-parser": "^1.15.0",
+    "chalk": "^1.1.1",
+    "cookie-parser": "^1.4.3",
+    "essential-wire": "git://github.com/designeng/essential-wire",
+    "express": "^4.14.0",
+    "form-data": "^1.0.0-rc4",
+    "handlebars": "^4.0.5",
+    "jquery": "^2.2.0",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "chai": "^3.5.0",
+    "chalk": "^1.1.1",
+    "cheerio": "^0.20.0",
+    "extend": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-handlebars": "^4.0.0",
+    "handlebars-template-loader": "^0.5.4",
+    "rimraf": "^2.5.1",
+    "webpack": "^1.12.12",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.10.0"
+  }
+}
