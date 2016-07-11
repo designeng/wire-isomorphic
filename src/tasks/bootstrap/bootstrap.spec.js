@@ -3,7 +3,7 @@
 import _ from 'underscore';
 import requestPlugin from '../../plugins/api/request';
 
-import { getEndpoint } from '../../config/api';
+import { getEndpoint, getLocalEndpoint } from '../../config/api';
 import getCarcassFn from './getCarcassFn';
 
 import splitToTokens from '../../utils/express/splitToTokens';
@@ -16,13 +16,13 @@ export default {
 
     brandsData: {
         request: {
-            endpoint: getEndpoint('brands'),
+            endpoint: getLocalEndpoint('/api/v1/brands'),
         }
     },
 
     citiesData: {
         request: {
-            endpoint: getEndpoint('cities'),
+            endpoint: getLocalEndpoint('/api/v1/cities'),
         }
     },
 

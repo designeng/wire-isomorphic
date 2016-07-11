@@ -80,17 +80,6 @@ function routeMiddleware(resolver, facet, wire) {
                 _.extend(environment, { requestPostObject: request.body });
             }
 
-            if(route.behavior) {
-                if(route.behavior == 'redirectOnEditQuery' && parsedRequestUrl.query == 'edit') {
-                    let nodeId = environment.nodeId;
-                    if(nodeId) {
-                        response.redirect(`/edit.php?id=${nodeId}`);
-                    } else {
-                        console.error(`No nodeId for url ${requestUrl} specified!`)
-                    }
-                }
-            }
-
             additionalSpecifications = [environment];
 
             if(route.access) {
