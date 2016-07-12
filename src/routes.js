@@ -3,6 +3,7 @@ import _ from 'underscore';
 import pluck from './utils/pluck';
 import { success, error } from './contextCallbacks';
 
+// routeSpec tasks names should match exported ./specs.js objects names
 const routes = [
     {
         url: '/',
