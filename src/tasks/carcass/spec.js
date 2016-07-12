@@ -61,7 +61,7 @@ export default {
 
     carcassData: {
         styleSheets: [
-            {src: '/css/carcass.css'}
+            {path: '/css/carcass.css'}
         ],
         bottomScripts: [
             {sync: true, src: '/js/main.js'}
