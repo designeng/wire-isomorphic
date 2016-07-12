@@ -77,18 +77,5 @@ export default {
                 {AxisY: {$ref: 'axisY'}},
             ]
         }
-    },
-
-    testRef: {
-        create: {
-            module: (brandsData, citiesData, axisX) => {
-                console.log('brandsData, citiesData:::', brandsData, citiesData, axisX);
-            },
-            args: [
-                {$ref: 'brandsData'},
-                {$ref: 'citiesData'},
-                {$ref: 'axisX'},
-            ]
-        }
     }
 }
