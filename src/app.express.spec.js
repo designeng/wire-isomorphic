@@ -33,6 +33,9 @@ export default {
             },
             after: showNotFoundPage,
         },
+        static: {
+            dir: './public'
+        },
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true,
