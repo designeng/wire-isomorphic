@@ -9,7 +9,7 @@ export default {
     // TODO: here should be a relative path to compiled script
     compiledScript: {
         webpackCompile: {
-            routeSpec: {$ref: `routeSpec`},
+            specToCompile: {$ref: `specToCompile`},
             webpackConfig: webpackConfig,
         }
     }

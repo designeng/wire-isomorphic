@@ -87,7 +87,7 @@ function routeMiddleware(resolver, facet, wire) {
             if(route.webpack) {
                 additionalSpecifications.unshift(webpackSpec);
                 additionalSpecifications.unshift({
-                    routeSpec: routeSpec
+                    specToCompile: route.webpack
                 });
             }
 
