@@ -6,17 +6,15 @@ export default {
 
     brands: ['acura', 'bmw', 'ford'],
 
-    body: {
+    response: {
         create: {
             module: (brands) => {
-                return {
-                    response: _.map(brands, (value) => {
+                return JSON.stringify(_.map(brands, (value) => {
                         return {
                             name: value.toUpperCase(),
                             id: value
                         }
-                    })
-                }
+                    }));
             },
             args: [
                 {$ref: 'brands'},

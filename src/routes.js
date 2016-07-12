@@ -25,10 +25,16 @@ const routes = [
     {
         url: '/api/v1/brands',
         routeSpec: [brandsSpec],
+        headers: {
+            'Content-Type': 'application/json'
+        }
     },
     {
         url: '/api/v1/cities',
         routeSpec: [citiesSpec],
+        headers: {
+            'Content-Type': 'application/json'
+        }
     },
 ];
 

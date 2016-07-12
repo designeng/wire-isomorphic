@@ -4,17 +4,15 @@ import Timer from './utils/timer';
 
 export function success(request, response) {
     return (context) => {
-        let html;
-        
         let headers = {'Referer': `https://www.drive.ru${request.url}`}
         if(context.headers) {
             _.extend(headers, context.headers);
         }
 
-        html = context.carcass;
+        let result = context.response ? context.response : context.carcass;
 
         response.writeHead(200, headers);
-        response.end(html);
+        response.end(result);
         context.destroy();
     }
 }
