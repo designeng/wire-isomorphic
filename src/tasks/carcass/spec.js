@@ -66,7 +66,8 @@ export default {
             {path: '/css/carcass.css'}
         ],
         bottomScripts: [
-            {sync: true, src: '/js/main.js'}
+            {sync: true, src: '/js/main.js'},
+            {sync: true, src: {$ref: 'compiledScript'}}
         ]
     },
 

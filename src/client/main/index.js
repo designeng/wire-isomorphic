@@ -1,3 +1,5 @@
+// Just a draft for client scripts with `module.hot` page refreshing.
+
 import $ from 'jquery';
 import wire from 'essential-wire';
 import pipeline from 'when/pipeline';

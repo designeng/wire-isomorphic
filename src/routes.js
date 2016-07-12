@@ -4,6 +4,8 @@ import _ from 'underscore';
 import carcassSpec from './tasks/carcass/spec';
 import mainPageSpec from './tasks/main/spec';
 
+import clientSpecialSpec from './tasks/client/special/spec';
+
 // API specs
 import brandsSpec from './tasks/api/brands/spec';
 import citiesSpec from './tasks/api/cities/spec';
@@ -17,7 +19,9 @@ const routes = [
     {
         url: '/',
         routeSpec: [mainPageSpec, carcassSpec],
-        webpack: [mainPageSpec, carcassSpec],
+        // tasks for webpack compilation can include the server tasks (isomorphic mode!)
+        // plus something client-special
+        webpack: [clientSpecialSpec, mainPageSpec, carcassSpec],
         metaDescription: {
             type: types.MAIN,
             example: '/'

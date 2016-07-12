@@ -6,16 +6,16 @@ function webpackCompile(resolver, compDef, wire) {
     const compiler = webpack(webpackConfig);
 
     compiler.run(function(err, stats) {
-        console.log('compiled......', err, stats);
-        
         if(err) {
             resolver.reject(err);
         } else {
-            resolver.resolve(stats);
+            // TODO: here should be a relative path to compiled script
+            // resolver.resolve(.......);
+
+            // noop:
+            resolver.resolve('/js/webpack_compiled_script.js');
         }
     });
-
-    // resolver.resolve('webpack noop');
 }
 
 export default function webpackCompilePlugin(options) {

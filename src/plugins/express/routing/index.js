@@ -38,7 +38,9 @@ function routeMiddleware(resolver, facet, wire) {
                 return next();
             }
 
-            let environment = {};
+            let environment = {
+                compiledScript: null
+            };
 
             _.extend(environment, {
                 routeUrl: routeUrl,
@@ -82,13 +84,14 @@ function routeMiddleware(resolver, facet, wire) {
                 _.extend(environment, { requestPostObject: request.body });
             }
 
+            if(route.webpack) {
+                _.extend(environment, { specToCompile: route.webpack });
+            }
+
             additionalSpecifications = [environment];
 
             if(route.webpack) {
-                additionalSpecifications.unshift(webpackSpec);
-                additionalSpecifications.unshift({
-                    specToCompile: route.webpack
-                });
+                additionalSpecifications.push(webpackSpec)
             }
 
             if(route.access) {
