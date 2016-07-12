@@ -2,7 +2,7 @@ import _ from 'underscore';
 
 // Pages specs
 import carcassSpec from './tasks/carcass/spec';
-import mainPageSpec from './tasks/main/page.spec';
+import mainPageSpec from './tasks/main/spec';
 
 // API specs
 import brandsSpec from './tasks/api/brands/spec';
@@ -17,6 +17,7 @@ const routes = [
     {
         url: '/',
         routeSpec: [mainPageSpec, carcassSpec],
+        webpack: true,
         metaDescription: {
             type: types.MAIN,
             example: '/'

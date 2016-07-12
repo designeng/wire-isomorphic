@@ -6,17 +6,17 @@ const tagRegex = /<([A-Z][a-zA-Z]+)(\s+)?(.*)\/>/g;
 function createComponent(resolver, compDef, wire) {
     wire(compDef.options).then(({
         template,
-        partials,
+        tags,
         datasource,
     }) => {
         let html = template(datasource);
 
-        if(partials && !_.isArray(partials)) {
-            throw new Error('[createComponentPlugin:] partials option should be an array!');
+        if(tags && !_.isArray(tags)) {
+            throw new Error('[createComponentPlugin:] tags option should be an array!');
         }
 
-        if(partials && partials.length) {
-            let tags = _.map(partials, (item) => {
+        if(tags && tags.length) {
+            let tagsList = _.map(tags, (item) => {
                 let name = _.keys(item)[0];
                 return {
                     name,
@@ -24,10 +24,10 @@ function createComponent(resolver, compDef, wire) {
                 }
             });
 
-            _.each(tags, (tag) => {
+            _.each(tagsList, (tag) => {
                 let tagRegex = new RegExp(`<${tag.name}(\\s+)\/>`, 'g');
                 html = html.replace(tagRegex, tag.html);
-            }, tags);
+            });
         }
 
         resolver.resolve(html);

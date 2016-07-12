@@ -8,6 +8,8 @@ import showNotFoundPage from '../../../utils/express/showNotFoundPage';
 import shouldBeSkipped from '../../../utils/express/shouldBeSkipped';
 import getPathName from '../../../utils/express/getPathName';
 
+import webpackSpec from '../../../tasks/webpack/spec';
+
 import pluck from '../../../utils/pluck';
 
 function routeMiddleware(resolver, facet, wire) {
@@ -81,6 +83,13 @@ function routeMiddleware(resolver, facet, wire) {
             }
 
             additionalSpecifications = [environment];
+
+            if(route.webpack) {
+                additionalSpecifications.unshift(webpackSpec);
+                additionalSpecifications.unshift({
+                    routeSpec: routeSpec
+                });
+            }
 
             if(route.access) {
                 createContext(_.union(additionalSpecifications, route.access)).then((context) => {

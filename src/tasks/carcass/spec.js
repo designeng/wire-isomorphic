@@ -3,6 +3,7 @@
 import _ from 'underscore';
 import requestPlugin from '../../plugins/api/request';
 import createComponentPlugin from '../../plugins/component';
+import webpackCompilePlugin from '../../plugins/webpack'
 
 import { getEndpoint, getLocalEndpoint } from '../../config/api';
 
@@ -14,6 +15,7 @@ export default {
     $plugins: [
         requestPlugin,
         createComponentPlugin,
+        webpackCompilePlugin
     ],
 
     brandsData: {
@@ -43,7 +45,7 @@ export default {
         createComponent: {
             template: axisTpl,
             datasource: {$ref: 'brandsData'},
-            partials: [
+            tags: [
                 {AxisCell: {$ref: 'axisCell'}}
             ]
         },
@@ -53,7 +55,7 @@ export default {
         createComponent: {
             template: axisTpl,
             datasource: {$ref: 'citiesData'},
-            partials: [
+            tags: [
                 {AxisCell: {$ref: 'axisCell'}}
             ]
         }
@@ -72,7 +74,7 @@ export default {
         createComponent: {
             template: carcassTpl,
             datasource: {$ref: 'carcassData'},
-            partials: [
+            tags: [
                 {AxisX: {$ref: 'axisX'}},
                 {AxisY: {$ref: 'axisY'}},
                 {PageContent: {$ref: 'pageContent'}},
