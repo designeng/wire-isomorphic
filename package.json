@@ -27,6 +27,7 @@
     "form-data": "^1.0.0-rc4",
     "handlebars": "^4.0.5",
     "jquery": "^2.2.0",
+    "mkdirp": "^0.5.1",
     "serve-favicon": "^2.3.0",
     "underscore": "^1.8.3"
   },

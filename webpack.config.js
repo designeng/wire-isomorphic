@@ -1,3 +1,5 @@
+// example webpack config - remove later
+
 var path = require('path');
 var webpack = require('webpack');
 

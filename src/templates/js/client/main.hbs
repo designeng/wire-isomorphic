@@ -4,23 +4,7 @@ import wire from 'essential-wire';
 import pipeline from 'when/pipeline';
 
 {{#each specs}}
-import `{{name}}` from `{{path}}`;
+import '{{name}}' from '{{path}}';
 {{/each}}
 
-const run = (pageSpec) => {
-    var routeTask = function(context) {
-        return context? context.wire(pageSpec) : wire(pageSpec)
-    }
-
-    let tasks = [routeTask];
-
-    pipeline(tasks).then(
-        (context) => {
-        },
-        (error) => {
-            console.error("ERROR:::::", error);
-        }
-    );
-}
-
-run(routeSpec);
+console.log('hello from compiled {{pageId}} script!');

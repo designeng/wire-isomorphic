@@ -1,8 +1,35 @@
 import webpack from 'webpack';
+import path from 'path';
+import mkdirp from 'mkdirp';
+import fs from 'fs';
+
 import mainJsTpl from '../../templates/build/js/client/main';
 
+let webpackConfig = {
+    context: __dirname + '/../../src',
+    entry: {
+        main: []
+    },
+    output: {
+        publicPath: '/static/'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/
+            }
+        ]
+    },
+    devtool: 'source-map',
+    node: {
+        fs: "empty" // avoids error messages
+    }
+}
+
 function webpackCompile(resolver, compDef, wire) {
-    const webpackConfig = compDef.options.webpackConfig;
+    // const webpackConfig = compDef.options.webpackConfig;
 
     let options = {
         pageId: compDef.options.pageId,
@@ -13,25 +40,36 @@ function webpackCompile(resolver, compDef, wire) {
         specToCompile,
         pageId
     }) => {
+        let outputPath = `/public/webpack/build/${pageId}`;
+        webpackConfig.output.path = path.join(__dirname, `/../../../${outputPath}`);
+        webpackConfig.output.filename = `index.js`;
 
-        const compiler = webpack(webpackConfig);
-        compiler.run(function(err, stats) {
-            if(err) {
-                resolver.reject(err);
-            } else {
-                // TODO: here should be a relative path to compiled script
-                // resolver.resolve(.......);
-                
-                let mainContent = mainJsTpl({
-                    specs: specToCompile,
-                    pageId: pageId
-                });
+        let tempPath = path.join(__dirname, `/../../../temp/${pageId}/index.js`);
+        webpackConfig.entry[pageId] = [];
+        webpackConfig.entry[pageId].push(tempPath);
 
-                console.log(mainContent);
+        let fileContent = mainJsTpl({
+            specs: specToCompile,
+            pageId: pageId
+        });
 
-                // noop:
-                resolver.resolve('/js/webpack_compiled_script.js');
-            }
+        // TODO: make plugins for this
+        mkdirp(`${outputPath}`, (err) => { 
+            fs.writeFile(`${tempPath}`, fileContent, (error) => {
+                if (error) {
+                    console.log('ERROR:::', error);
+                } else {
+                    const compiler = webpack(webpackConfig);
+                    compiler.run(function(err, stats) {
+                        if(err) {
+                            resolver.reject(err);
+                        } else {
+                            // TODO: here should be a relative path to compiled script
+                            resolver.resolve(`${outputPath}/index.js`);
+                        }
+                    });
+                }
+            });
         });
     });
 }
