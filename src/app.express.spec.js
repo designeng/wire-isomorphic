@@ -10,6 +10,7 @@ import partials from './partials';
 import helpers from './utils/handlebars/helpers';
 
 import routes from './routes';
+import specs from './specs';
 
 import showNotFoundPage from './utils/express/showNotFoundPage';
 import config from './config/api';
@@ -28,6 +29,7 @@ export default {
         expressApplication: true,
         routeMiddleware: {
             routes: routes,
+            specs: specs,
             before: (req, res, next) => {
                 next();
             },

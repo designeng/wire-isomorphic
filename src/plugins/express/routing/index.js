@@ -15,6 +15,7 @@ import pluck from '../../../utils/pluck';
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
     const routes = facet.options.routes;
+    const specs = facet.options.specs;
     const skip = facet.options.skip;
     const before = facet.options.before || function before(request, response, next) { next() };
     const after = facet.options.after || function after(request, response, next) { next() };
@@ -23,7 +24,10 @@ function routeMiddleware(resolver, facet, wire) {
         let method = route.method || 'get';
         target[method](route.url, before, (request, response, next) => {
             let additionalSpecifications = [];
-            let routeSpec = route.routeSpec;
+            let routeSpec = _.map(route.routeSpec, (name) => {
+                return specs[name];
+            });
+
             let routeUrl = route.url;
             let provide = route.provide;
             let success = route.success;
@@ -39,7 +43,8 @@ function routeMiddleware(resolver, facet, wire) {
             }
 
             let environment = {
-                compiledScript: null
+                compiledScript: null,
+                pageId: route.pageId || null,
             };
 
             _.extend(environment, {
