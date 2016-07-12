@@ -10,6 +10,7 @@ export default {
     compiledScript: {
         webpackCompile: {
             specToCompile: {$ref: `specToCompile`},
+            pageId: {$ref: `pageId`},
             webpackConfig: webpackConfig,
         }
     }

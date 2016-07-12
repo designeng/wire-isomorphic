@@ -30,6 +30,7 @@ export default {
         routeMiddleware: {
             routes: routes,
             specs: specs,
+            specSource: specs._specSource,
             before: (req, res, next) => {
                 next();
             },

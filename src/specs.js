@@ -12,3 +12,5 @@ module.exports = _.reduce(specs, (result, spec) => {
     result[spec.name] = require('.' + spec.path).default;
     return result;
 }, {});
+
+module.exports._specSource = specs;

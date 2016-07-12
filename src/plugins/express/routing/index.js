@@ -16,6 +16,8 @@ function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
     const routes = facet.options.routes;
     const specs = facet.options.specs;
+    const specSource = facet.options.specSource;
+
     const skip = facet.options.skip;
     const before = facet.options.before || function before(request, response, next) { next() };
     const after = facet.options.after || function after(request, response, next) { next() };
@@ -88,8 +90,14 @@ function routeMiddleware(resolver, facet, wire) {
                 _.extend(environment, { requestPostObject: request.body });
             }
 
+            // TODO: make it more clear
             if(route.webpack) {
-                _.extend(environment, { specToCompile: route.webpack });
+                _.extend(environment, { specToCompile: _.map(route.webpack, (specName) => {
+                    return {
+                        name: specName,
+                        path: _.find(specSource, {name: specName})['path']
+                    }
+                }) });
             }
 
             additionalSpecifications = [environment];
