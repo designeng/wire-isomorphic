@@ -1,6 +1,5 @@
 import wire from 'essential-wire';
 import pipeline from 'when/pipeline';
-import chalk from 'chalk';
 
 import expressSpec from './app.express.spec';
 import { createTasks, createTask } from './utils/tasks';
