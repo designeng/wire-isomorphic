@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-    {{#each styleSheets}}
-        <link rel="stylesheet" href="{{path}}"/>
-    {{/each}}
+    <StyleSheets />
 <head>
     
 </head>
@@ -10,9 +8,6 @@
         <AxisX />
         <AxisY />
         <PageContent />
-
-    {{#each bottomScripts}}
-        <script type="text/javascript" {{this.async}} src="{{{this.src}}}"></script>
-    {{/each}}
+        <BottomScripts />
     </body>
 </html>
