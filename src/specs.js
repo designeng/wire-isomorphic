@@ -1,6 +1,5 @@
 import _ from 'underscore';
 
-// all specs exported from own modules as default
 const specs = [
     {name: 'carcassSpec', path: '/tasks/carcass/spec'},
     {name: 'mainPageSpec', path: '/tasks/main/spec'},
@@ -12,6 +11,7 @@ const specs = [
 let dirPrefix = '.';
 
 module.exports = _.reduce(specs, (result, spec) => {
+    // all specs exported from own modules as default
     result[spec.name] = require(dirPrefix + spec.path).default;
     return result;
 }, {});
