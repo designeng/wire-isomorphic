@@ -48,7 +48,6 @@ function routeMiddleware(resolver, facet, wire) {
                 hostname: request.hostname,
                 redirect: response.redirect,
                 headers: route.headers || null,
-                metaDescription: route.metaDescription || null,
                 requestHeaders: request.headers,
             });
             

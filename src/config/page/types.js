@@ -1,8 +1,8 @@
 export const MAIN = {
     name: 'MAIN',
-    humanReadable: 'главная страница'
+    humanReadable: 'main page'
 };
 export const NODE = {
     name: 'NODE',
-    humanReadable: 'страница материала'
+    humanReadable: 'node page'
 };

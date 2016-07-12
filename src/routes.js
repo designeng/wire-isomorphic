@@ -13,8 +13,6 @@ import citiesSpec from './tasks/api/cities/spec';
 import pluck from './utils/pluck';
 import { success, error } from './contextCallbacks';
 
-import * as types from './config/page/types';
-
 const routes = [
     {
         url: '/',
@@ -22,10 +20,6 @@ const routes = [
         // tasks for webpack compilation can include the server tasks (isomorphic mode!)
         // plus something client-special
         webpack: [clientSpecialSpec, mainPageSpec, carcassSpec],
-        metaDescription: {
-            type: types.MAIN,
-            example: '/'
-        }
     },
     {
         url: '/api/v1/brands',
