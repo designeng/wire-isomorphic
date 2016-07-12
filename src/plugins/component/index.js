@@ -4,7 +4,9 @@ function createComponent(resolver, compDef, wire) {
         partials,
         datasource,
     }) => {
+        // TODO: use partials
         
+        resolver.resolve(template(datasource));
     });
 }
 

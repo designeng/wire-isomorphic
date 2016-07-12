@@ -1,5 +1,5 @@
 import createContext from '../createContext';
-import bootstrapSpec from '../../tasks/bootstrap/bootstrap.spec';
+import carcassSpec from '../../tasks/carcass/spec';
 import notFoundSpec from '../../tasks/404/page.spec';
 
 import Timer from '../timer';
@@ -13,7 +13,7 @@ export default function showNotFoundPage(request, response, next) {
             requestUrl: request.url,
             hostname: request.hostname,
         },  
-        bootstrapSpec, 
+        carcassSpec, 
         notFoundSpec
     ];
 

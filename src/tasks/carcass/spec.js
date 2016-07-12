@@ -35,17 +35,14 @@ export default {
     axisCell: {
         createComponent: {
             template: axisCellTpl,
-            datasource: axisCellData,
-            partials: [
-                {$ref: 'axisCell'}
-            ]
+            datasource: {$ref: 'axisCellData'}
         },
     },
 
     axisX: {
         createComponent: {
             template: axisTpl,
-            datasource: brandsData,
+            datasource: {$ref: 'brandsData'},
             partials: [
                 {$ref: 'axisCell'}
             ]
@@ -55,7 +52,7 @@ export default {
     axisY: {
         createComponent: {
             template: axisTpl,
-            datasource: citiesData,
+            datasource: {$ref: 'citiesData'},
             partials: [
                 {$ref: 'axisCell'}
             ]

@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 // Pages specs
-import bootstrapSpec from './tasks/bootstrap/bootstrap.spec';
+import carcassSpec from './tasks/carcass/spec';
 import mainPageSpec from './tasks/main/page.spec';
 
 // API specs
@@ -16,7 +16,7 @@ import * as types from './config/page/types';
 const routes = [
     {
         url: '/',
-        routeSpec: [bootstrapSpec, mainPageSpec],
+        routeSpec: [mainPageSpec, carcassSpec],
         metaDescription: {
             type: types.MAIN,
             example: '/'
