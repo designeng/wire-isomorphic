@@ -5,8 +5,8 @@ import requestPlugin from '../../plugins/api/request';
 import createComponentPlugin from '../../plugins/component';
 
 import { getEndpoint, getLocalEndpoint } from '../../config/api';
-import getCarcassFn from './getCarcassFn';
 
+import carcassTpl from '../../templates/build/carcassTpl';
 import axisTpl from '../../templates/build/axisTpl';
 import axisCellTpl from '../../templates/build/axisCellTpl';
 
@@ -44,7 +44,7 @@ export default {
             template: axisTpl,
             datasource: {$ref: 'brandsData'},
             partials: [
-                {$ref: 'axisCell'}
+                {AxisCell: {$ref: 'axisCell'}}
             ]
         },
     },
@@ -54,18 +54,27 @@ export default {
             template: axisTpl,
             datasource: {$ref: 'citiesData'},
             partials: [
-                {$ref: 'axisCell'}
+                {AxisCell: {$ref: 'axisCell'}}
             ]
         }
     },
 
-    getCarcassFn: {
-        create: {
-            module: getCarcassFn,
-            args: [
-                {$ref: 'brandsData'},
-                {$ref: 'citiesData'},
-                {$ref: 'requestUrl'},
+    carcassData: {
+        styleSheets: [
+            {src: '/css/carcass.css'}
+        ],
+        bottomScripts: [
+            {sync: true, src: '/js/main.js'}
+        ]
+    },
+
+    carcass: {
+        createComponent: {
+            template: carcassTpl,
+            datasource: {$ref: 'carcassData'},
+            partials: [
+                {AxisX: {$ref: 'axisX'}},
+                {AxisY: {$ref: 'axisY'}},
             ]
         }
     }

@@ -7,7 +7,7 @@ export default {
         create: {
             module: controller,
             args: [
-                {$ref: 'getCarcassFn'},
+                {$ref: 'carcass'},
             ]
         }
     }

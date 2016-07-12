@@ -5,7 +5,7 @@ function controller(getCarcassFn) {
     let pageContentHtml = pageContent();
 
     return {
-        html: getCarcassFn(pageContentHtml)
+        html: pageContentHtml
     }
 }
 
