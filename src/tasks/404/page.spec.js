@@ -1,14 +1,5 @@
-import controller from './controller';
+// TODO
 
 export default {
-    specName: '404',
-
-    body: {
-        create: {
-            module: controller,
-            args: [
-                {$ref: 'carcass'},
-            ]
-        }
-    }
+    
 }
