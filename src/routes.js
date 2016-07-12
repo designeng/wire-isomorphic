@@ -1,9 +1,10 @@
 import _ from 'underscore';
 
+// Pages specs
 import bootstrapSpec from './tasks/bootstrap/bootstrap.spec';
 import mainPageSpec from './tasks/main/page.spec';
 
-// API
+// API specs
 import brandsSpec from './tasks/api/brands/spec';
 import citiesSpec from './tasks/api/cities/spec';
 
