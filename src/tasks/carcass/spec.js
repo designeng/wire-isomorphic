@@ -75,6 +75,7 @@ export default {
             partials: [
                 {AxisX: {$ref: 'axisX'}},
                 {AxisY: {$ref: 'axisY'}},
+                {PageContent: {$ref: 'pageContent'}},
             ]
         }
     }

@@ -16,7 +16,7 @@ import * as types from './config/page/types';
 const routes = [
     {
         url: '/',
-        routeSpec: [carcassSpec],
+        routeSpec: [mainPageSpec, carcassSpec],
         metaDescription: {
             type: types.MAIN,
             example: '/'
