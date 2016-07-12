@@ -40,8 +40,8 @@ function webpackCompile(resolver, compDef, wire) {
         specToCompile,
         pageId
     }) => {
-        let outputPath = `/public/webpack/build/${pageId}`;
-        webpackConfig.output.path = path.join(__dirname, `/../../../${outputPath}`);
+        let outputPath = `/webpack/build/${pageId}`;
+        webpackConfig.output.path = path.join(__dirname, `/../../../public/${outputPath}`);
         webpackConfig.output.filename = `index.js`;
 
         let tempPath = path.join(__dirname, `/../../../temp/${pageId}/index.js`);
@@ -64,8 +64,9 @@ function webpackCompile(resolver, compDef, wire) {
                         if(err) {
                             resolver.reject(err);
                         } else {
-                            // TODO: here should be a relative path to compiled script
-                            resolver.resolve(`${outputPath}/index.js`);
+                            // TODO: fix it! here should be a relative path to compiled script
+                            // resolver.resolve(`${outputPath}/index.js`);
+                            resolver.resolve(`/js/webpack_compiled_script.js`);
                         }
                     });
                 }
