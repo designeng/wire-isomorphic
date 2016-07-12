@@ -17,7 +17,7 @@ const routes = [
     {
         url: '/',
         routeSpec: [mainPageSpec, carcassSpec],
-        webpack: true,
+        webpack: [mainPageSpec, carcassSpec],
         metaDescription: {
             type: types.MAIN,
             example: '/'
