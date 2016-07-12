@@ -5,7 +5,6 @@ export default {
         webpackCompilePlugin
     ],
 
-    // compiledScript should be injected into page carcass in carcassSpec
     compiledScript: {
         webpackCompile: {
             specToCompile: {$ref: `specToCompile`},
