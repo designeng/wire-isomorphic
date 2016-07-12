@@ -8,7 +8,6 @@ import pageContentTpl from '../../templates/build/pageContentTpl';
 
 export default {
     $plugins: [
-        // wireDebugPlugin,
         requestPlugin,
         createComponentPlugin,
     ],
