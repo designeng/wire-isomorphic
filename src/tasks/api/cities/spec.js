@@ -4,19 +4,17 @@ export default {
     $plugins: [
     ],
 
-    brands: ['acura', 'bmw', 'ford'],
+    brands: ['paris', 'london', 'moscow'],
 
-    body: {
+    response: {
         create: {
             module: (brands) => {
-                return {
-                    response: _.map(brands, (value) => {
+                return JSON.stringify(_.map(brands, (value) => {
                         return {
                             name: value.toUpperCase(),
                             id: value
                         }
-                    })
-                }
+                    }));
             },
             args: [
                 {$ref: 'brands'},

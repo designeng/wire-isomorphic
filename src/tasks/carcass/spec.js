@@ -77,5 +77,17 @@ export default {
                 {AxisY: {$ref: 'axisY'}},
             ]
         }
+    },
+
+    testRef: {
+        create: {
+            module: (brandsData, citiesData) => {
+                console.log('brandsData, citiesData:::', brandsData, citiesData);
+            },
+            args: [
+                {$ref: 'brandsData'},
+                {$ref: 'citiesData'}
+            ]
+        }
     }
 }
