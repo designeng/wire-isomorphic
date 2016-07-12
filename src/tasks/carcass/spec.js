@@ -81,12 +81,13 @@ export default {
 
     testRef: {
         create: {
-            module: (brandsData, citiesData) => {
-                console.log('brandsData, citiesData:::', brandsData, citiesData);
+            module: (brandsData, citiesData, ) => {
+                console.log('brandsData, citiesData:::', brandsData, citiesData, axisX);
             },
             args: [
                 {$ref: 'brandsData'},
-                {$ref: 'citiesData'}
+                {$ref: 'citiesData'},
+                {$ref: 'axisX'},
             ]
         }
     }
