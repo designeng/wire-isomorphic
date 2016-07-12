@@ -25,8 +25,8 @@ function createComponent(resolver, compDef, wire) {
             });
 
             _.each(tags, (tag) => {
-                let tagRegex = new RegExp(`<${tag.name}(\s+)\/>`, 'g');
-                html = html.replace(tagRegex, tag.html)
+                let tagRegex = new RegExp(`<${tag.name}(\\s+)\/>`, 'g');
+                html = html.replace(tagRegex, tag.html);
             }, tags);
         }
 

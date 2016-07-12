@@ -17,17 +17,7 @@ export function success(request, response) {
             _.extend(headers, context.headers);
         }
 
-        if(context.query.dev === 'widgets') {
-            _.extend(headers, {'content-type': 'text/html; charset=utf-8'});
-            html = _.reduce(context.widgetsHash, (result, value, key) => {
-                result.push(value);
-                return result;
-            }, []).join('');
-        } else if(context.widgetsHash) {
-            html = replaceWidgetPlaceholder(context.body.html, context);
-        } else {
-            html = context.body.html;
-        }
+        html = context.carcass;
 
         response.writeHead(200, headers);
         response.end(html);
