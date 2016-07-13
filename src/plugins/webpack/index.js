@@ -67,7 +67,6 @@ function webpackCompile(resolver, compDef, wire) {
         entry,
         pageId
     }) => {
-        console.log(entry);
         let outputPath = `/webpack/build/${pageId}`;
         webpackConfig.output.path = path.join(__dirname, `/../../../public/${outputPath}`);
         webpackConfig.output.filename = `index.js`;
