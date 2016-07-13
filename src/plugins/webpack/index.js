@@ -80,7 +80,7 @@ function webpackCompile(resolver, compDef, wire) {
             if(err) {
                 resolver.reject(err);
             } else {
-                // a relative path to compiled script
+                // relative path to compiled script
                 resolver.resolve(`${outputPath}/index.js`);
             }
         });
