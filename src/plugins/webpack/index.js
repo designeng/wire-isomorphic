@@ -9,7 +9,7 @@ import fs from 'fs';
 // import mainJsTpl from '../../templates/build/js/client/main';
 // 
 // simple script works:
-import mainJsTpl from '../../templates/build/js/client/main_test';
+import mainJsTpl from '../../templates/build/js/client/main_simple';
 
 let config = {
     // TODO:
