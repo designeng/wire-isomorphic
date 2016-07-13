@@ -34,6 +34,7 @@ export default {
             before: (req, res, next) => {
                 next();
             },
+            // TODO: 404 handler should be in separate middleware
             after: showNotFoundPage,
         },
         static: {
