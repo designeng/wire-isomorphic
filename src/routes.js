@@ -15,14 +15,14 @@ const routes = [
     },
     {
         url: '/api/v1/brands',
-        routeSpec: ['brandsSpec'],
+        routeSpec: ['apiBrandsSpec'],
         headers: {
             'Content-Type': 'application/json'
         }
     },
     {
         url: '/api/v1/cities',
-        routeSpec: ['citiesSpec'],
+        routeSpec: ['apiCitiesSpec'],
         headers: {
             'Content-Type': 'application/json'
         }
