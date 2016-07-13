@@ -15,26 +15,6 @@ function proxyMiddleware(resolver, facet, wire) {
 
         target[method](route.url, function (request, response) {
 
-            // TODO: HACKS. Move backend to node.js!
-            // only for company form feedback!
-            if(request.body.companyname && request.body.company) {
-                route.originUrl = '/api/v1/feedback';
-            }
-            // for thread form
-            if(request.body.forum) {
-                route.originUrl = '/api/v1/forum/thread';
-            }
-
-            // for configuration comparison page
-            if (request.url.match(/\/compare\?/) && request.query.id && request.query.id.length && !request.query.ids) {
-                request.query.ids = request.query.id.join(',');
-            }
-
-            if(route.url.match(/^\/edit.php/)) {
-                request.body['node_js_request'] = true;
-            }
-            // /TODO: HACKS
-
             let query = request.query;
             let headers = route.headers || {};
             let forwardCookies = route.forwardCookies;
