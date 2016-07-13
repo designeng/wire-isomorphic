@@ -2,6 +2,7 @@ import _ from 'underscore';
 import webpack from 'webpack';
 import path from 'path';
 import mkdirp from 'mkdirp';
+import rimraf from 'rimraf';
 import fs from 'fs';
 
 // TODO: 
@@ -74,6 +75,7 @@ function webpackCompile(resolver, compDef, wire) {
         webpackConfig.entry[routeId] = [];
         webpackConfig.entry[routeId].push(entry);
 
+        // TODO: rimraf temp folder
         // TODO: cache compiled scripts for routeId.
 
         const compiler = webpack(webpackConfig);
