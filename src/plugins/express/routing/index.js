@@ -46,7 +46,7 @@ function routeMiddleware(resolver, facet, wire) {
 
             let environment = {
                 compiledScript: null,
-                pageId: route.pageId || null,
+                routeId: route.routeId || null,
             };
 
             _.extend(environment, {

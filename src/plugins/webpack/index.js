@@ -37,14 +37,14 @@ let config = {
 function createEntry(resolver, compDef, wire) {
     wire(compDef.options).then(({
         specToCompile,
-        pageId
+        routeId
     }) => {
-        let tempFolder = path.join(__dirname, `/../../../temp/${pageId}`);
-        let outputPath = `/webpack/build/${pageId}`;
+        let tempFolder = path.join(__dirname, `/../../../temp/${routeId}`);
+        let outputPath = `/webpack/build/${routeId}`;
 
         let fileContent = mainJsTpl({
             specs: specToCompile,
-            pageId: pageId
+            routeId: routeId
         });
 
         mkdirp(`${tempFolder}`, (err) => {
@@ -65,16 +65,16 @@ function webpackCompile(resolver, compDef, wire) {
     let webpackConfig = _.clone(config);
     wire(compDef.options).then(({
         entry,
-        pageId
+        routeId
     }) => {
-        let outputPath = `/webpack/build/${pageId}`;
+        let outputPath = `/webpack/build/${routeId}`;
         webpackConfig.output.path = path.join(__dirname, `/../../../public/${outputPath}`);
         webpackConfig.output.filename = `index.js`;
 
-        webpackConfig.entry[pageId] = [];
-        webpackConfig.entry[pageId].push(entry);
+        webpackConfig.entry[routeId] = [];
+        webpackConfig.entry[routeId].push(entry);
 
-        // TODO: cache compiled scripts for pageId.
+        // TODO: cache compiled scripts for routeId.
 
         const compiler = webpack(webpackConfig);
         compiler.run(function(err, stats) {

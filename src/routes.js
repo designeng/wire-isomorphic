@@ -11,7 +11,7 @@ const routes = [
         // tasks for webpack compilation can include the server tasks (isomorphic mode!)
         // plus something client-special
         webpack: ['clientSpecialSpec', 'mainPageSpec', 'carcassSpec'],
-        pageId: 'main-page',
+        routeId: 'main-page',
     },
     {
         url: '/api/v1/brands',

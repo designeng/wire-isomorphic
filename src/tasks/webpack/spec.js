@@ -8,14 +8,14 @@ export default {
     compiledScript: {
         webpackCompile: {
             entry: {$ref: `entry`},
-            pageId: {$ref: `pageId`},
+            routeId: {$ref: `routeId`},
         }
     },
 
     entry: {
         createEntry: {
             specToCompile: {$ref: `specToCompile`},
-            pageId: {$ref: `pageId`},
+            routeId: {$ref: `routeId`},
         }
     }
 }
