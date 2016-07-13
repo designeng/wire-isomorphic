@@ -7,6 +7,13 @@ export default {
 
     compiledScript: {
         webpackCompile: {
+            entry: {$ref: `entry`},
+            pageId: {$ref: `pageId`},
+        }
+    },
+
+    entry: {
+        createEntry: {
             specToCompile: {$ref: `specToCompile`},
             pageId: {$ref: `pageId`},
         }

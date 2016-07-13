@@ -1,7 +1,10 @@
-
 ##Installation
 ```
 npm i
+```
+##Compile templates before server start
+```
+gulp
 ```
 ##Run server
 ```
