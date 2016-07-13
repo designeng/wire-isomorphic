@@ -3,7 +3,8 @@ function errorMiddleware(resolver, facet, wire) {
 
     target.use(function(err, req, res, next) {
         // TODO
-        // showErrorPage(error, req, res);
+        // handle error, for example
+        // showErrorPage(error, req, res)
     });
 
     resolver.resolve(target);
