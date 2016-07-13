@@ -75,6 +75,8 @@ function webpackCompile(resolver, compDef, wire) {
         webpackConfig.entry[pageId] = [];
         webpackConfig.entry[pageId].push(entry);
 
+        // TODO: cache compiled scripts for pageId.
+
         const compiler = webpack(webpackConfig);
         compiler.run(function(err, stats) {
             if(err) {
