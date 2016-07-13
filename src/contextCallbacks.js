@@ -4,7 +4,7 @@ import Timer from './utils/timer';
 
 export function success(request, response) {
     return (context) => {
-        let headers = {'Referer': `https://www.drive.ru${request.url}`}
+        let headers = {}
         if(context.headers) {
             _.extend(headers, context.headers);
         }
