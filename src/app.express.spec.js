@@ -13,8 +13,6 @@ import routes from './routes';
 import specs from './specs';
 
 import showNotFoundPage from './utils/express/showNotFoundPage';
-import config from './config/api';
-import fs from 'fs';
 
 export default {
     $plugins: [
