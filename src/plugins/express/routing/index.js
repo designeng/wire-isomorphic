@@ -12,6 +12,26 @@ import webpackSpec from '../../../tasks/webpack/spec';
 
 import pluck from '../../../utils/pluck';
 
+let registeredUrlPlugins = {};
+
+function registerRoutePlugins(url, routeSpecs, specs) {
+    registeredUrlPlugins[url] ? void 0 : registeredUrlPlugins[url] = {
+        plugins: [],
+        names: {}
+    };
+
+    _.each(routeSpecs, (spec) => {
+        _.each(specs[spec].$plugins, (plugin) => {
+            registeredUrlPlugins[url].names[plugin.name] ? void 0 
+                : registeredUrlPlugins[url].names[plugin.name] = 1 && registeredUrlPlugins[url].plugins.push(plugin);
+        });
+    });
+}
+
+function createSuffixSpecifications(url) {
+    return [{$plugins: registeredUrlPlugins[url].plugins}];
+}
+
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
     const routes = facet.options.routes;
@@ -24,8 +44,10 @@ function routeMiddleware(resolver, facet, wire) {
 
     routes.forEach(route => {
         let method = route.method || 'get';
+
+        registerRoutePlugins(route.url, route.routeSpec, specs);
+
         target[method](route.url, before, (request, response, next) => {
-            let additionalSpecifications = [];
             let routeSpec = _.map(route.routeSpec, (name) => {
                 return specs[name];
             });
@@ -100,22 +122,26 @@ function routeMiddleware(resolver, facet, wire) {
                 }) });
             }
 
-            additionalSpecifications = [environment];
+            let prefixSpecifications = [environment];
 
             if(route.webpack) {
-                additionalSpecifications.push(webpackSpec)
+                prefixSpecifications.push(webpackSpec);
             }
 
+            let suffixSpecifications = createSuffixSpecifications(route.url);
+
+            let contextSpecs = _.union(prefixSpecifications, routeSpec, suffixSpecifications);
+
             if(route.access) {
-                createContext(_.union(additionalSpecifications, route.access)).then((context) => {
+                createContext(_.union(prefixSpecifications, route.access)).then((context) => {
                     if(context.access === true) {
-                        createContext(_.union(additionalSpecifications, routeSpec)).then(success(request, response), error(request, response));
+                        createContext(contextSpecs).then(success(request, response), error(request, response));
                     } else {
                         response.status(401).end('You are not authorized to access this page.');
                     }
                 });
             } else {
-                createContext(_.union(additionalSpecifications, routeSpec)).then(success(request, response), error(request, response));
+                createContext(contextSpecs).then(success(request, response), error(request, response));
             }
 
         }, after);
