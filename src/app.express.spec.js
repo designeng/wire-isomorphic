@@ -1,5 +1,6 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
 import expressAppPlugin from './plugins/express/application';
+import connectToDatabasePlugin from './plugins/express/connect';
 import cleanCookieMiddlewarePlugin from './plugins/express/cookie/clean';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 
@@ -18,6 +19,7 @@ export default {
     $plugins: [
         // wireDebugPlugin,
         expressAppPlugin,
+        connectToDatabasePlugin,
         expressRoutingMiddlewarePlugin,
         staticAssetsPlugin,
         notFoundMiddlewarePlugin,
@@ -25,6 +27,7 @@ export default {
 
     app: {
         expressApplication: true,
+        connectToDatabase: true,
         routeMiddleware: {
             routes: routes,
             specs: specs,
