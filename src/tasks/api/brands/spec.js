@@ -40,7 +40,7 @@ export default {
                 m.name = 'Statue of Liberty';
                 m.age = 35;
                 m.updated = new Date;
-                m.binary = new Buffer(0);
+                m.binary = new Buffer(1);
                 m.living = false;
                 m.mixed = { any: { thing: 'i want' } };
                 m.markModified('mixed');
