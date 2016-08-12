@@ -30,6 +30,7 @@
     "jquery": "^2.2.0",
     "mkdirp": "^0.5.1",
     "mongo-express": "^0.30.59",
+    "mongoose": "^4.5.8",
     "serve-favicon": "^2.3.0",
     "underscore": "^1.8.3"
   },

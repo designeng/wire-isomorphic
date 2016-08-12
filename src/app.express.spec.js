@@ -1,5 +1,6 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
 import expressAppPlugin from './plugins/express/application';
+import connectToDatabasePlugin from './plugins/express/connect';
 import cleanCookieMiddlewarePlugin from './plugins/express/cookie/clean';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 import mongoExpressPlugin from './plugins/mongo';
@@ -22,6 +23,7 @@ export default {
         // wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
+        connectToDatabasePlugin,
         expressRoutingMiddlewarePlugin,
         staticAssetsPlugin,
         notFoundMiddlewarePlugin,
@@ -33,6 +35,7 @@ export default {
             route: '/admin/mongo',
             config: mongoExpressConfig
         },
+        connectToDatabase: true,
         routeMiddleware: {
             routes: routes,
             specs: specs,

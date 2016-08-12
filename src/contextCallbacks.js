@@ -29,6 +29,8 @@ export function error(request, response) {
                 + `AT: ${new Timer().getFormattedTime()}; `
                 + `HEADERS: ${headers};`;
 
+            console.log('ERROR:::', JSON.stringify(error));
+
             response.status(500).end(errorMessage);
         }
     }
