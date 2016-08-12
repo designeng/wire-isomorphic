@@ -2,6 +2,7 @@ import wireDebugPlugin from 'essential-wire/source/debug';
 import expressAppPlugin from './plugins/express/application';
 import cleanCookieMiddlewarePlugin from './plugins/express/cookie/clean';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
+import mongoExpressPlugin from './plugins/mongo';
 
 import staticAssetsPlugin from './plugins/express/static/index';
 import notFoundMiddlewarePlugin from './plugins/express/404';
@@ -14,10 +15,13 @@ import specs from './specs';
 
 import showNotFoundPage from './utils/express/showNotFoundPage';
 
+import mongoExpressConfig from './config.mongo.js';
+
 export default {
     $plugins: [
         // wireDebugPlugin,
         expressAppPlugin,
+        mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
         staticAssetsPlugin,
         notFoundMiddlewarePlugin,
@@ -25,6 +29,10 @@ export default {
 
     app: {
         expressApplication: true,
+        mongoUIMiddleware: {
+            route: '/ui',
+            config: mongoExpressConfig
+        },
         routeMiddleware: {
             routes: routes,
             specs: specs,
