@@ -17,6 +17,7 @@
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
   "license": "ISC",
   "dependencies": {
+    "acl": "^0.4.9",
     "adler-32": "^0.3.0",
     "axios": "^0.12.0",
     "body-parser": "^1.15.0",
