@@ -34,6 +34,7 @@ export default {
             config: mongoExpressConfig
         },
         connectToDatabase: true,
+        addAccessControlSupport: true,
         routeMiddleware: {
             routes: routes,
             specs: specs,
