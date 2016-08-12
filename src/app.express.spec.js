@@ -30,7 +30,7 @@ export default {
     app: {
         expressApplication: true,
         mongoUIMiddleware: {
-            route: '/ui',
+            route: '/admin/mongo',
             config: mongoExpressConfig
         },
         routeMiddleware: {

@@ -18,12 +18,12 @@ if (process.env.VCAP_SERVICES) {
   }
 } else {
   mongo = {
-    db:       'drive',
+    db:       'isomorphic_dev',
     host:     'localhost',
     password: 'pass',
     port:     27017,
     ssl:      false,
-    url:      'mongodb://localhost:27017/drive',
+    url:      'mongodb://localhost:27017/isomorphic_dev',
     username: 'admin',
   };
 }
