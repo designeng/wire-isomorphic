@@ -1,4 +1,4 @@
-var acl = require('acl');
+var Acl = require('acl');
 
 import mongoose from 'mongoose';
 import mongoExpress from 'mongo-express/lib/middleware';
@@ -23,29 +23,46 @@ function connectToDatabase(resolver, facet, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            let dbInstance = mongoose.connection;
-            var mongoBackend = new acl.mongodbBackend(dbInstance, 'acl_');
+            let connection = mongoose.connection;
+            let db = connection.db;
 
-            console.log('mongoBackend', mongoBackend);
+            var acl = new Acl(new Acl.mongodbBackend(db));
 
-            // acl.allow('guest', 'blogs', 'view');
-            // acl.allow('member', 'blogs', ['edit','view', 'delete']);
-            // acl.addUserRoles('dick', 'guest');
+            acl.allow('admin', ['blogs','forums'], '*')
+            acl.allow('member', 'blogs', ['edit','view', 'delete']);
 
-            // acl.isAllowed('dick', 'blogs', 'view', (err, res) => {
-            //     console.log('------------------');
-            //     if(res){
-            //         console.log("User dick is allowed to view blogs")
-            //     } else if(err) {
-            //         console.log('ERROR ACL:::::', err);
-            //     } else {
-            //         console.log('no err, result!');
-            //     }
-            // });
+            acl.allow([
+                {
+                    roles:['guest','member'],
+                    allows:[
+                        {resources:'blogs', permissions:'get'},
+                        {resources:['forums','news'], permissions:['get','put','delete']}
+                    ]
+                },
+                {
+                    roles:['gold','silver'],
+                    allows:[
+                        {resources:'cash', permissions:['sell','exchange']},
+                        {resources:['account','deposit'], permissions:['put','delete']}
+                    ]
+                }
+            ]);
 
-            // acl.whatResources('member', (err, res) => {
-            //     console.log('whatResources', err, res);
-            // })
+            acl.allowedPermissions('james', ['blogs','forums'], function(err, permissions){
+                console.log('james permissions: ', permissions)
+            });
+
+            acl.isAllowed('joed', 'blogs', 'view', function(err, res){
+                if(res){
+                    console.log("User joed is allowed to view blogs")
+                } else {
+                    console.log("User joed is not allowed to view blogs")
+                }
+            });
+
+            acl.whatResources('member', function(err, resourses){
+                console.log('member resourses: ', resourses)
+            });
 
             return resolver.resolve(target);
         });
