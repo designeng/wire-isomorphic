@@ -70,30 +70,7 @@ function connectToDatabase(resolver, facet, wire) {
 
 function addAccessControlSupportFacet(resolver, facet, wire) {
     let target = facet.target;
-    let dbInstance = mongoose.connection;
-    // let prefix = 'acl'
-    // acl = new acl(new acl.mongodbBackend(dbInstance, prefix));
-
-    // acl.allow('guest', 'blogs', 'view');
-    // acl.allow('member', 'blogs', ['edit','view', 'delete']);
-    // acl.addUserRoles('dick', 'guest');
-
-    // acl.isAllowed('dick', 'blogs', 'view', (err, res) => {
-    //     console.log('------------------');
-    //     if(res){
-    //         console.log("User dick is allowed to view blogs")
-    //     } else if(err) {
-    //         console.log('ERROR ACL:::::', err);
-    //     } else {
-    //         console.log('no err, result!');
-    //     }
-    // });
-
-    // acl.whatResources('member', (err, res) => {
-    //     console.log('whatResources', err, res);
-    // })
-
-    // console.log('acl:', acl);
+    // TODO: see connectToDatabase
 
     resolver.resolve(target);
 }
