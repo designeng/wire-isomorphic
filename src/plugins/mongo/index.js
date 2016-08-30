@@ -23,10 +23,7 @@ function connectToDatabase(resolver, facet, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            let connection = mongoose.connection;
-            let db = connection.db;
-
-            var acl = new Acl(new Acl.mongodbBackend(db));
+            var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db));
 
             acl.allow('admin', ['blogs','forums'], '*')
             acl.allow('member', 'blogs', ['edit','view', 'delete']);
