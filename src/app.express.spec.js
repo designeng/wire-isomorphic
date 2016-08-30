@@ -12,6 +12,7 @@ import helpers from './utils/handlebars/helpers';
 
 import routes from './routes';
 import specs from './specs';
+import permissions from './permissions';
 
 import showNotFoundPage from './utils/express/showNotFoundPage';
 
@@ -34,6 +35,9 @@ export default {
             config: mongoExpressConfig
         },
         connectToDatabase: true,
+        addPermissions: {
+            permissions
+        },
         addAccessControlSupport: true,
         routeMiddleware: {
             routes: routes,

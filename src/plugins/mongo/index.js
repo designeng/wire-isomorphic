@@ -3,6 +3,8 @@ var Acl = require('acl');
 import mongoose from 'mongoose';
 import mongoExpress from 'mongo-express/lib/middleware';
 
+let connection = null;
+
 function mongoUIMiddlewareFacet(resolver, facet, wire) {
     var target = facet.target;
     const route = facet.options.route;
@@ -19,37 +21,24 @@ function connect () {
 
 function connectToDatabase(resolver, facet, wire) {
     let target = facet.target;
-    let connection = connect()
-        .on('error', console.log)
-        .on('disconnected', connect)
-        .once('open', () => {
+    connection = connect()
+        .on('error', console.log);
+}
+
+function addPermissions(resolver, facet, wire) {
+    let target = facet.target;
+    const permissions = facet.options.permissions;
+    connection.once('open', () => {
             var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db));
+            acl.allow(permissions);
 
-            acl.allow('admin', ['blogs','forums'], '*')
-            acl.allow('member', 'blogs', ['edit','view', 'delete']);
-
-            acl.allow([
-                {
-                    roles:['guest','member'],
-                    allows:[
-                        {resources:'blogs', permissions:'get'},
-                        {resources:['forums','news'], permissions:['get','put','delete']}
-                    ]
-                },
-                {
-                    roles:['gold','silver'],
-                    allows:[
-                        {resources:'cash', permissions:['sell','exchange']},
-                        {resources:['account','deposit'], permissions:['put','delete']}
-                    ]
-                }
-            ]);
-
-            acl.allowedPermissions('james', ['blogs','forums'], function(err, permissions){
-                console.log('james permissions: ', permissions)
+            acl.allowedPermissions('joed', ['blogs', 'forums'], function(err, permissions){
+                console.log('joed permissions: ', permissions)
             });
+            
+            acl.addUserRoles('joed', ['member']);
 
-            acl.isAllowed('joed', 'blogs', 'view', function(err, res){
+            acl.isAllowed('joed', 'blogs', 'takeALook', function(err, res){
                 if(res){
                     console.log("User joed is allowed to view blogs")
                 } else {
@@ -57,9 +46,9 @@ function connectToDatabase(resolver, facet, wire) {
                 }
             });
 
-            acl.whatResources('member', function(err, resourses){
-                console.log('member resourses: ', resourses)
-            });
+            // acl.whatResources('member', function(err, resourses){
+            //     console.log('member resourses: ', resourses)
+            // });
 
             return resolver.resolve(target);
         });
@@ -77,6 +66,9 @@ export default function mongoExpressPlugin(options) {
         facets: {
             connectToDatabase: {
                 'initialize:before': connectToDatabase
+            },
+            addPermissions: {
+                'initialize:before': addPermissions
             },
             mongoUIMiddleware: {
                 'create:after': mongoUIMiddlewareFacet
