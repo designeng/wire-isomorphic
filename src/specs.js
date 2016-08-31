@@ -4,8 +4,11 @@ const specs = [
     {name: 'carcassSpec', path: '/tasks/carcass/spec'},
     {name: 'mainPageSpec', path: '/tasks/main/spec'},
     {name: 'clientSpecialSpec', path: '/tasks/client/special/spec'},
+    {name: 'usersSpec', path: '/tasks/users/spec'},
+    // API specifications
     {name: 'apiBrandsSpec', path: '/tasks/api/brands/spec'},
     {name: 'apiCitiesSpec', path: '/tasks/api/cities/spec'},
+    {name: 'apiUsersSpec', path: '/tasks/api/users/spec'},
 ];
 
 let dirPrefix = '.';

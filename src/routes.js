@@ -12,6 +12,10 @@ const routes = [
         routeId: 'main-page',
     },
     {
+        url: '/users',
+        routeSpec: ['usersSpec', 'carcassSpec'],
+    },
+    {
         url: '/api/v1/brands',
         routeSpec: ['apiBrandsSpec'],
         headers: {
@@ -21,6 +25,13 @@ const routes = [
     {
         url: '/api/v1/cities',
         routeSpec: ['apiCitiesSpec'],
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    {
+        url: '/api/v1/users',
+        routeSpec: ['apiUsersSpec'],
         headers: {
             'Content-Type': 'application/json'
         }
