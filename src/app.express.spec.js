@@ -31,6 +31,7 @@ export default {
     app: {
         expressApplication: {
             database: 'isomorphic_dev',
+            aclPrefix: 'acl_',
             permissions
         },
         mongoUIMiddleware: {

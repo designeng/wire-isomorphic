@@ -53,6 +53,7 @@ function expressApplication(resolver, compDef, wire) {
     app.use(cookieParser());
 
     let database = compDef.options.database;
+    let aclPrefix = compDef.options.aclPrefix || undefined;
     let permissions = compDef.options.permissions;
 
     const connect = () => {
@@ -65,7 +66,7 @@ function expressApplication(resolver, compDef, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db));
+            var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db, aclPrefix));
             acl.allow(permissions);
 
             acl.allowedPermissions('joed', ['blogs', 'forums'], function(err, permissions){

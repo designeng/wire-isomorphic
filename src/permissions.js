@@ -7,13 +7,6 @@ const permissions = [
             {resources: 'news', permissions: ['make', 'inspect', 'accept']},
         ]
     },
-    {
-        roles: ['gold', 'silver'],
-        allows:[
-            {resources: 'cash', permissions: ['sell','exchange']},
-            {resources: ['account','deposit'], permissions: ['put','delete']}
-        ]
-    }
 ];
 
 export default permissions;

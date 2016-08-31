@@ -8,6 +8,7 @@ import usersListTpl from '../../templates/build/usersListTpl';
 
 export default {
     $plugins: [
+        wireDebugPlugin,
         requestPlugin,
         createComponentPlugin,
     ],
@@ -18,7 +19,7 @@ export default {
         }
     },
 
-    usersList: {
+    pageContent: {
         createComponent: {
             template: usersListTpl,
             datasource: {$ref: 'usersData'},
