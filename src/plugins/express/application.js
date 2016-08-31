@@ -2,14 +2,10 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import Acl from 'acl';
 
 import Timer from '../../utils/timer';
-
-function connect(database) {
-    let db = `mongodb://localhost:27017/${database}`;
-    let options = { server: { socketOptions: { keepAlive: 1 }}};
-    return mongoose.connect(db, options).connection;
-}
 
 // facets
 function startExpressServerFacet(resolver, facet, wire) {
@@ -56,8 +52,18 @@ function expressApplication(resolver, compDef, wire) {
     const app = express();
     app.use(cookieParser());
 
+    let database = compDef.options.database;
+    let permissions = compDef.options.permissions;
+
+    const connect = () => {
+        let db = `mongodb://localhost:27017/${database}`;
+        let options = { server: { socketOptions: { keepAlive: 1 }}};
+        return mongoose.connect(db, options).connection;
+    }
+
     let connection = connect()
         .on('error', console.log)
+        .on('disconnected', connect)
         .once('open', () => {
             var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db));
             acl.allow(permissions);
