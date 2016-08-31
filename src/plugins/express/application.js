@@ -5,6 +5,12 @@ import cookieParser from 'cookie-parser';
 
 import Timer from '../../utils/timer';
 
+function connect(database) {
+    let db = `mongodb://localhost:27017/${database}`;
+    let options = { server: { socketOptions: { keepAlive: 1 }}};
+    return mongoose.connect(db, options).connection;
+}
+
 // facets
 function startExpressServerFacet(resolver, facet, wire) {
     const port = facet.options.port;
@@ -48,15 +54,40 @@ function expressApplication(resolver, compDef, wire) {
         throw new Error("Please set true value to create Express application.")
     }
     const app = express();
+    app.use(cookieParser());
+
+    let connection = connect()
+        .on('error', console.log)
+        .once('open', () => {
+            var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db));
+            acl.allow(permissions);
+
+            acl.allowedPermissions('joed', ['blogs', 'forums'], function(err, permissions){
+                console.log('joed permissions: ', permissions)
+            });
+            
+            acl.addUserRoles('joed', ['member']);
+
+            acl.isAllowed('joed', 'blogs', 'takeALook', function(err, res){
+                if(res){
+                    console.log("User joed is allowed to view blogs")
+                } else {
+                    console.log("User joed is not allowed to view blogs")
+                }
+            });
+
+            // acl.whatResources('member', function(err, resourses){
+            //     console.log('member resourses: ', resourses)
+            // });
+        });
 
     // app.use(bodyParser.json());
     // app.use(bodyParser.urlencoded({
     //     extended: true
     // }));
-
-    app.use(cookieParser());
-
-    resolver.resolve(app);
+    
+    return resolver.resolve(app);
+    
 }
 
 export default function ExpressAppPlugin(options) {

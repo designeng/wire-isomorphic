@@ -29,14 +29,13 @@ export default {
     ],
 
     app: {
-        expressApplication: true,
+        expressApplication: {
+            database: 'isomorphic_dev',
+            permissions
+        },
         mongoUIMiddleware: {
             route: '/admin/mongo',
             config: mongoExpressConfig
-        },
-        connectToDatabase: true,
-        addPermissions: {
-            permissions
         },
         addAccessControlSupport: true,
         routeMiddleware: {
