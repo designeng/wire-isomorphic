@@ -14,6 +14,10 @@ import routes from './routes';
 import specs from './specs';
 import permissions from './permissions';
 
+import nodesRoutes from './modules/nodes/routes.js';
+import forumRoutes from './modules/forum/routes.js';
+import commentsRoutes from './modules/comments/routes.js';
+
 import showNotFoundPage from './utils/express/showNotFoundPage';
 
 import mongoExpressConfig from './config.mongo.js';
@@ -28,7 +32,25 @@ export default {
         notFoundMiddlewarePlugin,
     ],
 
-    app: {
+    NodesModule: {
+        registerModule: {
+            routes: nodesRoutes
+        }
+    },
+
+    ForumModule: {
+        registerModule: {
+            routes: forumRoutes
+        }
+    },
+
+    CommentsModule: {
+        registerModule: {
+            routes: commentsRoutes
+        }
+    },
+
+    Application: {
         expressApplication: {
             database: 'isomorphic_dev',
             aclPrefix: 'acl_',
@@ -37,6 +59,13 @@ export default {
         mongoUIMiddleware: {
             route: '/admin/mongo',
             config: mongoExpressConfig
+        },
+        registerModules: {
+            modules: [
+                {$ref: 'NodesModule'},
+                {$ref: 'ForumModule'},
+                {$ref: 'CommentsModule'},
+            ]
         },
         routeMiddleware: {
             routes: routes,

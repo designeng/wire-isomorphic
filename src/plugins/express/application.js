@@ -44,6 +44,12 @@ function faviconFacet(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
+function registerModulesFacet(resolver, facet, wire) {
+    let target = facet.target;
+
+    resolver.resolve(target);
+}
+
 // factories
 function expressApplication(resolver, compDef, wire) {
     if (!compDef.options) {
@@ -111,6 +117,9 @@ export default function ExpressAppPlugin(options) {
             },
             server: {
                 ready: startExpressServerFacet
+            },
+            registerModules: {
+                ready: registerModulesFacet
             }
         }
     }
