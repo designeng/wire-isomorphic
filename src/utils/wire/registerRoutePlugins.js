@@ -1,18 +1,22 @@
+import _ from 'underscore';
+
 let registeredUrlPlugins = {};
 
-function registerRoutePlugins(url, routeSpecs, specs) {
-    registeredUrlPlugins[url] || (registeredUrlPlugins[url] = {
+export default function registerRoutePlugins(route) {
+    let id = route._id;
+
+    registeredUrlPlugins[id] || (registeredUrlPlugins[id] = {
         plugins: [],
         names: {}
     });
 
-    _.each(routeSpecs, (spec) => {
+    _.each(route.tasks, (spec) => {
         _.each(specs[spec].$plugins, (plugin) => {
-            registeredUrlPlugins[url].names[plugin.name] || (registeredUrlPlugins[url].names[plugin.name] = 1 && registeredUrlPlugins[url].plugins.push(plugin));
+            registeredUrlPlugins[id].names[plugin.name] || (registeredUrlPlugins[id].names[plugin.name] = 1 && registeredUrlPlugins[id].plugins.push(plugin));
         });
     });
 }
 
-function createSuffixSpecifications(url) {
-    return [{$plugins: registeredUrlPlugins[url].plugins}];
+export function createSuffixSpecifications(route) {
+    return [{$plugins: registeredUrlPlugins[route._id].plugins}];
 }
