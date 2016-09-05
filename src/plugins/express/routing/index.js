@@ -22,15 +22,13 @@ function routeMiddleware(resolver, facet, wire) {
     const after = facet.options.after || function after(request, response, next) { next() };
 
     routes.forEach(route => {
-        let method = route.method || 'get';
-
         if(!route._id) {
             createUniqueId(route, 'route_');
         }
 
         registerRoutePlugins(route, specs);
 
-        target[method](route.url, before, createRouteTasksHandler(route, specs, specSource), after);
+        target[route.method || 'get'](route.url, before, createRouteTasksHandler(route, specs, specSource), after);
 
         resolver.resolve(target);
     });
