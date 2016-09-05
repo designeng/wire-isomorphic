@@ -6,6 +6,9 @@ export default function Forum() {
 
 Forum.prototype = {
     register() {
+        this.routes.forEach((route) => {
+            
+        })
         console.log('registered - ', this.name);
     }
 }
