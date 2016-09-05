@@ -18,9 +18,6 @@ function routeMiddleware(resolver, facet, wire) {
     const specs = facet.options.specs;
     const specSource = facet.options.specSource;
 
-    const before = facet.options.before || function before(request, response, next) { next() };
-    const after = facet.options.after || function after(request, response, next) { next() };
-
     routes.forEach(route => {
         if(!route._id) {
             createUniqueId(route, 'route_');
