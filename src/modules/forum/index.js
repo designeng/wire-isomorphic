@@ -1,7 +1,10 @@
+import express from 'express';
+import routes from './routes';
+
 export default function Forum() {
     this.name = 'forum';
-    this.router = require('express').Router();
-    this.routes = require('./routes');
+    this.router = express.Router();
+    this.routes = routes;
 }
 
 Forum.prototype = {
