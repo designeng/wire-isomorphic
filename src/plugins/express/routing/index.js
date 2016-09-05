@@ -12,10 +12,6 @@ import registerRoutePlugins from '../../../utils/wire/registerRoutePlugins';
 import showNotFoundPage from '../../../utils/express/showNotFoundPage';
 import getPathName from '../../../utils/express/getPathName';
 
-import webpackSpec from '../../../tasks/webpack/spec';
-
-import pluck from '../../../utils/pluck';
-
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
     const routes = facet.options.routes;
@@ -34,7 +30,7 @@ function routeMiddleware(resolver, facet, wire) {
 
         registerRoutePlugins(route, specs);
 
-        target[method](route.url, before, createRouteTasksHandler(route, specs), after);
+        target[method](route.url, before, createRouteTasksHandler(route, specs, specSource), after);
 
         resolver.resolve(target);
     });

@@ -3,7 +3,9 @@ import url from 'url';
 import createContext from '../createContext';
 import { createSuffixSpecifications } from '../wire/registerRoutePlugins';
 
-export default function createRouteTasksHandler(route, specs) {
+import webpackSpec from '../../tasks/webpack/spec';
+
+export default function createRouteTasksHandler(route, specs, specSource) {
     return (request, response, next) => {
         let tasks = _.map(route.tasks, (name) => {
             return specs[name];
@@ -79,6 +81,7 @@ export default function createRouteTasksHandler(route, specs) {
         let prefixSpecifications = [environment];
 
         if(route.webpack) {
+            // TODO: bad design: utils function depends on outer task spec.....
             prefixSpecifications.push(webpackSpec);
         }
 
