@@ -5,7 +5,7 @@ import { createSuffixSpecifications } from '../wire/registerRoutePlugins';
 
 export default function createRouteTasksHandler(route, specs) {
     return (request, response, next) => {
-        let routeSpec = _.map(route.routeSpec, (name) => {
+        let tasks = _.map(route.tasks, (name) => {
             return specs[name];
         });
 
@@ -84,7 +84,9 @@ export default function createRouteTasksHandler(route, specs) {
 
         let suffixSpecifications = createSuffixSpecifications(route);
 
-        let contextSpecs = _.union(prefixSpecifications, routeSpec, suffixSpecifications);
+        console.log('suffixSpecifications::::', suffixSpecifications);
+
+        let contextSpecs = _.union(prefixSpecifications, tasks, suffixSpecifications);
 
         if(route.access) {
             createContext(_.union(prefixSpecifications, route.access)).then((context) => {

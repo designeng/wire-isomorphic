@@ -18,6 +18,5 @@ export default function registerRoutePlugins(route, specs) {
 }
 
 export function createSuffixSpecifications(route) {
-    console.log('route._id:::::', route._id);
     return [{$plugins: registeredUrlPlugins[route._id].plugins}];
 }

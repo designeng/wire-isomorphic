@@ -29,8 +29,9 @@ function routeMiddleware(resolver, facet, wire) {
 
     routes.forEach(route => {
         let method = route.method || 'get';
+        
         if(!route._id) {
-            createUniqueId(route);
+            createUniqueId(route, 'route_');
         }
 
         registerRoutePlugins(route, specs);
