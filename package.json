@@ -10,8 +10,9 @@
     "webpack": "npm run clean & webpack --watch --config webpack.config.js",
     "start": "PROTOCOL=http HOST=localhost PORT=3000 NODE_ENV=dev node ./runner",
     "debug": "NODE_ENV=dev iron-node ./runner.js",
-    "test": "node ./test/routes",
-    "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install"
+    "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install",
+    "test": "node ./runner && npm run karma-test",
+    "karma-test": "karma start test/karma.conf.js"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
@@ -47,6 +48,8 @@
     "gulp-handlebars": "^4.0.0",
     "gulp-wrap": "^0.13.0",
     "handlebars-template-loader": "^0.5.4",
+    "karma": "^1.2.0",
+    "karma-osx-reporter": "^0.2.1",
     "rimraf": "^2.5.1",
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
