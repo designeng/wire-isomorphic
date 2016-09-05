@@ -84,8 +84,6 @@ export default function createRouteTasksHandler(route, specs) {
 
         let suffixSpecifications = createSuffixSpecifications(route);
 
-        console.log('suffixSpecifications::::', suffixSpecifications);
-
         let contextSpecs = _.union(prefixSpecifications, tasks, suffixSpecifications);
 
         if(route.access) {
