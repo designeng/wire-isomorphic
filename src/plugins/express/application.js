@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import express from 'express';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
@@ -46,6 +47,12 @@ function faviconFacet(resolver, facet, wire) {
 
 function registerModulesFacet(resolver, facet, wire) {
     let target = facet.target;
+    const modules = facet.options.modules;
+
+    _.each(modules, (Module) => {
+        let m = new Module();
+        m.register();
+    });
 
     resolver.resolve(target);
 }

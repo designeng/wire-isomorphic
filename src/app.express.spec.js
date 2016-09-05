@@ -14,41 +14,24 @@ import routes from './routes';
 import specs from './specs';
 import permissions from './permissions';
 
-import nodesRoutes from './modules/nodes/routes.js';
-import forumRoutes from './modules/forum/routes.js';
-import commentsRoutes from './modules/comments/routes.js';
-
 import showNotFoundPage from './utils/express/showNotFoundPage';
 
 import mongoExpressConfig from './config.mongo.js';
 
+// modules
+import nodes from './modules/nodes/index.js';
+import forum from './modules/forum/index.js';
+import comments from './modules/comments/index.js';
+
 export default {
     $plugins: [
-        // wireDebugPlugin,
+        wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
         staticAssetsPlugin,
         notFoundMiddlewarePlugin,
     ],
-
-    NodesModule: {
-        registerModule: {
-            routes: nodesRoutes
-        }
-    },
-
-    ForumModule: {
-        registerModule: {
-            routes: forumRoutes
-        }
-    },
-
-    CommentsModule: {
-        registerModule: {
-            routes: commentsRoutes
-        }
-    },
 
     Application: {
         expressApplication: {
@@ -62,9 +45,9 @@ export default {
         },
         registerModules: {
             modules: [
-                {$ref: 'NodesModule'},
-                {$ref: 'ForumModule'},
-                {$ref: 'CommentsModule'},
+                // nodes,
+                forum,
+                // comments,
             ]
         },
         routeMiddleware: {
