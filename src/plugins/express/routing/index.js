@@ -26,9 +26,9 @@ function routeMiddleware(resolver, facet, wire) {
         registerRoutePlugins(route, specs);
 
         target[route.method || 'get'](route.url, createRouteTasksHandler(route, specs, specSource));
-
-        resolver.resolve(target);
     });
+
+    resolver.resolve(target);
 }
 
 export default function routeMiddlewarePlugin(options) {
