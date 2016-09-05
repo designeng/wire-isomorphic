@@ -127,7 +127,7 @@ export default function ExpressAppPlugin(options) {
             },
             registerModules: {
                 ready: registerModulesFacet
-            }
+            },
         }
     }
 }

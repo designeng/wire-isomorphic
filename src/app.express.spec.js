@@ -25,7 +25,7 @@ import comments from './modules/comments/index.js';
 
 export default {
     $plugins: [
-        wireDebugPlugin,
+        // wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
@@ -43,6 +43,9 @@ export default {
             route: '/admin/mongo',
             config: mongoExpressConfig
         },
+        static: {
+            dir: './public'
+        },
         registerModules: {
             modules: [
                 // nodes,
@@ -54,15 +57,8 @@ export default {
             routes: routes,
             specs: specs,
             specSource: specs._specSource,
-            before: (req, res, next) => {
-                next();
-            },
-            // TODO: 404 handler should be in separate middleware
-            after: showNotFoundPage,
         },
-        static: {
-            dir: './public'
-        },
+        notFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true,

@@ -12,6 +12,7 @@ export default function showNotFoundPage(request, response, next) {
         {
             requestUrl: request.url,
             hostname: request.hostname,
+            pageContent: null,
         },  
         carcassSpec, 
         notFoundSpec

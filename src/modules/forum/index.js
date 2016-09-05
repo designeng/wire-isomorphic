@@ -2,6 +2,7 @@ import _ from 'underscore';
 import express from 'express';
 import routes from './routes';
 import createUniqueRouteId from '../../utils/createUniqueId';
+import createRouteTasksHandler from '../../utils/express/createRouteTasksHandler';
 
 export default function Forum() {
     this.name = 'forum';
