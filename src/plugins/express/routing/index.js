@@ -10,7 +10,6 @@ import createRouteTasksHandler from '../../../utils/express/createRouteTasksHand
 import registerRoutePlugins from '../../../utils/wire/registerRoutePlugins';
 
 import showNotFoundPage from '../../../utils/express/showNotFoundPage';
-import shouldBeSkipped from '../../../utils/express/shouldBeSkipped';
 import getPathName from '../../../utils/express/getPathName';
 
 import webpackSpec from '../../../tasks/webpack/spec';
@@ -23,13 +22,12 @@ function routeMiddleware(resolver, facet, wire) {
     const specs = facet.options.specs;
     const specSource = facet.options.specSource;
 
-    const skip = facet.options.skip;
     const before = facet.options.before || function before(request, response, next) { next() };
     const after = facet.options.after || function after(request, response, next) { next() };
 
     routes.forEach(route => {
         let method = route.method || 'get';
-        
+
         if(!route._id) {
             createUniqueId(route, 'route_');
         }
