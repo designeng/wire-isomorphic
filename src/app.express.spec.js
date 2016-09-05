@@ -38,7 +38,6 @@ export default {
             route: '/admin/mongo',
             config: mongoExpressConfig
         },
-        addAccessControlSupport: true,
         routeMiddleware: {
             routes: routes,
             specs: specs,
