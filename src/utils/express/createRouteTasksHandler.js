@@ -1,7 +1,9 @@
+import _ from 'underscore';
+import url from 'url';
 import createContext from '../createContext';
 import { createSuffixSpecifications } from '../wire/registerRoutePlugins';
 
-export default function createRouteTasksHandler(route) {
+export default function createRouteTasksHandler(route, specs) {
     return (request, response, next) => {
         let routeSpec = _.map(route.routeSpec, (name) => {
             return specs[name];
@@ -80,7 +82,7 @@ export default function createRouteTasksHandler(route) {
             prefixSpecifications.push(webpackSpec);
         }
 
-        let suffixSpecifications = createSuffixSpecifications(route.url);
+        let suffixSpecifications = createSuffixSpecifications(route);
 
         let contextSpecs = _.union(prefixSpecifications, routeSpec, suffixSpecifications);
 

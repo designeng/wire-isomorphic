@@ -2,7 +2,7 @@ import _ from 'underscore';
 
 let registeredUrlPlugins = {};
 
-export default function registerRoutePlugins(route) {
+export default function registerRoutePlugins(route, specs) {
     let id = route._id;
 
     registeredUrlPlugins[id] || (registeredUrlPlugins[id] = {
@@ -18,5 +18,6 @@ export default function registerRoutePlugins(route) {
 }
 
 export function createSuffixSpecifications(route) {
+    console.log('route._id:::::', route._id);
     return [{$plugins: registeredUrlPlugins[route._id].plugins}];
 }
