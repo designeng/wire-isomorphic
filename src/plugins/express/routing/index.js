@@ -61,10 +61,6 @@ function routeMiddleware(resolver, facet, wire) {
             // remove zero blank element
             requestUrlArr.shift();
 
-            if(shouldBeSkipped(getPathName(request), skip)) {
-                return next();
-            }
-
             let environment = {
                 compiledScript: null,
                 routeId: route.routeId || null,
