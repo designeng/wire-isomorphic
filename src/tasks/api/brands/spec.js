@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import mongoose from 'mongoose';
 
-import Thing from '../../../models/Thing';
+import Thing from '../../../entities/Thing';
 
 export default {
     $plugins: [

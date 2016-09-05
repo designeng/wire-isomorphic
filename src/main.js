@@ -6,7 +6,7 @@ import { createTasks, createTask } from './utils/tasks';
 import Timer from './utils/timer';
 
 import mongoose from 'mongoose';
-import User from './models/User';
+import User from './entities/User';
 import md5 from 'md5';
 
 const populationCallback = (err) => {
