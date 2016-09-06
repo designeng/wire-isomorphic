@@ -55,7 +55,7 @@ export default {
         routeMiddleware: {
             routes: routes
         },
-        notFoundMiddleware: {},
+        // notFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true,

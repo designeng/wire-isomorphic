@@ -10,7 +10,12 @@ class BaseModule {
     getRootToken() {}
 
     register() {
-        useRoutes(this.router, this.routes);
+        useRoutes({
+            target: this.router, 
+            routes: this.routes, 
+            baseUrl: `/api/v1/${this.getRootToken()}`, 
+            module: this
+        });
     }
 
     // CRUD methods

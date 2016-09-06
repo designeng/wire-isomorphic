@@ -2,9 +2,10 @@ import crud from 'node-crud';
 
 const crudActions = ['Create', 'Read', 'Update', 'Delete'];
 
-export default function createRouteCRUDHandler(target, url) {
+// TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
+export default function createRouteCRUDHandler(url, baseUrl, module) {
     crudActions.forEach((action) => {
-        crud.entity('/fakecomments')[action]()
+        crud.entity(`/${module.getRootToken()}`)[action]()
             .pipe(function(data, query, cb) {
                 cb(null, [ { action: action } ]);
             });

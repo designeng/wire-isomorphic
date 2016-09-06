@@ -59,6 +59,7 @@ function registerModulesFacet(resolver, facet, wire) {
         target.use(apiRootPath + module.getRootToken(), module.router);
     });
 
+    crud.configure({base: '/api/v1'});
     crud.launch(target);
 
     resolver.resolve(target);

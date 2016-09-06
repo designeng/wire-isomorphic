@@ -9,7 +9,7 @@ function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
     const routes = facet.options.routes;
 
-    useRoutes(target, routes);
+    useRoutes({target, routes});
 
     resolver.resolve(target);
 }
