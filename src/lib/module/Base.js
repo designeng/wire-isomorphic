@@ -32,3 +32,9 @@ class BaseModule {
 }
 
 export default BaseModule;
+
+// crud.entity('/users').Create()
+//     .pipe(function(data, query, cb) {
+//         console.log('create user', data, query);
+//         cb(null, { data: data });
+//     });

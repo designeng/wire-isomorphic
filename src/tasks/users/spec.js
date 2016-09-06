@@ -8,7 +8,7 @@ import usersListTpl from '../../templates/build/usersListTpl';
 
 export default {
     $plugins: [
-        wireDebugPlugin,
+        // wireDebugPlugin,
         requestPlugin,
         createComponentPlugin,
     ],

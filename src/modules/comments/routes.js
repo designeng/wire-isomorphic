@@ -1,7 +1,7 @@
 const routes = [
     {
         url: '/',
-        tasks: ['commentsSpec']
+        type: 'CRUD'
     }
 ];
 

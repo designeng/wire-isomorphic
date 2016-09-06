@@ -14,7 +14,7 @@ export default function notFoundMiddlewarePlugin(options) {
     return {
         facets: {
             notFoundMiddleware: {
-                'initialize:after': notFoundMiddleware
+                'ready': notFoundMiddleware
             }
         }
     }

@@ -24,7 +24,7 @@ import comments from './modules/comments/index.js';
 
 export default {
     $plugins: [
-        wireDebugPlugin,
+        // wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
