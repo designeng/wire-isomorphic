@@ -11,7 +11,6 @@ import partials from './partials';
 import helpers from './utils/handlebars/helpers';
 
 import routes from './routes';
-import specs from './specs';
 import permissions from './permissions';
 
 import showNotFoundPage from './utils/express/showNotFoundPage';
@@ -25,7 +24,7 @@ import comments from './modules/comments/index.js';
 
 export default {
     $plugins: [
-        // wireDebugPlugin,
+        wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
@@ -54,9 +53,7 @@ export default {
             ]
         },
         routeMiddleware: {
-            routes: routes,
-            specs: specs,
-            specSource: specs._specSource,
+            routes: routes
         },
         notFoundMiddleware: {},
         server: {

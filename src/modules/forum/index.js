@@ -1,22 +1,17 @@
 import _ from 'underscore';
 import express from 'express';
 import routes from './routes';
-import createUniqueRouteId from '../../utils/createUniqueId';
-import createRouteTasksHandler from '../../utils/express/createRouteTasksHandler';
+import useRoutes from '../../utils/express/useRoutes';
 
 export default function Forum() {
     this.name = 'forum';
     this.router = express.Router();
     this.routes = routes;
-
-    createUniqueRouteId(this.routes);
 }
 
 Forum.prototype = {
     register() {
-        this.routes.forEach((route) => {
-            
-        })
+        useRoutes(this.router, routes);
         console.log('registered - ', this.name);
     }
 }
