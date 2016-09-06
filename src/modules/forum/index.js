@@ -1,15 +1,15 @@
-import express from 'express';
 import routes from './routes';
-import useRoutes from '../../lib/express/useRoutes';
+import Base from '../../lib/module/Base';
 
-export default function Forum() {
-    this.name = this.rootToken = 'forum';
-    this.router = express.Router();
-    this.routes = routes;
-}
+class Forum extends Base {
+    constructor() {
+        super();
+        this.routes = routes;
+    }
 
-Forum.prototype = {
-    register() {
-        useRoutes(this.router, this.routes);
+    getRootToken() {
+        return 'forum';
     }
 }
+
+export default Forum;

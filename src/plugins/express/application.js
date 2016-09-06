@@ -54,7 +54,7 @@ function registerModulesFacet(resolver, facet, wire) {
     _.each(modules, (Module) => {
         let module = new Module();
         module.register();
-        target.use(apiRootPath + module.rootToken, module.router);
+        target.use(apiRootPath + module.getRootToken(), module.router);
     });
 
     resolver.resolve(target);
