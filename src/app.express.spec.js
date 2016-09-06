@@ -8,12 +8,12 @@ import staticAssetsPlugin from './plugins/express/static/index';
 import notFoundMiddlewarePlugin from './plugins/express/404';
 
 import partials from './partials';
-import helpers from './utils/handlebars/helpers';
+import helpers from './lib/handlebars/helpers';
 
 import routes from './routes';
 import permissions from './permissions';
 
-import showNotFoundPage from './utils/express/showNotFoundPage';
+import showNotFoundPage from './lib/express/showNotFoundPage';
 
 import mongoExpressConfig from './config.mongo.js';
 

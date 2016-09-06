@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import rimraf from 'rimraf';
 import FormData from 'form-data';
-import normalizeCookies from '../../../utils/express/headers/cookie/normalizeCookies';
+import normalizeCookies from '../../../lib/express/headers/cookie/normalizeCookies';
 
 function formDataMiddleware(resolver, facet, wire) {
     const target = facet.target;

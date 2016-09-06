@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import showNotFoundPage from './utils/express/showNotFoundPage';
-import Timer from './utils/timer';
+import showNotFoundPage from './lib/express/showNotFoundPage';
+import Timer from './lib/timer';
 
 export function success(request, response) {
     return (context) => {

@@ -1,9 +1,9 @@
-import registerPartials from './utils/handlebars/registerPartials';
+import registerPartials from './lib/handlebars/registerPartials';
 
 // TODO: import and register partials
 import {
     
-} from './utils/widgets';
+} from './lib/widgets';
 
 registerPartials({
     

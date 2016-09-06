@@ -2,8 +2,8 @@ import _ from 'underscore';
 
 import axios from 'axios';
 
-import normalizeCookies from '../../../utils/express/headers/cookie/normalizeCookies';
-import prepareData from '../../../utils/prepareData';
+import normalizeCookies from '../../../lib/express/headers/cookie/normalizeCookies';
+import prepareData from '../../../lib/prepareData';
 
 function proxyMiddleware(resolver, facet, wire) {
     const target = facet.target;

@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import express from 'express';
 import routes from './routes';
-import useRoutes from '../../utils/express/useRoutes';
+import useRoutes from '../../lib/express/useRoutes';
 
 export default function Forum() {
     this.name = this.rootToken = 'forum';

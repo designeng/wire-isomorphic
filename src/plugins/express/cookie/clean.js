@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import url from 'url';
 
-import { checkInvalidHeaderChar, checkIsHttpToken } from '../../../utils/express/headers/rules-latest';
+import { checkInvalidHeaderChar, checkIsHttpToken } from '../../../lib/express/headers/rules-latest';
 
 let cityRegex = /(.*,)([0-9]+)/;
 

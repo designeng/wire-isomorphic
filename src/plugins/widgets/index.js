@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import * as widgets from '../../utils/widgets';
+import * as widgets from '../../lib/widgets';
 
 const advertisementPlaceholderRegex = /<!--@.*\s(widget_[a-zA-Z0-9]+)\s.*@-->/g;
 

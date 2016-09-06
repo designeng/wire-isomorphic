@@ -1,9 +1,9 @@
 import _ from 'underscore';
 
-import showNotFoundPage from '../../../utils/express/showNotFoundPage';
-import getPathName from '../../../utils/express/getPathName';
+import showNotFoundPage from '../../../lib/express/showNotFoundPage';
+import getPathName from '../../../lib/express/getPathName';
 
-import useRoutes from '../../../utils/express/useRoutes';
+import useRoutes from '../../../lib/express/useRoutes';
 
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;

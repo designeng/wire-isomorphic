@@ -1,4 +1,4 @@
-import showNotFoundPage from '../../../utils/express/showNotFoundPage';
+import showNotFoundPage from '../../../lib/express/showNotFoundPage';
 
 function notFoundMiddleware(resolver, facet, wire) {
     const target = facet.target;

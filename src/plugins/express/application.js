@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import Acl from 'acl';
 
-import Timer from '../../utils/timer';
+import Timer from '../../lib/timer';
 
 // facets
 function startExpressServerFacet(resolver, facet, wire) {

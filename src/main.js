@@ -2,8 +2,8 @@ import wire from 'essential-wire';
 import pipeline from 'when/pipeline';
 
 import expressSpec from './app.express.spec';
-import { createTasks, createTask } from './utils/tasks';
-import Timer from './utils/timer';
+import { createTasks, createTask } from './lib/tasks';
+import Timer from './lib/timer';
 
 import mongoose from 'mongoose';
 import User from './entities/User';

@@ -1,4 +1,4 @@
-import Timer from '../../utils/timer';
+import Timer from '../../lib/timer';
 import chalk from 'chalk';
 
 export default function PerformancePlugin(options) {
