@@ -14,10 +14,13 @@ class Comments extends Base {
     registerEventListeners() {
         return {
             'create_comment': this.createComment,
+            'read_comment': this.readComment,
+            'update_comment': this.updateComment,
             'delete_comment': this.deleteComment,
         }
     }
 
+    // should be implemented in Base module class!
     createComment(userId, parentId, title, message) {
 
     }
