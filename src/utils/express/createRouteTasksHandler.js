@@ -4,6 +4,7 @@ import createContext from '../createContext';
 import { createSuffixSpecifications } from '../wire/registerRoutePlugins';
 
 import webpackSpec from '../../tasks/webpack/spec';
+import { success, error } from '../../contextCallbacks';
 
 export default function createRouteTasksHandler(route, specs, specSource) {
     return (request, response, next) => {
@@ -13,8 +14,8 @@ export default function createRouteTasksHandler(route, specs, specSource) {
 
         let routeUrl = route.url;
         let provide = route.provide;
-        let success = route.success;
-        let error = route.error;
+        let successHandler = route.success || success;
+        let errorHandler = route.error || error;
 
         let requestUrl = request.url;
         const requestUrlArr = requestUrl.split('/');
@@ -92,13 +93,13 @@ export default function createRouteTasksHandler(route, specs, specSource) {
         if(route.access) {
             createContext(_.union(prefixSpecifications, route.access)).then((context) => {
                 if(context.access === true) {
-                    createContext(contextSpecs).then(success(request, response), error(request, response));
+                    createContext(contextSpecs).then(successHandler(request, response), errorHandler(request, response));
                 } else {
                     response.status(401).end('You are not authorized to access this page.');
                 }
             });
         } else {
-            createContext(contextSpecs).then(success(request, response), error(request, response));
+            createContext(contextSpecs).then(successHandler(request, response), errorHandler(request, response));
         }
     }
 

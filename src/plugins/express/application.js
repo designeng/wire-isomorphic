@@ -54,8 +54,7 @@ function registerModulesFacet(resolver, facet, wire) {
     _.each(modules, (Module) => {
         let module = new Module();
         module.register();
-        console.log('module....', module.rootToken, module);
-        target.use('/' + module.rootToken, module.router);
+        target.use(apiRootPath + module.rootToken, module.router);
     });
 
     resolver.resolve(target);
@@ -130,7 +129,7 @@ export default function ExpressAppPlugin(options) {
                 ready: startExpressServerFacet
             },
             registerModules: {
-                ready: registerModulesFacet
+                'initialize:before': registerModulesFacet
             },
         }
     }
