@@ -10,6 +10,22 @@ class Forum extends Base {
     getRootToken() {
         return 'forum';
     }
+
+    create(data, query, cb) {
+        cb(null, [ { action: 'CREATE FORUM' } ]);
+    }
+
+    read(data, query, cb) {
+        cb(null, [ { action: 'READ FORUM' } ]);
+    }
+
+    update(data, query, cb) {
+        cb(null, [ { action: 'UPDATE FORUM' } ]);
+    }
+
+    delete(data, query, cb) {
+        cb(null, [ { action: 'DELETE FORUM' } ]);
+    }
 }
 
 export default Forum;
