@@ -12,6 +12,23 @@ class BaseModule {
     register() {
         useRoutes(this.router, this.routes);
     }
+
+    // CRUD methods
+    create(data) {
+
+    }
+
+    read(id) {
+
+    }
+
+    update(id, data) {
+
+    }
+
+    delete(id) {
+
+    }
 }
 
 export default BaseModule;
