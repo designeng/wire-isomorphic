@@ -4,7 +4,7 @@ import routes from './routes';
 import useRoutes from '../../utils/express/useRoutes';
 
 export default function Forum() {
-    this.name = 'forum';
+    this.name = this.rootToken = 'forum';
     this.router = express.Router();
     this.routes = routes;
 }

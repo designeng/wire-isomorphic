@@ -1,6 +1,7 @@
 const routes = [
     {
-        url: '/',
+        url: '/threads',
+        tasks: ['forumThreadsSpec']
     }
 ];
 

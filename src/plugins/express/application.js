@@ -49,9 +49,13 @@ function registerModulesFacet(resolver, facet, wire) {
     let target = facet.target;
     const modules = facet.options.modules;
 
+    const apiRootPath = '/api/v1/';
+
     _.each(modules, (Module) => {
-        let m = new Module();
-        m.register();
+        let module = new Module();
+        module.register();
+        console.log('module....', module.rootToken, module);
+        target.use('/' + module.rootToken, module.router);
     });
 
     resolver.resolve(target);

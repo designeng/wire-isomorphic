@@ -11,6 +11,8 @@ export default function useRoutes(target, routes) {
 
         registerRoutePlugins(route, specs);
 
+        console.log('URL:::', route.url);
+
         target[route.method || 'get'](route.url, createRouteTasksHandler(route, specs, specs._specSource));
     });
 }

@@ -5,6 +5,7 @@ const specs = [
     {name: 'mainPageSpec', path: '/tasks/main/spec'},
     {name: 'clientSpecialSpec', path: '/tasks/client/special/spec'},
     {name: 'usersSpec', path: '/tasks/users/spec'},
+    {name: 'forumThreadsSpec', path: '/tasks/forum/threads/spec'},
     // API specifications
     {name: 'apiBrandsSpec', path: '/tasks/api/brands/spec'},
     {name: 'apiCitiesSpec', path: '/tasks/api/cities/spec'},
