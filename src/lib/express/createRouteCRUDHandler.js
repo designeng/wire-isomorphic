@@ -10,7 +10,5 @@ export default function createRouteCRUDHandler(target, url) {
             .pipe(function(data, query, cb) {
                 cb(null, [ { name: 'bobby tables' } ]);
             });
-
-        // crud.launch(target);
     });
 }
