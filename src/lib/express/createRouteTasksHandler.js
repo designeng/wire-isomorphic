@@ -4,7 +4,7 @@ import createContext from '../createContext';
 import { createSuffixSpecifications } from '../wire/registerRoutePlugins';
 
 import webpackSpec from '../../tasks/webpack/spec';
-import { success, error } from '../../contextCallbacks';
+import { success, error } from './contextCallbacks';
 
 export default function createRouteTasksHandler(route, specs, specSource) {
     return (request, response, next) => {

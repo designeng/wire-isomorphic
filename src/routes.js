@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import { success, error } from './contextCallbacks';
 
 // tasks names should match exported ./specs.js objects names
 const routes = [
@@ -37,9 +36,5 @@ const routes = [
         }
     },
 ];
-
-_.each(routes, (route) => {
-    _.extend(route, {success, error});
-});
 
 export default routes;
