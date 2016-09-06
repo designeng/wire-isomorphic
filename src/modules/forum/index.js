@@ -11,7 +11,7 @@ export default function Forum() {
 
 Forum.prototype = {
     register() {
-        useRoutes(this.router, routes);
+        useRoutes(this.router, this.routes);
         console.log('registered - ', this.name);
     }
 }
