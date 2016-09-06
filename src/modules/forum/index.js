@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import express from 'express';
 import routes from './routes';
 import useRoutes from '../../lib/express/useRoutes';
