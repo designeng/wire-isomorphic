@@ -13,28 +13,27 @@ class Comments extends Base {
 
     registerEventListeners() {
         return {
-            'create_comment': this.createComment,
-            'read_comment': this.readComment,
-            'update_comment': this.updateComment,
-            'delete_comment': this.deleteComment,
+            'create_comment': this.create,
+            'read_comment': this.read,
+            'update_comment': this.update,
+            'delete_comment': this.delete,
         }
     }
 
-    // should be implemented in Base module class!
-    createComment(userId, parentId, title, message) {
-
+    create(data, query, cb) {
+        cb(null, [ { action: 'CREATE COMMENT' } ]);
     }
 
-    readComment(commentId) {
-
+    read(data, query, cb) {
+        cb(null, [ { action: 'READ COMMENT' } ]);
     }
 
-    updateComment(commentId) {
-
+    update(data, query, cb) {
+        cb(null, [ { action: 'UPDATE COMMENT' } ]);
     }
 
-    deleteComment(commentId) {
-
+    delete(data, query, cb) {
+        cb(null, [ { action: 'DELETE COMMENT' } ]);
     }
 
 }

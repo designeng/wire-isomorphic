@@ -7,7 +7,7 @@ export default function createRouteCRUDHandler(url, baseUrl, module) {
     crudActions.forEach((action) => {
         crud.entity(`/${module.getRootToken()}`)[action]()
             .pipe(function(data, query, cb) {
-                cb(null, [ { action: action } ]);
+                module[action.toLowerCase()](data, query, cb);
             });
     });
 }
