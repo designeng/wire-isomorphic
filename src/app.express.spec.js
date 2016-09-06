@@ -49,7 +49,7 @@ export default {
             modules: [
                 // nodes,
                 forum,
-                // comments,
+                comments,
             ]
         },
         routeMiddleware: {
