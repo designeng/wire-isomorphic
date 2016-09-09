@@ -12,7 +12,8 @@ class BaseModule {
     register() {
         useRoutes({
             target: this.router, 
-            routes: this.routes, 
+            routes: this.routes,
+            // this.baseUrl 
             baseUrl: `/api/v1/${this.getRootToken()}`, 
             module: this
         });

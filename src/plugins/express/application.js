@@ -22,7 +22,7 @@ function startExpressServerFacet(resolver, facet, wire) {
             console.info(`==> 🌎  Express app listening at http://%s:%s (${new Timer().getFormattedTime()})`, host, port);
         }
 
-        if(naughtSupport === true) {
+        if (naughtSupport === true) {
             if (process.send) process.send('online');
             process.on('message', (message) => {
                 if (message === 'shutdown') process.exit(0);
@@ -54,7 +54,9 @@ function registerModulesFacet(resolver, facet, wire) {
     const apiRootPath = '/api/v1/';
 
     _.each(modules, (Module) => {
-        let module = new Module();
+        let module = new Module({
+            baseUrl: apiRootPath
+        });
         module.register();
         target.use(apiRootPath + module.getRootToken(), module.router);
     });
@@ -97,7 +99,7 @@ function expressApplication(resolver, compDef, wire) {
             acl.addUserRoles('joed', ['member']);
 
             acl.isAllowed('joed', 'blogs', 'takeALook', function(err, res){
-                if(res){
+                if (res) {
                     console.log("User joed is allowed to view blogs")
                 } else {
                     console.log("User joed is not allowed to view blogs")
