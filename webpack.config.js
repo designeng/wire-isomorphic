@@ -3,6 +3,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var specLoader = require('wire-decorators/webpack/loaders/specLoader');
+
 module.exports = {
     context: __dirname + '/src',
     entry: {
@@ -21,6 +23,11 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel',
+                exclude: /node_modules/
+            },
+            {   
+                test: /\.spec\.js$/,
+                loaders: specLoader,
                 exclude: /node_modules/
             }
         ]
