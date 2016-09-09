@@ -5,9 +5,9 @@ const crudActions = ['Create', 'Read', 'Update', 'Delete'];
 // TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
 export default function createRouteCRUDHandler(url, baseUrl, module) {
     crudActions.forEach((action) => {
-        crud.entity(`/${module.getRootToken()}`)[action]()
+        crud.entity(`/${module.getRootToken()}${url}`)[action]()
             .pipe(function(data, query, cb) {
-                module[action.toLowerCase()](data, query, cb);
+                module[action.toLowerCase()](url, data, query, cb);
             });
     });
 }

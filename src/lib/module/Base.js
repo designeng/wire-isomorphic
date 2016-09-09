@@ -11,28 +11,28 @@ class BaseModule {
 
     register() {
         useRoutes({
-            target: this.router, 
+            target: this.router,
             routes: this.routes,
             // this.baseUrl 
-            baseUrl: `/api/v1/${this.getRootToken()}`, 
+            baseUrl: `/api/v1/${this.getRootToken()}`,
             module: this
         });
     }
 
     // CRUD methods
-    create(data) {
+    create() {
 
     }
 
-    read(id) {
+    read() {
 
     }
 
-    update(id, data) {
+    update() {
 
     }
 
-    delete(id) {
+    delete() {
 
     }
 }

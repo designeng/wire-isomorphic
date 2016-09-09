@@ -11,19 +11,19 @@ class Forum extends Base {
         return 'forum';
     }
 
-    create(data, query, cb) {
+    create(url, data, query, cb) {
         cb(null, [ { action: 'CREATE FORUM' } ]);
     }
 
-    read(data, query, cb) {
+    read(url, data, query, cb) {
         cb(null, [ { action: 'READ FORUM' } ]);
     }
 
-    update(data, query, cb) {
+    update(url, data, query, cb) {
         cb(null, [ { action: 'UPDATE FORUM' } ]);
     }
 
-    delete(data, query, cb) {
+    delete(url, data, query, cb) {
         cb(null, [ { action: 'DELETE FORUM' } ]);
     }
 }

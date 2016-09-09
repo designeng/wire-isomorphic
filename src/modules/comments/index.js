@@ -20,19 +20,19 @@ class Comments extends Base {
         }
     }
 
-    create(data, query, cb) {
+    create(url, data, query, cb) {
         cb(null, [ { action: 'CREATE COMMENT' } ]);
     }
 
-    read(data, query, cb) {
+    read(url, data, query, cb) {
         cb(null, [ { action: 'READ COMMENT' } ]);
     }
 
-    update(data, query, cb) {
+    update(url, data, query, cb) {
         cb(null, [ { action: 'UPDATE COMMENT' } ]);
     }
 
-    delete(data, query, cb) {
+    delete(url, data, query, cb) {
         cb(null, [ { action: 'DELETE COMMENT' } ]);
     }
 
