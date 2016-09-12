@@ -1,14 +1,10 @@
 import chai, { expect } from 'chai';
 
-import { registerRoutePlugins } from '../../src/utils/wire/registerRoutePlugins';
-
 describe('register plugins', () => {
 
-    it('should ..... ', (done) => {
+    xit('should ..... ', (done) => {
         expect().to.equal();
+        done();
     });
 
-    it('should ...... ', () => {
-        expect().to.equal();
-    });
 });
