@@ -13,8 +13,7 @@ class Forum extends Base {
     }
 
     create(url, data, query, cb) {
-        console.log('DATA', data, query);
-        this.model = new Model();
+        this.model = new Model(data);
         this.model.save((err, result) => {
             if (err) return console.error(err);
             cb(null, result);
