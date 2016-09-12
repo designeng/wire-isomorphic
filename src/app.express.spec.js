@@ -18,9 +18,10 @@ import showNotFoundPage from './lib/express/showNotFoundPage';
 import mongoExpressConfig from './config.mongo.js';
 
 // modules
-import nodes from './modules/nodes/index.js';
-import forum from './modules/forum/index.js';
-import comments from './modules/comments/index.js';
+import Nodes from './modules/nodes/index.js';
+import Forum from './modules/forum/index.js';
+import Comments from './modules/comments/index.js';
+import Users from './modules/users/index.js';
 
 export default {
     $plugins: [
@@ -48,8 +49,9 @@ export default {
         registerModules: {
             modules: [
                 // nodes,
-                forum,
-                comments,
+                Forum,
+                Comments,
+                Users,
             ]
         },
         routeMiddleware: {

@@ -14,7 +14,7 @@ const routes = [
         url: '/users',
         tasks: ['usersSpec', 'carcassSpec'],
     },
-    
+
     // TODO: shoul be resolved via modules
     {
         url: '/api/v1/brands',
@@ -26,13 +26,6 @@ const routes = [
     {
         url: '/api/v1/cities',
         tasks: ['apiCitiesSpec'],
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    },
-    {
-        url: '/api/v1/users',
-        tasks: ['apiUsersSpec'],
         headers: {
             'Content-Type': 'application/json'
         }

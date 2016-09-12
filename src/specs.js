@@ -10,7 +10,6 @@ const specs = [
     // API specifications
     {name: 'apiBrandsSpec', path: '/tasks/api/brands/spec'},
     {name: 'apiCitiesSpec', path: '/tasks/api/cities/spec'},
-    {name: 'apiUsersSpec', path: '/tasks/api/users/spec'},
 ];
 
 let dirPrefix = '.';
