@@ -13,9 +13,7 @@ describe('api tests', () => {
             .post(`${baseApiPath}/forums`)
             .send(forum)
             .expect(function(res) {
-                let body = res.body;
-                console.log("BODY:::", body);
-                expect().to.equal();
+                expect(res.body.data._id).to.be.ok;
             })
             .expect(200, done)
         });

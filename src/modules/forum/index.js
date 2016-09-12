@@ -17,7 +17,7 @@ class Forum extends Base {
         this.model = new Model();
         this.model.save((err, result) => {
             if (err) return console.error(err);
-            cb(null, [ { action: `FORUM CREATED: ${JSON.stringify(result)}` } ]);
+            cb(null, result);
         });
     }
 
