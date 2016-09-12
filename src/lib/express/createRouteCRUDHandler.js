@@ -17,6 +17,7 @@ export default function createRouteCRUDHandler(url, baseUrl, module) {
                 // first check user permissions
                 let acl = getAcl();
 
+                // TODO: get user login from somewhere
                 acl.isAllowed('joed', resourse, action, (err, res) => {
                     if (res) {
                         module[action](url, data, query, cb);

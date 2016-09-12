@@ -38,7 +38,8 @@ class BaseModule {
         // TODO: for many?
         this.Model.findOneAndUpdate(query, data, null, (err, result) => {
             if (err) return console.error(err);
-            cb(null, result);
+            // TODO: return only id? or whole updated object?
+            cb(null, {_id: result._id});
         });
     }
 
