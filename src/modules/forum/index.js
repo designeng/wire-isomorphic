@@ -21,9 +21,9 @@ class Forum extends Base {
     }
 
     read(url, data, query, cb) {
-        Model.find({}, (err, result) => {
+        Model.find(query, (err, result) => {
             if (err) return console.error(err);
-            cb(null, [ { action: `FORUM READ: ${JSON.stringify(result)}` } ]);
+            cb(null, result);
         });
     }
 

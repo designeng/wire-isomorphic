@@ -5,7 +5,7 @@ const routes = [
         type: 'CRUD'
     },
     {
-        url: '/:id',
+        url: '/:_id',
         type: 'CRUD'
     },
 
