@@ -13,8 +13,7 @@ class Forum extends Base {
     }
 
     create(url, data, query, cb) {
-        this.model = new Model(data);
-        this.model.save((err, result) => {
+        new Model(data).save((err, result) => {
             if (err) return console.error(err);
             cb(null, result);
         });
@@ -28,7 +27,11 @@ class Forum extends Base {
     }
 
     update(url, data, query, cb) {
-        cb(null, [ { action: 'UPDATE FORUM' } ]);
+        // TODO: for many?
+        Model.findOneAndUpdate(query, data, null, (err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 
     delete(url, data, query, cb) {

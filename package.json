@@ -31,6 +31,7 @@
     "handlebars": "^4.0.5",
     "jquery": "^2.2.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.15.0",
     "mongo-express": "^0.30.59",
     "mongoose": "^4.5.8",
     "node-crud": "^2.1.1",
