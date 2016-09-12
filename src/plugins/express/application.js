@@ -100,14 +100,6 @@ function expressApplication(resolver, compDef, wire) {
             
             acl.addUserRoles('joed', ['member']);
 
-            acl.isAllowed('joed', 'forums', 'create', (err, res) => {
-                if (res) {
-                    console.log("1...User joed is allowed to create forums")
-                } else {
-                    console.log("1...User joed is not allowed to create forums")
-                }
-            });
-
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)
             // });
