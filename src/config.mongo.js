@@ -20,11 +20,11 @@ if (process.env.VCAP_SERVICES) {
   mongo = {
     db:       'isomorphic_dev',
     host:     'localhost',
+    username: 'admin',
     password: 'pass',
     port:     27017,
     ssl:      false,
     url:      'mongodb://localhost:27017/isomorphic_dev',
-    username: 'admin',
   };
 }
 
