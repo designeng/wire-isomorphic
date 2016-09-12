@@ -35,7 +35,10 @@ class Forum extends Base {
     }
 
     delete(url, data, query, cb) {
-        cb(null, [ { action: 'DELETE FORUM' } ]);
+        Model.remove(query, (err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 }
 
