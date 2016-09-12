@@ -94,11 +94,19 @@ function expressApplication(resolver, compDef, wire) {
 
             acl.allow(permissions);
 
-            acl.allowedPermissions('joed', ['blogs', 'forums'], function(err, permissions){
+            acl.allowedPermissions('joed', ['forums', 'news'], function(err, permissions){
                 console.log('joed permissions: ', permissions)
             });
             
             acl.addUserRoles('joed', ['member']);
+
+            acl.isAllowed('joed', 'forums', 'create', (err, res) => {
+                if (res) {
+                    console.log("1...User joed is allowed to create forums")
+                } else {
+                    console.log("1...User joed is not allowed to create forums")
+                }
+            });
 
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)

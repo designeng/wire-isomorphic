@@ -48,6 +48,11 @@ class BaseModule {
             cb(null, result);
         });
     }
+
+    // Decline if user has no permissions
+    decline(url, resourse, action, cb) {
+        cb(null, {MESSAGE: `You have no permissions for ${action} ${resourse}`});
+    }
 }
 
 export default BaseModule;

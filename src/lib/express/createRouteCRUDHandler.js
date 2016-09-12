@@ -10,20 +10,21 @@ function capitalizeFirstLetter(string) {
 // TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
 export default function createRouteCRUDHandler(url, baseUrl, module) {
     crudActions.forEach((action) => {
-        
-        crud.entity(`/${module.getRootToken()}${url}`)[capitalizeFirstLetter(action)]()
-            .pipe(function(data, query, cb) {
-                // TODO: check user permissions
+        let resourse = module.getRootToken();
+
+        crud.entity(`/${resourse}${url}`)[capitalizeFirstLetter(action)]()
+            .pipe((data, query, cb) => {
+                // first check user permissions
                 let acl = getAcl();
-                acl.isAllowed('joed', 'blogs', 'takeALook', function(err, res){
+
+                acl.isAllowed('joed', resourse, action, (err, res) => {
                     if (res) {
-                        console.log("....User joed is allowed to view blogs")
+                        module[action](url, data, query, cb);
                     } else {
-                        console.log("....User joed is not allowed to view blogs")
+                        module.decline(url, resourse, action, cb);
                     }
                 });
 
-                module[action](url, data, query, cb);
             });
     });
 }
