@@ -4,7 +4,8 @@ import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
-import Acl from 'acl';
+
+import { getAcl } from '../../lib/acl';
 
 import Timer from '../../lib/timer';
 
@@ -89,7 +90,8 @@ function expressApplication(resolver, compDef, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            var acl = new Acl(new Acl.mongodbBackend(mongoose.connection.db, aclPrefix));
+            var acl = getAcl(aclPrefix);
+
             acl.allow(permissions);
 
             acl.allowedPermissions('joed', ['blogs', 'forums'], function(err, permissions){
@@ -97,14 +99,6 @@ function expressApplication(resolver, compDef, wire) {
             });
             
             acl.addUserRoles('joed', ['member']);
-
-            acl.isAllowed('joed', 'blogs', 'takeALook', function(err, res){
-                if (res) {
-                    console.log("User joed is allowed to view blogs")
-                } else {
-                    console.log("User joed is not allowed to view blogs")
-                }
-            });
 
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)
