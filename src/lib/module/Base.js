@@ -20,27 +20,34 @@ class BaseModule {
     }
 
     // CRUD methods
-    create() {
-
+    create(url, data, query, cb) {
+        new this.Model(data).save((err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 
-    read() {
-
+    read(url, data, query, cb) {
+        this.Model.find(query, (err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 
-    update() {
-
+    update(url, data, query, cb) {
+        // TODO: for many?
+        this.Model.findOneAndUpdate(query, data, null, (err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 
-    delete() {
-
+    delete(url, data, query, cb) {
+        this.Model.remove(query, (err, result) => {
+            if (err) return console.error(err);
+            cb(null, result);
+        });
     }
 }
 
 export default BaseModule;
-
-// crud.entity('/users').Create()
-//     .pipe(function(data, query, cb) {
-//         console.log('create user', data, query);
-//         cb(null, { data: data });
-//     });
