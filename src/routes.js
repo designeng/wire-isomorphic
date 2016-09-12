@@ -14,6 +14,8 @@ const routes = [
         url: '/users',
         tasks: ['usersSpec', 'carcassSpec'],
     },
+    
+    // TODO: shoul be resolved via modules
     {
         url: '/api/v1/brands',
         tasks: ['apiBrandsSpec'],
