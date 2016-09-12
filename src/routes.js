@@ -30,6 +30,14 @@ const routes = [
             'Content-Type': 'application/json'
         }
     },
+    // service
+    {
+        url: '/acl/drop',
+        tasks: ['dropAclCollectionsSpec'],
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
 ];
 
 export default routes;
