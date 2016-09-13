@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 
 const SALT_WORK_FACTOR = 10;
 
-let schema = new UserSchema({
-    name: { type: String, required: true, index: { unique: true } },
+let UserSchema = new Schema({
+    username: { type: String, required: true, index: { unique: true } },
     password: { type: String, required: true },
     created: { type: Date, default: Date.now },
     access: { type: Date, default: Date.now },
@@ -13,18 +13,18 @@ let schema = new UserSchema({
     role_id: String,
 });
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function(next, done) {
     let user = this;
 
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
 
     // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
         if (err) return next(err);
 
         // hash the password using our new salt
-        bcrypt.hash(user.password, salt, (err, hash) => {
+        bcrypt.hash(user.password, salt, function(err, hash) {
             if (err) return next(err);
 
             // override the cleartext password with the hashed one
@@ -41,6 +41,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
-let User = mongoose.model('User', schema);
+let User = mongoose.model('User', UserSchema);
 
 export default User;

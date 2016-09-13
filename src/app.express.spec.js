@@ -25,7 +25,7 @@ import Users from './modules/users/index.js';
 
 export default {
     $plugins: [
-        // wireDebugPlugin,
+        wireDebugPlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,

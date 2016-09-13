@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import auth from './tasks/api/service/auth';
 
 // tasks names should match exported ./specs.js objects names
 const routes = [
@@ -15,7 +16,7 @@ const routes = [
         tasks: ['usersSpec', 'carcassSpec'],
     },
 
-    // TODO: shoul be resolved via modules
+    // TODO: should be resolved via modules
     {
         url: '/api/v1/brands',
         tasks: ['apiBrandsSpec'],
@@ -32,8 +33,8 @@ const routes = [
     },
     // service
     {
-        url: '/my',
-        tasks: ['authSpec'],
+        url: '/api/v1/my',
+        handler: auth,
         headers: {
             'Content-Type': 'application/json'
         }
