@@ -30,6 +30,7 @@
     "form-data": "^1.0.0-rc4",
     "handlebars": "^4.0.5",
     "jquery": "^2.2.0",
+    "jwt-simple": "^0.5.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.15.0",
     "mongo-express": "^0.30.59",
