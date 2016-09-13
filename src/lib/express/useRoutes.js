@@ -11,16 +11,17 @@ export default function useRoutes({target, routes, baseUrl, module}) {
             createUniqueId(route, 'route_');
         }
 
+        let method = route.method ? route.method.toLowerCase() : 'get';
+
         if(_.isFunction(route.handler)) {
-            console.log('route.method:::', route.method);
-            return target[route.method || 'get'](route.url, route.handler(route));
+            return target[method](route.url, route.handler(route));
         }
 
         if(route.type == 'CRUD' && typeof module !== 'undefined') {
             createRouteCRUDHandler(route.url, baseUrl, module);
         } else {
             registerRoutePlugins(route, specs);
-            target[route.method || 'get'](route.url, createRouteTasksHandler(route, specs, specs._specSource));
+            target[method](route.url, createRouteTasksHandler(route, specs, specs._specSource));
         }
     });
 }
