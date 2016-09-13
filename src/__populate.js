@@ -1,13 +1,13 @@
 // TODO: dev mode, remove later
 import User from './modules/users/entities/User';
 
-// const populationCallback = (err) => {
-//     if(err) {
-//         return console.log('ERROR', err);
-//     } else {
-//         console.log('saved');
-//     }
-// }
+const populationCallback = (err) => {
+    if(err) {
+        return console.log('ERROR', err);
+    } else {
+        console.log('saved');
+    }
+}
 
 const populate = () => {
 
@@ -18,11 +18,7 @@ const populate = () => {
 
     return;
 
-    testUser.save(function(err, res) {
-        if (err) throw err;
-
-        console.log('SAVED::::', res);
-    });
+    testUser.save(populationCallback);
 }
 
 export default populate;
