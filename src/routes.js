@@ -32,6 +32,13 @@ const routes = [
     },
     // service
     {
+        url: '/my',
+        tasks: ['authSpec'],
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    {
         url: '/acl/drop',
         tasks: ['dropAclCollectionsSpec'],
         headers: {

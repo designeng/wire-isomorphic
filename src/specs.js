@@ -10,6 +10,8 @@ const specs = [
     // API specifications
     {name: 'apiBrandsSpec', path: '/tasks/api/brands/spec'},
     {name: 'apiCitiesSpec', path: '/tasks/api/cities/spec'},
+    // services
+    {name: 'authSpec', path: '/tasks/api/service/authorization/spec'},
     {name: 'dropAclCollectionsSpec', path: '/tasks/api/service/collections/drop/acl.spec'},
 ];
 
