@@ -7,11 +7,10 @@ export default function auth(route) {
         let username = request.body.username;
         let password = request.body.password;
 
-        User.find({ username }, function(err, result) {
+        User.findOne({ username }, function(err, user) {
             if (err) {
                 return response.end(JSON.stringify({ ERROR: err }));
             } else {
-                let user = result[0];
                 if(user) {
                     user.comparePassword(password, function(err, isMatch) {
                         if (err) throw err;
