@@ -13,6 +13,7 @@ let UserSchema = new Schema({
     role_id: String,
 });
 
+// TODO: user.isModified method
 UserSchema.pre('save', function(next, done) {
     let user = this;
 
