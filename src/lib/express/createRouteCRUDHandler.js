@@ -17,6 +17,7 @@ export default function createRouteCRUDHandler(url, baseUrl, module) {
                 // first check user permissions
                 let acl = getAcl();
 
+                // TODO: jwt token?
                 // TODO: get user login from somewhere
                 acl.isAllowed('joed', resourse, action, (err, res) => {
                     if (res) {

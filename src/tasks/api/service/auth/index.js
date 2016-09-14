@@ -2,7 +2,6 @@ import User from '../../../../modules/users/entities/User';
 
 export default function auth(route) {
     return function(request, response, next) {
-        response.writeHead(200, route.headers);
 
         let username = request.body.username;
         let password = request.body.password;
@@ -14,10 +13,20 @@ export default function auth(route) {
                 if(user) {
                     user.comparePassword(password, function(err, isMatch) {
                         if (err) throw err;
-                        response.end(JSON.stringify({ res: isMatch }));
+
+                        if(isMatch) {
+                            // TODO: should return jwt token
+                            response.writeHead(200, route.headers);
+                            response.end(JSON.stringify({ res: isMatch }));
+                        } else {
+                            // incorrect password
+                            return response.sendStatus(401);
+                        }
                     });
                 } else {
-                    response.end(JSON.stringify({ res: `No such user with username ${username}` }));
+                    // response.end(JSON.stringify({ res: `No such user with username ${username}` }));
+                    // incorrect username
+                    return response.sendStatus(401);
                 }
             }
         });
