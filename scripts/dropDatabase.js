@@ -10,5 +10,10 @@ MongoClient.connect(url, function(err, db) {
             console.log('Dropped isomorphic_dev');
             process.exit();
         });
+
+        db.createCollection('users', function(err, res) {
+            console.log('created collection');
+            process.exit();
+        })
     }
 });
