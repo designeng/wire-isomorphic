@@ -5,7 +5,7 @@ import createUniqueId from '../createUniqueId';
 import specs from '../../specs';
 import _ from 'underscore';
 
-export default function useRoutes({target, routes, baseUrl, module}) {
+export default function useRoutesStrategies({target, routes, baseUrl, module}) {
     routes.forEach(route => {
         if(typeof route._id === 'undefined') {
             createUniqueId(route, 'route_');

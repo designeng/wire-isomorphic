@@ -32,7 +32,7 @@ const routes = [
         }
     },
     // services
-    // authentication server imitation, for https requests
+    // authentication server imitation, for https requests. Getting a Token
     {
         url: '/api/v1/auth',
         handler: auth,

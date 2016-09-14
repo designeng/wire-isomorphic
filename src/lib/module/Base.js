@@ -1,5 +1,5 @@
 import express from 'express';
-import useRoutes from '../express/useRoutes';
+import useRoutesStrategies from '../express/useRoutesStrategies';
 
 class BaseModule {
     constructor() {
@@ -10,7 +10,7 @@ class BaseModule {
     getRootToken() {}
 
     register() {
-        useRoutes({
+        useRoutesStrategies({
             target: this.router,
             routes: this.routes,
             // this.baseUrl 
