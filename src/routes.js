@@ -31,9 +31,10 @@ const routes = [
             'Content-Type': 'application/json'
         }
     },
-    // service
+    // services
+    // authentication server imitation, for https requests. Getting a Token
     {
-        url: '/api/v1/my',
+        url: '/api/v1/auth',
         handler: auth,
         method: 'POST'
     },

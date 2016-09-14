@@ -1,5 +1,5 @@
 import express from 'express';
-import useRoutes from '../express/useRoutes';
+import useRoutesStrategies from '../express/useRoutesStrategies';
 
 class BaseModule {
     constructor() {
@@ -10,7 +10,7 @@ class BaseModule {
     getRootToken() {}
 
     register() {
-        useRoutes({
+        useRoutesStrategies({
             target: this.router,
             routes: this.routes,
             // this.baseUrl 
@@ -21,6 +21,7 @@ class BaseModule {
 
     // CRUD methods
     create(url, data, query, cb) {
+        console.log('create', data, query);
         new this.Model(data).save((err, result) => {
             if (err) return console.error(err);
             cb(null, result);
@@ -34,12 +35,13 @@ class BaseModule {
         });
     }
 
+    // findOneAndUpdate callback returns updated document (options {new: true})
     update(url, data, query, cb) {
         // TODO: for many?
-        this.Model.findOneAndUpdate(query, data, null, (err, result) => {
+        this.Model.findOneAndUpdate(query, data, {new: true}, (err, result) => {
             if (err) return console.error(err);
             // TODO: return only id? or whole updated object?
-            cb(null, {_id: result._id});
+            cb(null, result);
         });
     }
 

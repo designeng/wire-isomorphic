@@ -6,10 +6,10 @@ import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
 import { getAcl } from '../../lib/acl';
+import jwtVerify from '../../lib/express/middlewares/jwtVerify';
+import User from '../../modules/users/entities/User';
 
 import Timer from '../../lib/timer';
-
-import crud from 'node-crud';
 
 // facets
 function startExpressServerFacet(resolver, facet, wire) {
@@ -59,11 +59,8 @@ function registerModulesFacet(resolver, facet, wire) {
             baseUrl: apiRootPath
         });
         module.register();
-        target.use(apiRootPath + module.getRootToken(), module.router);
+        target.use(apiRootPath + module.getRootToken(), jwtVerify(target, User), module.router);
     });
-
-    crud.configure({base: apiRootPath});
-    crud.launch(target);
 
     resolver.resolve(target);
 }
@@ -91,15 +88,14 @@ function expressApplication(resolver, compDef, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            var acl = getAcl(aclPrefix);
-
+            let acl = getAcl();
             acl.allow(permissions);
 
-            acl.allowedPermissions('joed', ['forums', 'news'], function(err, permissions){
-                console.log('joed permissions: ', permissions)
-            });
+            // acl.allowedPermissions('new', ['forums', 'users'], function(err, permissions) {
+            //     console.log('new permissions: ', permissions)
+            // });
             
-            acl.addUserRoles('joed', ['member']);
+            acl.addUserRoles('new', ['member']);
 
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)

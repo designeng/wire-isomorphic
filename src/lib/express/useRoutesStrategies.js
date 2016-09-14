@@ -5,7 +5,7 @@ import createUniqueId from '../createUniqueId';
 import specs from '../../specs';
 import _ from 'underscore';
 
-export default function useRoutes({target, routes, baseUrl, module}) {
+export default function useRoutesStrategies({target, routes, baseUrl, module}) {
     routes.forEach(route => {
         if(typeof route._id === 'undefined') {
             createUniqueId(route, 'route_');
@@ -18,7 +18,7 @@ export default function useRoutes({target, routes, baseUrl, module}) {
         }
 
         if(route.type == 'CRUD' && typeof module !== 'undefined') {
-            createRouteCRUDHandler(route.url, baseUrl, module);
+            createRouteCRUDHandler(target, route.url, baseUrl, module);
         } else {
             registerRoutePlugins(route, specs);
             target[method](route.url, createRouteTasksHandler(route, specs, specs._specSource));
