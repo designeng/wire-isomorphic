@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 
 import { getAcl } from '../../lib/acl';
 import jwtVerify from '../../lib/express/middlewares/jwtVerify';
+import User from '../../modules/users/entities/User';
 
 import Timer from '../../lib/timer';
 
@@ -60,7 +61,7 @@ function registerModulesFacet(resolver, facet, wire) {
             baseUrl: apiRootPath
         });
         module.register();
-        target.use(apiRootPath + module.getRootToken(), jwtVerify, module.router);
+        target.use(apiRootPath + module.getRootToken(), jwtVerify(target, User), module.router);
     });
 
     crud.configure({base: apiRootPath});
