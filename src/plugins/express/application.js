@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
 import { getAcl } from '../../lib/acl';
+import jwtVerify from '../../lib/express/middlewares/jwtVerify';
 
 import Timer from '../../lib/timer';
 
@@ -59,7 +60,7 @@ function registerModulesFacet(resolver, facet, wire) {
             baseUrl: apiRootPath
         });
         module.register();
-        target.use(apiRootPath + module.getRootToken(), module.router);
+        target.use(apiRootPath + module.getRootToken(), jwtVerify, module.router);
     });
 
     crud.configure({base: apiRootPath});
