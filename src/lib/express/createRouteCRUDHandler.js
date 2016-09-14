@@ -1,4 +1,3 @@
-// import crud from 'node-crud';
 import _ from 'underscore';
 import { getAcl } from '../acl';
 
@@ -11,6 +10,14 @@ const crudActions = {
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function merge(a, b) {
+    let k;
+    a = a || {};
+    b = b || {};
+    for (k in b) a[k] = b[k];
+    return a;
 }
 
 // TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
@@ -29,23 +36,14 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
             }
 
             let data = request.body;
-            let query = request.query;
+            let query = merge(request.query || {}, request.params);
 
             module[action](url, data, query, callback);
         });
     });
 
-    // crudActions.forEach((action) => {
-    //     let resourse = module.getRootToken();
-
-    //     crud.entity(`/${resourse}${url}`)[capitalizeFirstLetter(action)]()
-    //         .pipe((data, query, cb) => {
-    //             // first check user permissions
-    //             let acl = getAcl();
-
-    //             // TODO: jwt token?
-    //             // TODO: get user login from somewhere
-    //             acl.isAllowed('joed', resourse, action, (err, res) => {
+    // let acl = getAcl();
+    // acl.isAllowed(user.username, resourse, action, (err, res) => {
     //                 if (res) {
     //                     console.log('ALLOWED', res);
     //                     module[action](url, data, query, cb);
@@ -53,7 +51,4 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
     //                     module.decline(url, resourse, action, cb);
     //                 }
     //             });
-
-    //         });
-    // });
 }

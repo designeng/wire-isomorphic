@@ -11,8 +11,6 @@ import User from '../../modules/users/entities/User';
 
 import Timer from '../../lib/timer';
 
-// import crud from 'node-crud';
-
 // facets
 function startExpressServerFacet(resolver, facet, wire) {
     const port = facet.options.port;
@@ -62,11 +60,7 @@ function registerModulesFacet(resolver, facet, wire) {
         });
         module.register();
         target.use(apiRootPath + module.getRootToken(), jwtVerify(target, User), module.router);
-        // target.use(apiRootPath + module.getRootToken(), module.router);
     });
-
-    // crud.configure({base: apiRootPath});
-    // crud.launch(target);
 
     resolver.resolve(target);
 }
