@@ -11,7 +11,7 @@ import User from '../../modules/users/entities/User';
 
 import Timer from '../../lib/timer';
 
-import crud from 'node-crud';
+// import crud from 'node-crud';
 
 // facets
 function startExpressServerFacet(resolver, facet, wire) {
@@ -62,10 +62,11 @@ function registerModulesFacet(resolver, facet, wire) {
         });
         module.register();
         target.use(apiRootPath + module.getRootToken(), jwtVerify(target, User), module.router);
+        // target.use(apiRootPath + module.getRootToken(), module.router);
     });
 
-    crud.configure({base: apiRootPath});
-    crud.launch(target);
+    // crud.configure({base: apiRootPath});
+    // crud.launch(target);
 
     resolver.resolve(target);
 }
@@ -97,11 +98,11 @@ function expressApplication(resolver, compDef, wire) {
 
             acl.allow(permissions);
 
-            acl.allowedPermissions('joed', ['forums', 'news'], function(err, permissions){
-                console.log('joed permissions: ', permissions)
+            acl.allowedPermissions('jmar777', ['forums', 'users'], function(err, permissions) {
+                console.log('jmar777 permissions: ', permissions)
             });
             
-            acl.addUserRoles('joed', ['member']);
+            acl.addUserRoles('jmar777', ['member']);
 
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)

@@ -18,7 +18,7 @@ export default function useRoutesStrategies({target, routes, baseUrl, module}) {
         }
 
         if(route.type == 'CRUD' && typeof module !== 'undefined') {
-            createRouteCRUDHandler(route.url, baseUrl, module);
+            createRouteCRUDHandler(target, route.url, baseUrl, module);
         } else {
             registerRoutePlugins(route, specs);
             target[method](route.url, createRouteTasksHandler(route, specs, specs._specSource));
