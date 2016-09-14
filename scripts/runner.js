@@ -1,0 +1,3 @@
+require('../starter');
+
+require('./dropDatabase');

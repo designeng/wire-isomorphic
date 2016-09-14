@@ -15,7 +15,8 @@
     "test": "node ./runner && npm run karma-test",
     "karma-test": "karma start test/karma.config.js",
     "api-test": "./node_modules/mocha/bin/mocha ./test/api/runner",
-    "drop-database": "node ./scripts/dropDatabase"
+    "drop-database": "node ./scripts/dropDatabase",
+    "initial-run": "node ./scripts/runner"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
