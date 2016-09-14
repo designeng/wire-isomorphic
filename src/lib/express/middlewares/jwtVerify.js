@@ -14,11 +14,7 @@ export default function jwtVerify(app, User) {
                     return response.end('Access token has expired', 400);
                 } else {
                     User.findOne({ _id: decoded.iss }, function(err, user) {
-                        // TODO: attach user object to request?
-                        // or check user permissions here?
-                        
-                        console.log('USERNAME:::', user.username);
-                        
+                        // attach user object to request
                         request.user = user;
                         next();
                     });

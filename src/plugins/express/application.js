@@ -88,15 +88,14 @@ function expressApplication(resolver, compDef, wire) {
         .on('error', console.log)
         .on('disconnected', connect)
         .once('open', () => {
-            var acl = getAcl(aclPrefix);
-
+            let acl = getAcl();
             acl.allow(permissions);
 
-            acl.allowedPermissions('jmar777', ['forums', 'users'], function(err, permissions) {
-                console.log('jmar777 permissions: ', permissions)
-            });
+            // acl.allowedPermissions('new', ['forums', 'users'], function(err, permissions) {
+            //     console.log('new permissions: ', permissions)
+            // });
             
-            acl.addUserRoles('jmar777', ['member']);
+            acl.addUserRoles('new', ['member']);
 
             // acl.whatResources('member', function(err, resourses){
             //     console.log('member resourses: ', resourses)

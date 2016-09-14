@@ -1,9 +1,14 @@
 const permissions = [
     {
-        roles: ['guest', 'member'],
+        roles: ['guest'],
         allows: [
-            {resources: 'blogs', permissions: ['takeALook']},
-            {resources: 'forums', permissions: ['create', 'read', 'delete', 'update']},
+            {resources: 'forums', permissions: ['read']}
+        ]
+    },
+    {
+        roles: ['member'],
+        allows: [
+            {resources: 'forums', permissions: ['read', 'delete']},
             {resources: 'users', permissions: ['create', 'read', 'update']},
         ]
     },

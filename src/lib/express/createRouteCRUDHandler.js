@@ -22,11 +22,13 @@ function merge(a, b) {
 
 // TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
 export default function createRouteCRUDHandler(target, url, baseUrl, module) {
-    // let resourse = module.getRootToken();
+    let resourse = module.getRootToken();
+    let acl = getAcl();
 
     _.each(_.keys(crudActions), (action) => {
         let method = crudActions[action];
         target[method](`${url}`, function(request, response, next) {
+
             const callback = (error, result) => {
                 let obj = {
                     error,
@@ -38,17 +40,21 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
             let data = request.body;
             let query = merge(request.query || {}, request.params);
 
-            module[action](url, data, query, callback);
+            if(request.user) {
+                let username = request.user.username;
+                acl.isAllowed(username, resourse, action, (err, res) => {
+                    if (res) {
+                        console.log('ALLOWED', res);
+                        module[action](url, data, query, callback);
+                    } else {
+                        module.decline(url, resourse, action, callback);
+                    }
+                });
+            } else {
+                response.json({user: 'anonimus'});
+            }
+
+            
         });
     });
-
-    // let acl = getAcl();
-    // acl.isAllowed(user.username, resourse, action, (err, res) => {
-    //                 if (res) {
-    //                     console.log('ALLOWED', res);
-    //                     module[action](url, data, query, cb);
-    //                 } else {
-    //                     module.decline(url, resourse, action, cb);
-    //                 }
-    //             });
 }
