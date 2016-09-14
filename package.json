@@ -9,11 +9,13 @@
     "clean": "rimraf -rf public/build",
     "webpack": "npm run clean & ENVIRONMENT=client webpack --watch --config webpack.config.js",
     "start": "PROTOCOL=http HOST=localhost PORT=3000 NODE_ENV=dev ENVIRONMENT=server node ./runner",
+    "drop-start": "npm run drop-database && npm start",
     "debug": "NODE_ENV=dev iron-node ./runner.js",
     "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install",
     "test": "node ./runner && npm run karma-test",
     "karma-test": "karma start test/karma.config.js",
-    "api-test": "./node_modules/mocha/bin/mocha ./test/api/runner"
+    "api-test": "./node_modules/mocha/bin/mocha ./test/api/runner",
+    "drop-database": "node ./scripts/dropDatabase"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
