@@ -37,7 +37,8 @@ export default {
         expressApplication: {
             database: 'isomorphic_dev',
             aclPrefix: 'acl_',
-            permissions
+            permissions,
+            secret: 'SOME_SECRET_STRING'
         },
         mongoUIMiddleware: {
             route: '/admin/mongo',

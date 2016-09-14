@@ -79,6 +79,7 @@ function expressApplication(resolver, compDef, wire) {
     let database = compDef.options.database;
     let aclPrefix = compDef.options.aclPrefix || undefined;
     let permissions = compDef.options.permissions;
+    let secret = compDef.options.secret;
 
     const connect = () => {
         let db = `mongodb://localhost:27017/${database}`;
@@ -109,6 +110,8 @@ function expressApplication(resolver, compDef, wire) {
     app.use(bodyParser.urlencoded({
         extended: true
     }));
+
+    app.set('jwtTokenSecret', secret);
     
     return resolver.resolve(app);
     

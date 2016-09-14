@@ -35,10 +35,7 @@ const routes = [
     {
         url: '/api/v1/my',
         handler: auth,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'POST'
     },
     {
         url: '/acl/drop',

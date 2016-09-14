@@ -14,7 +14,7 @@ export default function useRoutes({target, routes, baseUrl, module}) {
         let method = route.method ? route.method.toLowerCase() : 'get';
 
         if(_.isFunction(route.handler)) {
-            return target[method](route.url, route.handler(route));
+            return target[method](route.url, route.handler(target, route));
         }
 
         if(route.type == 'CRUD' && typeof module !== 'undefined') {

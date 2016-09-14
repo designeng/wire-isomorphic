@@ -1,6 +1,8 @@
 import User from '../../../../modules/users/entities/User';
+import jwt from 'jwt-simple';
+import moment from 'moment';
 
-export default function auth(route) {
+export default function auth(app, route) {
     return function(request, response, next) {
 
         let username = request.body.username;
@@ -15,16 +17,23 @@ export default function auth(route) {
                         if (err) throw err;
 
                         if(isMatch) {
-                            // TODO: should return jwt token
-                            response.writeHead(200, route.headers);
-                            response.end(JSON.stringify({ res: isMatch }));
+                            let expires = moment().add('days', 7).valueOf();
+                            let token = jwt.encode({
+                                iss: user._id,
+                                exp: expires
+                            }, app.get('jwtTokenSecret'));
+
+                            response.json({
+                                token : token,
+                                expires: expires,
+                                user: user.toJSON()
+                            });
                         } else {
                             // incorrect password
                             return response.sendStatus(401);
                         }
                     });
                 } else {
-                    // response.end(JSON.stringify({ res: `No such user with username ${username}` }));
                     // incorrect username
                     return response.sendStatus(401);
                 }
