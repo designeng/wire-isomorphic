@@ -1,2 +1,2 @@
 require('../../starter');
-require('./api.spec');
+require('./api.crud.spec');
