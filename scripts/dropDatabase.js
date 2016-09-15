@@ -3,6 +3,8 @@ import pipeline from 'when/pipeline';
 
 import { MongoClient } from 'mongodb';
 
+// import User from '../src/modules/users/entities/User';
+
 let url = 'mongodb://localhost:27017/isomorphic_dev';
 let Promise = when.promise;
 
@@ -23,8 +25,27 @@ const dropDatabaseP = (db) => {
     });
 }
 
+const createUsersCollectionP = (db) => {
+    return Promise((resolve, reject) => {
+        db.createCollection('users', function(err, collection) {
+            console.log('Collection users created');
+            resolve(collection);
+        });
+    });
+}
+
+const createAdminP = (collection) => {
+    return Promise((resolve, reject) => {
+        collection.insert({username: 'admin', password: 'admin'}, function(err, res) {
+            console.log('Inserted user');
+            resolve(res);
+        });
+    });
+}
+
 const run = () => {
-    pipeline([connectP, dropDatabaseP]).then((res) => {
+    pipeline([connectP, dropDatabaseP, createUsersCollectionP, createAdminP]).then((res) => {
+        console.log('RESULT:', res);
         process.exit();
     });
 }
