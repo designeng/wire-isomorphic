@@ -25,7 +25,7 @@ const dropDatabaseP = (db) => {
 
 const run = () => {
     pipeline([connectP, dropDatabaseP]).then((res) => {
-        console.log('task end');
+        process.exit();
     });
 }
 
