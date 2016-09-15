@@ -79,7 +79,6 @@ function expressApplication(resolver, compDef, wire) {
         let permissions = options.permissions;
 
         if(_.isString(permissions)) {
-            console.log('PERM STR!');
             try {
                 permissions = JSON.parse(permissions)
             } catch (err) {

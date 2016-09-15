@@ -12,7 +12,6 @@ import partials from './partials';
 import helpers from './lib/handlebars/helpers';
 
 import routes from './routes';
-// import _permissions from './permissions';
 
 import showNotFoundPage from './lib/express/showNotFoundPage';
 

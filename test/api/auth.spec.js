@@ -1,34 +1,26 @@
 import chai, { expect } from 'chai';
 import request from 'supertest';
+import moment from 'moment';
+import when from 'when';
+import pipeline from 'when/pipeline';
+import _ from 'underscore';
 
 // TODO: read from application config
 const host = `http://localhost:3000`;
 const baseApiPath = `/api/v1`;
 
-beforeEach(function() {
-    let user = {}
-    request(host)
-        .post(`${baseApiPath}/auth`)
-        .send(forum)
-        .expect((res) => {
+describe('auth', () => {
 
-        })
-        .expect(200, done)
-});
-
-describe('auth test', () => {
-    it('should use permissions table', (done) => {
-        
-    });
-
-    request(host)
-            .post(`${baseApiPath}/forums`)
-            .send(forum)
-            .expect((res) => {
-                forumId = res.body.data._id;
-                expect(res.body.data._id).to.be.ok;
-                expect(res.body.data.title).to.be.ok;
+    it('SHOULD PASS AUTH', (done) => {
+        request(host)
+            .post(`${baseApiPath}/auth`)
+            .send({
+                username: 'admin',
+                password: 'admin'
             })
-            .expect(200, done)
-    
+            .expect((res) => {
+                expect(_.isObject(res)).to.be.ok;
+            })
+            .expect(200, done);
+    });
 });

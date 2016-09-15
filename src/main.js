@@ -9,7 +9,6 @@ import populate from './__populate';
 
 pipeline(createTasks([expressSpec])).then(context => {
     // populate();
-    console.log(context.permissions);
 }).otherwise(error => {
     const errorMessage = `Express.js is not started! ${JSON.stringify(error)} (${new Timer().getFormattedTime()})`;
     console.error(errorMessage);

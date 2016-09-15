@@ -3,6 +3,7 @@ import request from 'supertest';
 import moment from 'moment';
 import when from 'when';
 import pipeline from 'when/pipeline';
+import _ from 'underscore';
 
 // TODO: read from application config
 const host = `http://localhost:3000`;
@@ -14,6 +15,20 @@ let unixtime = moment().format('unix');
 let forumId;
 
 describe('/forums', () => {
+
+    it('SHOULD PASS AUTH', (done) => {
+        request(host)
+            .post(`${baseApiPath}/auth`)
+            .send({
+                username: 'admin',
+                password: 'admin'
+            })
+            .expect((res) => {
+                expect(_.isObject(res)).to.be.ok;
+            })
+            .expect(200, done);
+    });
+
 
     it('CREATE', (done) => {
         let forum = { title : `FORUM_TITLE_${unixtime}`};
