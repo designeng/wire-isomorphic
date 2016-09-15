@@ -8,7 +8,7 @@
     "build-tpl": "gulp tpl && npm start",
     "clean": "rimraf -rf public/build",
     "webpack": "npm run clean & ENVIRONMENT=client webpack --watch --config webpack.config.js",
-    "start": "PROTOCOL=http HOST=localhost PORT=3000 NODE_ENV=dev ENVIRONMENT=server node ./runner",
+    "start": "PROTOCOL=http HOST=localhost PORT=3000 NODE_ENV=dev ENVIRONMENT=server PERMISSIONS=permissions.json node ./runner",
     "drop-start": "npm run drop-database && npm start",
     "debug": "NODE_ENV=dev iron-node ./runner.js",
     "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install",

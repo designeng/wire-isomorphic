@@ -8,11 +8,7 @@ function readFile(resolver, compDef, wire) {
         resolveError,
         noCache
     }) => {
-        // add trailing slash if nessesary
-        if(path && path.slice(1) !== '/') {
-            path = `/${path}`;
-        }
-        let filePath = directory + path;
+        let filePath = directory ? directory + path : path;
         if(!cache[filePath]) {
             fs.readFile(filePath, 'utf8', function (error, content) {
                 if (error) {

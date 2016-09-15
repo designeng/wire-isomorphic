@@ -3,6 +3,7 @@ import expressAppPlugin from './plugins/express/application';
 import cleanCookieMiddlewarePlugin from './plugins/express/cookie/clean';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 import mongoExpressPlugin from './plugins/mongo';
+import readFilePlugin from './plugins/file/read';
 
 import staticAssetsPlugin from './plugins/express/static/index';
 import notFoundMiddlewarePlugin from './plugins/express/404';
@@ -11,7 +12,7 @@ import partials from './partials';
 import helpers from './lib/handlebars/helpers';
 
 import routes from './routes';
-import permissions from './permissions';
+// import _permissions from './permissions';
 
 import showNotFoundPage from './lib/express/showNotFoundPage';
 
@@ -23,9 +24,12 @@ import Forum from './modules/forum/index.js';
 import Comments from './modules/comments/index.js';
 import Users from './modules/users/index.js';
 
+console.log(__dirname);
+
 export default {
     $plugins: [
-        wireDebugPlugin,
+        // wireDebugPlugin,
+        readFilePlugin,
         expressAppPlugin,
         mongoExpressPlugin,
         expressRoutingMiddlewarePlugin,
@@ -33,11 +37,17 @@ export default {
         notFoundMiddlewarePlugin,
     ],
 
+    permissions: {
+        readFile: {
+            path: process.env.PERMISSIONS
+        }
+    },
+
     Application: {
         expressApplication: {
             database: 'isomorphic_dev',
             aclPrefix: 'acl_',
-            permissions,
+            permissions: {'$ref': 'permissions'},
             secret: 'SOME_SECRET_STRING'
         },
         mongoUIMiddleware: {

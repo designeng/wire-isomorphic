@@ -73,44 +73,55 @@ function expressApplication(resolver, compDef, wire) {
     const app = express();
     app.use(cookieParser());
 
-    let database = compDef.options.database;
-    let aclPrefix = compDef.options.aclPrefix || undefined;
-    let permissions = compDef.options.permissions;
-    let secret = compDef.options.secret;
+    wire(compDef.options).then((options) => {
+        let database = options.database;
+        let aclPrefix = options.aclPrefix || undefined;
+        let permissions = options.permissions;
 
-    const connect = () => {
-        let db = `mongodb://localhost:27017/${database}`;
-        let options = { server: { socketOptions: { keepAlive: 1 }}};
-        return mongoose.connect(db, options).connection;
-    }
+        if(_.isString(permissions)) {
+            console.log('PERM STR!');
+            try {
+                permissions = JSON.parse(permissions)
+            } catch (err) {
+                throw new Error('Permissions parsing error!');
+            }
+        }
 
-    let connection = connect()
-        .on('error', console.log)
-        .on('disconnected', connect)
-        .once('open', () => {
-            let acl = getAcl();
-            acl.allow(permissions);
+        let secret = compDef.options.secret;
 
-            // acl.allowedPermissions('new', ['forums', 'users'], function(err, permissions) {
-            //     console.log('new permissions: ', permissions)
-            // });
-            
-            acl.addUserRoles('new', ['member']);
+        const connect = () => {
+            let db = `mongodb://localhost:27017/${database}`;
+            let options = { server: { socketOptions: { keepAlive: 1 }}};
+            return mongoose.connect(db, options).connection;
+        }
 
-            // acl.whatResources('member', function(err, resourses){
-            //     console.log('member resourses: ', resourses)
-            // });
-        });
+        let connection = connect()
+            .on('error', console.log)
+            .on('disconnected', connect)
+            .once('open', () => {
+                let acl = getAcl();
+                acl.allow(permissions.permissions);
 
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+                // acl.allowedPermissions('new', ['forums', 'users'], function(err, permissions) {
+                //     console.log('new permissions: ', permissions)
+                // });
+                
+                acl.addUserRoles('new', ['member']);
 
-    app.set('jwtTokenSecret', secret);
-    
-    return resolver.resolve(app);
-    
+                acl.whatResources('member', function(err, resourses){
+                    console.log('member resourses: ', resourses)
+                });
+            });
+
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({
+            extended: true
+        }));
+
+        app.set('jwtTokenSecret', secret);
+        
+        return resolver.resolve(app);
+    })
 }
 
 export default function ExpressAppPlugin(options) {
