@@ -1,14 +1,8 @@
 import chai, { expect } from 'chai';
-import mongoose from 'mongoose';
 import User from '../../src/modules/users/entities/User';
+import { connect, closeConnection } from '../lib/connect';
 
 let userId;
-
-const connect = () => {
-    let db = `mongodb://localhost:27017/isomorphic_dev`;
-    let options = { server: { socketOptions: { keepAlive: 1 }}};
-    return mongoose.connect(db, options).connection;
-}
 
 beforeEach((done) => {
     let connection = connect()
@@ -39,7 +33,7 @@ describe('user', () => {
 
 afterEach((done) => {
     User.remove({_id: userId}, function(err, user) {
-        mongoose.connection.close();
+        closeConnection();
         done();
     })
 })
