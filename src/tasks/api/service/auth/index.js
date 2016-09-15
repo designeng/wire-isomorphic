@@ -9,15 +9,12 @@ export default function auth(app, route) {
         let password = request.body.password;
 
         User.findOne({ username }, function(err, user) {
-            console.log('USER:::', user);
             if (err) {
                 return response.end(JSON.stringify({ ERROR: err }));
             } else {
                 if(user) {
                     user.comparePassword(password, function(err, isMatch) {
                         if (err) throw err;
-
-                        console.log('isMatch:::', isMatch, username, password);
 
                         if(isMatch) {
                             let expires = moment().add('days', 7).valueOf();
