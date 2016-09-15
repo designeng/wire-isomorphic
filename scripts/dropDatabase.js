@@ -34,7 +34,7 @@ const createUsersCollectionP = (db) => {
 
 const createAdminP = (collection) => {
     return Promise((resolve, reject) => {
-        collection.insert({username: 'admin', password: 'admin'}, function(err, res) {
+        collection.insert({username: 'richard', password: '123'}, function(err, res) {
             console.log('Inserted user');
             resolve(res);
         });

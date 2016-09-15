@@ -1,0 +1,10 @@
+{
+    "permissions": [
+        {
+            "roles": ["admin"],
+            "allows": [
+                {"resources": "forums", "permissions": ["create", "read", "update", "delete"]}
+            ]
+        }
+    ]
+}

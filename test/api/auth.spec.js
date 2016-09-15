@@ -15,8 +15,8 @@ describe('auth', () => {
         request(host)
             .post(`${baseApiPath}/auth`)
             .send({
-                username: 'admin',
-                password: 'admin'
+                username: 'richard',
+                password: '123'
             })
             .expect((res) => {
                 expect(_.isObject(res)).to.be.ok;
