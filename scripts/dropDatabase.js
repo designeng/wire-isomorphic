@@ -3,8 +3,6 @@ import pipeline from 'when/pipeline';
 
 import { MongoClient } from 'mongodb';
 
-// import User from '../src/modules/users/entities/User';
-
 let url = 'mongodb://localhost:27017/isomorphic_dev';
 let Promise = when.promise;
 
