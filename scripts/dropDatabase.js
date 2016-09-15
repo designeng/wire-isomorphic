@@ -32,6 +32,7 @@ const createUsersCollectionP = (db) => {
     });
 }
 
+// TODO: use User model from source (password hash)!
 const createAdminP = (collection) => {
     return Promise((resolve, reject) => {
         collection.insert({username: 'richard', password: '123'}, function(err, res) {
