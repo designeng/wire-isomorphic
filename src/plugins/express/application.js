@@ -103,10 +103,6 @@ function expressApplication(resolver, compDef, wire) {
 
                 acl.addUserRoles('admin', 'moderator');
 
-                // acl.allowedPermissions('new', ['forums', 'users'], function(err, permissions) {
-                //     console.log('new permissions: ', permissions)
-                // });
-
                 acl.whatResources('moderator', function(err, resourses){
                     console.log('moderator resourses: ', resourses)
                 });
