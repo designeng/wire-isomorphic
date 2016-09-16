@@ -1,17 +1,25 @@
 import chai, { expect } from 'chai';
+import request from 'supertest';
+import _ from 'underscore';
 import User from '../../src/modules/users/entities/User';
 import { establishConnection, closeConnection } from '../lib/connect';
 
 let userId;
 
-beforeEach(establishConnection);
+// TODO: read from application config
+const host = `http://localhost:3000`;
+const baseApiPath = `/api/v1`;
+
+const userData = {
+    username: 'dick',
+    password: '123'
+}
+
+before(establishConnection);
 
 describe('user', () => {
     it('should compare password', (done) => {
-        let user = new User({
-            username: 'dick',
-            password: '123'
-        }).save((err, user) => {
+        let user = new User(userData).save((err, user) => {
             expect(err).not.to.be.ok;
             expect(user).to.be.ok;
             userId = user._id;
@@ -22,9 +30,19 @@ describe('user', () => {
             });
         });
     });
+
+    it('should pass auth', (done) => {
+        request(host)
+            .post(`${baseApiPath}/auth`)
+            .send(userData)
+            .expect((res) => {
+                expect(_.isObject(res)).to.be.ok;
+            })
+            .expect(200, done);
+    });
 });
 
-afterEach((done) => {
+after((done) => {
     User.remove({_id: userId}, function(err, user) {
         closeConnection();
         done();
