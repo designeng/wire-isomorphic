@@ -1,4 +1,4 @@
 require('../../starter');
 
-// require('./api.crud.spec');
-require('./user.spec');
+require('./api.crud.spec');
+// require('./user.spec');

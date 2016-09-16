@@ -66,6 +66,7 @@ const closeConnection = () => {
 const run = () => {
     pipeline([establishConnectionP, dropDatabaseP, createAdminUserP, authAsAdminP]).then((response) => {
         console.log('TOKEN:::', response.data.token);
+
         closeConnection();
         process.exit();
     });

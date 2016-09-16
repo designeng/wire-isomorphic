@@ -9,7 +9,7 @@
         {
             "roles": ["member"],
             "allows": [
-                {"resources": "forums", "permissions": ["read", "delete"]},
+                {"resources": "forums", "permissions": ["create", "read", "delete"]},
                 {"resources": "users", "permissions": ["create", "read", "update"]}
             ]
         }

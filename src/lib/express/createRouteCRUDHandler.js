@@ -42,9 +42,9 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
 
             if(request.user) {
                 let username = request.user.username;
+
                 acl.isAllowed(username, resourse, action, (err, res) => {
                     if (res) {
-                        console.log('ALLOWED', res);
                         module[action](url, data, query, callback);
                     } else {
                         module.decline(url, resourse, action, callback);
