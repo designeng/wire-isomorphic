@@ -23,8 +23,6 @@ import Forum from './modules/forum/index.js';
 import Comments from './modules/comments/index.js';
 import Users from './modules/users/index.js';
 
-console.log(__dirname);
-
 export default {
     $plugins: [
         // wireDebugPlugin,
