@@ -3,7 +3,6 @@ import createRouteTasksHandler from './createRouteTasksHandler';
 import createRouteCRUDHandler from './createRouteCRUDHandler';
 import createUniqueId from '../createUniqueId';
 import specs from '../../specs';
-import _ from 'underscore';
 
 export default function useRoutesStrategies({target, routes, baseUrl, module}) {
     routes.forEach(route => {
