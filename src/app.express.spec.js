@@ -58,7 +58,6 @@ export default {
         },
         registerModules: {
             modules: [
-                // nodes,
                 Forum,
                 Comments,
                 Users,
