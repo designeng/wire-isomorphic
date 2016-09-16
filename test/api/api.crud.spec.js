@@ -61,11 +61,12 @@ describe('/forums', () => {
             .expect(200, done)
     });
 
-    xit('UPDATE', (done) => {
+    it('UPDATE', (done) => {
         let forum = { title : `FORUM_TITLE_${unixtime}`};
 
         request(host)
             .put(`${baseApiPath}/forums/${forumId}`)
+            .set('x-access-token', access_token)
             .send(forum)
             .expect((res) => {
                 expect(res.body.data._id).to.equal(forumId);
@@ -74,9 +75,10 @@ describe('/forums', () => {
             .expect(200, done)
     });
 
-    xit('DELETE', (done) => {
+    it('DELETE', (done) => {
         request(host)
             .del(`${baseApiPath}/forums/${forumId}`)
+            .set('x-access-token', access_token)
             .expect((res) => {
                 expect(res.body.data.ok).to.equal(1);
                 expect(res.body.data.n).to.equal(1);

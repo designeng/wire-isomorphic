@@ -7,9 +7,9 @@
             ]
         },
         {
-            "roles": ["member"],
+            "roles": ["moderator"],
             "allows": [
-                {"resources": "forums", "permissions": ["create", "read", "delete"]},
+                {"resources": "forums", "permissions": ["create", "read", "update", "delete"]},
                 {"resources": "users", "permissions": ["create", "read", "update"]}
             ]
         }
