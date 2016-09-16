@@ -17,8 +17,8 @@ const userData = {
 
 before(establishConnection);
 
-describe('user', () => {
-    it('should compare password', (done) => {
+describe('USER', () => {
+    it('SHOULD COMPARE PASSWORD', (done) => {
         let user = new User(userData).save((err, user) => {
             expect(err).not.to.be.ok;
             expect(user).to.be.ok;
@@ -31,7 +31,7 @@ describe('user', () => {
         });
     });
 
-    it('should pass auth', (done) => {
+    it('SHOULD PASS AUTH', (done) => {
         request(host)
             .post(`${baseApiPath}/auth`)
             .send(userData)
