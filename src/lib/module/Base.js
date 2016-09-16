@@ -21,7 +21,6 @@ class BaseModule {
 
     // CRUD methods
     create(url, data, query, cb) {
-        console.log('create', data, query);
         new this.Model(data).save((err, result) => {
             if (err) return console.error(err);
             cb(null, result);
