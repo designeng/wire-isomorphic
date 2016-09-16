@@ -15,8 +15,7 @@ let unixtime = moment().format('unix');
 let forumId;
 let access_token;
 
-describe('/forums', () => {
-
+before(() => {
     it('SHOULD PASS AUTH', (done) => {
         request(host)
             .post(`${baseApiPath}/auth`)
@@ -30,10 +29,11 @@ describe('/forums', () => {
             })
             .expect(200, done);
     });
+});
 
+describe('/forums', () => {
 
     it('CREATE', (done) => {
-        console.log('access_token', access_token);
         let forumData = { 
             title : `FORUM_TITLE_${unixtime}`,
             access_token
