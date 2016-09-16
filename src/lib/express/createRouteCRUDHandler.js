@@ -39,9 +39,16 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
 
             let data = request.body;
             let query = merge(request.query || {}, request.params);
+            let user = request.user;
 
-            if(request.user) {
-                let username = request.user.username;
+            if(user) {
+                let username = user.username;
+
+                if(user.role) {
+                    acl.whatResources(user.role, (err, resourses) => {
+                        console.log('resourses:::', resourses);
+                    })
+                }
 
                 acl.isAllowed(username, resourse, action, (err, res) => {
                     if (res) {
