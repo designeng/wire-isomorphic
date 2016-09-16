@@ -46,5 +46,5 @@ after((done) => {
     User.remove({_id: userId}, function(err, user) {
         closeConnection();
         done();
-    })
+    });
 })

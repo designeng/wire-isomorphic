@@ -5,9 +5,13 @@ import when from 'when';
 import pipeline from 'when/pipeline';
 import _ from 'underscore';
 
+import { establishConnection, closeConnection } from '../lib/connect';
+
 // TODO: read from application config
 const host = `http://localhost:3000`;
 const baseApiPath = `/api/v1`;
+
+beforeEach(establishConnection);
 
 describe('auth', () => {
 
