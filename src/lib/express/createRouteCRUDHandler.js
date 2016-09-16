@@ -1,5 +1,6 @@
 import _ from 'underscore';
 import { getAcl } from '../acl';
+import inArray from '../inArray';
 
 const crudActions = {
     'create': 'post',
@@ -39,17 +40,26 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
 
             let data = request.body;
             let query = merge(request.query || {}, request.params);
+            let user = request.user;
 
-            if(request.user) {
-                let username = request.user.username;
+            if(user) {
+                let username = user.username;
 
-                acl.isAllowed(username, resourse, action, (err, res) => {
-                    if (res) {
-                        module[action](url, data, query, callback);
-                    } else {
-                        module.decline(url, resourse, action, callback);
-                    }
-                });
+                if(user.role) {
+                    acl.whatResources(user.role, (err, resourses) => {
+                        if(_.isEmpty(resourses)) {
+                            // user is authorized, but has no roles
+                        } else {
+                            // user has permission
+                            if(inArray(resourses[resourse], action)) {
+                                module[action](url, data, query, callback);
+                            } else {
+                                // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit 
+                                module.decline(url, resourse, action, callback);
+                            }
+                        }
+                    })
+                }
             } else {
                 response.json({user: 'anonimus'});
             }

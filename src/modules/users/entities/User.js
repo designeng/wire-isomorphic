@@ -10,7 +10,7 @@ let UserSchema = new Schema({
     access: { type: Date, default: Date.now },
     login: { type: Date, default: Date.now },
     status: Boolean,
-    role_id: String,
+    role: String,
 });
 
 // TODO: user.isModified method
