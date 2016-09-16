@@ -7,8 +7,8 @@ import User from '../../src/modules/users/entities/User';
 let Promise = when.promise;
 
 let userData = {
-    username: 'richard', 
-    password: '123'
+    username: 'admin', 
+    password: 'admin'
 };
 
 function connect() {
