@@ -1,17 +1,10 @@
 import chai, { expect } from 'chai';
 import User from '../../src/modules/users/entities/User';
-import { connect, closeConnection } from '../lib/connect';
+import { establishConnection, closeConnection } from '../lib/connect';
 
 let userId;
 
-beforeEach((done) => {
-    let connection = connect()
-        .on('error', console.log)
-        .on('disconnected', connect)
-        .once('open', () => {
-            done();
-        });
-});
+beforeEach(establishConnection);
 
 describe('user', () => {
     it('should compare password', (done) => {
