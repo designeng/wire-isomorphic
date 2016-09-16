@@ -1,3 +1,3 @@
 require('../../starter');
 
-require('./dropDatabase');
+require('./index');

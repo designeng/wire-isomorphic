@@ -36,7 +36,7 @@ describe('user', () => {
             .post(`${baseApiPath}/auth`)
             .send(userData)
             .expect((res) => {
-                expect(_.isObject(res)).to.be.ok;
+                expect(_.isString(res.body.token)).to.be.ok;
             })
             .expect(200, done);
     });
