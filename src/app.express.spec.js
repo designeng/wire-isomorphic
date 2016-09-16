@@ -36,7 +36,7 @@ export default {
         notFoundMiddlewarePlugin,
     ],
 
-    permissions: {
+    permissionsJSON: {
         readFile: {
             path: process.env.PERMISSIONS
         }
@@ -46,7 +46,7 @@ export default {
         expressApplication: {
             database: 'isomorphic_dev',
             aclPrefix: 'acl_',
-            permissions: {'$ref': 'permissions'},
+            permissionsJSON: {'$ref': 'permissionsJSON'},
             secret: 'SOME_SECRET_STRING'
         },
         mongoUIMiddleware: {

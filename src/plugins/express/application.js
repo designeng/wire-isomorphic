@@ -76,11 +76,12 @@ function expressApplication(resolver, compDef, wire) {
     wire(compDef.options).then((options) => {
         let database = options.database;
         let aclPrefix = options.aclPrefix || undefined;
-        let permissions = options.permissions;
+        let permissionsJSON = options.permissionsJSON;
+        let parsedPermissions;
 
-        if(_.isString(permissions)) {
+        if(_.isString(permissionsJSON)) {
             try {
-                permissions = JSON.parse(permissions)
+                parsedPermissions = JSON.parse(permissionsJSON)
             } catch (err) {
                 throw new Error('Permissions parsing error!');
             }
@@ -99,7 +100,7 @@ function expressApplication(resolver, compDef, wire) {
             .on('disconnected', connect)
             .once('open', () => {
                 let acl = getAcl();
-                acl.allow(permissions.permissions);
+                acl.allow(parsedPermissions.permissions);
 
                 acl.addUserRoles('admin', 'moderator');
 
