@@ -3,7 +3,13 @@
         {
             "roles": ["admin"],
             "allows": [
-                {"resources": "forums", "permissions": ["create", "read", "update", "delete"]}
+                {"resources": "forums", "permissions": ["create", "read", "update", "delete", "update_own"]}
+            ]
+        },
+        {
+            "roles": ["member"],
+            "allows": [
+                {"resources": "comments", "permissions": ["create", "read", "update_own", "delete_own"]}
             ]
         }
     ]

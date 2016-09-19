@@ -11,7 +11,7 @@ let Promise = when.promise;
 let userData = {
     username: 'admin', 
     password: 'admin',
-    role: 'moderator'
+    role: 'admin'
 };
 
 const appHost = `localhost:3000`;
