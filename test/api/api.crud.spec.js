@@ -22,7 +22,6 @@ before(() => {
             .send({
                 username: 'admin',
                 password: 'admin',
-                role: 'moderator',
             })
             .expect((res) => {
                 access_token = res.body.token;
