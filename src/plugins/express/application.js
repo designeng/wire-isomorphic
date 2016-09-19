@@ -101,12 +101,6 @@ function expressApplication(resolver, compDef, wire) {
             .once('open', () => {
                 let acl = getAcl();
                 acl.allow(parsedPermissions.permissions);
-
-                acl.addUserRoles('admin', 'moderator');
-
-                acl.whatResources('moderator', function(err, resourses){
-                    console.log('moderator resourses: ', resourses)
-                });
             });
 
         app.use(bodyParser.json());

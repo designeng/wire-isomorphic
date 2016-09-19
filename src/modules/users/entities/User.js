@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { getAcl } from '../../../lib/acl';
 
 const SALT_WORK_FACTOR = 10;
 
@@ -16,6 +17,12 @@ let UserSchema = new Schema({
 // TODO: user.isModified method
 UserSchema.pre('save', function(next, done) {
     let user = this;
+
+    // store all user roles in special acl_users collection
+    if(typeof user.role !== 'undefined') {
+        let acl = getAcl();
+        acl.addUserRoles(user.username, user.role);
+    }
 
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
