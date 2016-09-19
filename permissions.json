@@ -12,6 +12,12 @@
                 {"resources": "forums", "permissions": ["create", "read", "update", "delete"]},
                 {"resources": "users", "permissions": ["create", "read", "update"]}
             ]
+        },
+        {
+            "roles": ["member"],
+            "allows": [
+                {"resources": "comments", "permissions": ["create", "read", "update_own", "delete_own"]}
+            ]
         }
     ]
 }
