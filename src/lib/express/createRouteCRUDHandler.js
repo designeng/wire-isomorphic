@@ -45,8 +45,6 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
             if(user) {
                 let username = user.username;
 
-                if(typeof user.role === 'undefined') {user.role = 'logged'}
-
                 if(user.role) {
                     acl.whatResources(user.role, (err, resourses) => {
                         if(_.isEmpty(resourses)) {
