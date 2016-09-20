@@ -77,11 +77,9 @@ UserSchema.methods.getActionRelativePermissionsP = function(resource, action) {
                 reject(err);
             } else {
                 let actionGroup = _.filter(result[resource], (permission) => {
-                    let match = permission.match(new RegExp(`^${action}_`));
+                    let match = permission.match(new RegExp(`^${action}(_)?`, 'g'));
                     return match;
                 });
-                console.log('action & group:::', action, actionGroup);
-                
                 resolve(actionGroup);
             }
         });

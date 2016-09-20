@@ -1,9 +1,14 @@
 import _ from 'underscore';
 import meld from 'meld';
+import pipeline from 'when/pipeline';
 import express from 'express';
 import useRoutesStrategies from '../express/useRoutesStrategies';
 
 const crudActions = ['create', 'read', 'update', 'delete'];
+
+const nullRestriction = (options) => {
+    return options;
+}
 
 const ownRestriction = (options) => {
     let query = options.query;
@@ -18,8 +23,7 @@ const publishedRestriction = (options) => {
 
 function riseCrudActionsAccess(target) {
     let resource = target.getRootToken();
-    let permissions = target.getRestrictions();
-    let permissionKeys = _.keys(permissions);
+    let targetRestrictions = target.getRestrictions();
 
     _.each(crudActions, function(action) {
         meld.around(target, action, function(joinpoint) {
@@ -28,19 +32,30 @@ function riseCrudActionsAccess(target) {
             let query = joinpoint.args[0].query;
             let user = joinpoint.args[0].user;
             let uid = user._id;
+            let callback = joinpoint.args[0].callback;
 
-            user.getActionRelativePermissionsP(resource, action).then((res) => {
-                console.log('RES:::::', res);
+            user.getActionRelativePermissionsP(resource, action).then((permissions) => {
+                if(!permissions.length) {
+                    // user has no permissions for current action
+                    return target.decline({ url, resource, action, user, callback });
+                } else {
+                    let actionRestrictions = _.map(permissions, (key) => {
+                        return targetRestrictions[key];
+                    });
+                    pipeline(actionRestrictions).then((options) => {
+                        joinpoint.proceedApply(options);
+                    })
+                }
             })
 
-            user.isAllowedP(resource, action).then((allowed) => {
-                if(allowed) {
-                    joinpoint.proceedApply(joinpoint.args);
-                } else {
-                    // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
-                    target.decline({ url, resource, action, user, callback });
-                }
-            }).catch((err) => {throw err});
+            // user.isAllowedP(resource, action).then((allowed) => {
+            //     if(allowed) {
+            //         joinpoint.proceedApply(joinpoint.args);
+            //     } else {
+            //         // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
+            //         target.decline({ url, resource, action, user, callback });
+            //     }
+            // }).catch((err) => {throw err});
         });
     }, target);
 }
@@ -55,12 +70,13 @@ class BaseModule {
     // override
     getRootToken() {}
 
+    // permissions & restrictions - two sides of the same coin
     getRestrictions() {
         return {
-            'create': null,
-            'read': null,
-            'update': null,
-            'delete': null,
+            'create': nullRestriction,
+            'read': nullRestriction,
+            'update': nullRestriction,
+            'delete': nullRestriction,
             'read_own': ownRestriction,
             'update_own': ownRestriction,
             'delete_own': ownRestriction,
