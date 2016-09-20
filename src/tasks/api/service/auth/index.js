@@ -13,9 +13,7 @@ export default function auth(app, route) {
                 return response.end(JSON.stringify({ ERROR: err }));
             } else {
                 if(user) {
-                    user.comparePassword(password, function(err, isMatch) {
-                        if (err) throw err;
-
+                    user.comparePasswordP(password).then((isMatch) => {
                         if(isMatch) {
                             let expires = moment().add('days', 7).valueOf();
                             let token = jwt.encode({
@@ -32,7 +30,7 @@ export default function auth(app, route) {
                             // incorrect password
                             return response.sendStatus(401);
                         }
-                    });
+                    }).catch((err) => {throw err});
                 } else {
                     // incorrect username
                     return response.sendStatus(401);

@@ -11,7 +11,7 @@ function createCrudAspects(target) {
         meld.around(target, action, function(joinpoint) {
             let query = joinpoint.args[0].query;
             let user = joinpoint.args[0].user;
-            uid = user._id;
+            let uid = user._id;
 
             console.log('USER', user, uid);
 
@@ -21,8 +21,6 @@ function createCrudAspects(target) {
             // });
 
             // console.log('actionGroup:', actionGroup);
-
-            // _.extend(query, { uid });
             
             joinpoint.proceedApply(joinpoint.args);
         })
