@@ -23,7 +23,7 @@ function merge(a, b) {
 
 // TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
 export default function createRouteCRUDHandler(target, url, baseUrl, module) {
-    let resourse = module.getRootToken();
+    let resource = module.getRootToken();
     let acl = getAcl();
 
     _.each(_.keys(crudActions), (action) => {
@@ -46,16 +46,28 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
                 let username = user.username;
 
                 if(user.role) {
-                    acl.whatResources(user.role, (err, resourses) => {
-                        if(_.isEmpty(resourses)) {
+                    acl.whatResources(user.role, (err, resources) => {
+                        if(_.isEmpty(resources)) {
                             // user is authorized, but has no roles
                         } else {
                             // user has permission
-                            if(inArray(resourses[resourse], action)) {
-                                module[action](url, data, query, callback);
+                            if(inArray(resources[resource], action)) {
+                                module[action]({
+                                    url, 
+                                    data, 
+                                    query,
+                                    user,
+                                    callback
+                                });
                             } else {
                                 // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit 
-                                module.decline(url, resourse, action, callback);
+                                module.decline({
+                                    url, 
+                                    resource, 
+                                    action, 
+                                    user,
+                                    callback
+                                });
                             }
                         }
                     })

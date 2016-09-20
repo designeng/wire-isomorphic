@@ -1,6 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import when from 'when';
 import { getAcl } from '../../../lib/acl';
+
+let Promise = when.promise;
 
 const SALT_WORK_FACTOR = 10;
 
@@ -48,6 +51,34 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
+
+UserSchema.methods.comparePasswordP = function(candidatePassword) {
+    let user = this;
+    return Promise((resolve, reject) => {
+        bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(isMatch)
+            }
+        });
+    });
+};
+
+UserSchema.methods.isAllowedP = function(resource, permissions) {
+    let acl = getAcl();
+    let user = this;
+    let userId = user._id;
+    return Promise((resolve, reject) => {
+        acl.isAllowed(userId, resource, permissions, (err, allowed) => {
+            if(err) {
+                reject(err);
+            } else {
+                resolve(allowed);
+            }
+        });
+    });
+}
 
 let User = mongoose.model('User', UserSchema);
 
