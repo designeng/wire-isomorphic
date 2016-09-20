@@ -49,22 +49,10 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
                     // TODO: user is authorized, but has no roles ??
                     user.isAllowedP(resource, action).then((allowed) => {
                         if(allowed) {
-                            module[action]({
-                                url, 
-                                data, 
-                                query,
-                                user,
-                                callback
-                            });
+                            module[action]({ url, data, query, user, callback });
                         } else {
                             // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
-                            module.decline({
-                                url, 
-                                resource, 
-                                action, 
-                                user,
-                                callback
-                            });
+                            module.decline({ url, resource, action, user, callback });
                         }
                     }).catch((err) => {throw err});
                 }
