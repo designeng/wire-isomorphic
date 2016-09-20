@@ -42,23 +42,24 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
             let query = merge(request.query || {}, request.params);
             let user = request.user;
 
-            if(user) {
-                let username = user.username;
+            module[action]({ url, data, query, user, callback });
 
-                if(user.role) {
-                    // TODO: user is authorized, but has no roles ??
-                    user.isAllowedP(resource, action).then((allowed) => {
-                        if(allowed) {
-                            module[action]({ url, data, query, user, callback });
-                        } else {
-                            // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
-                            module.decline({ url, resource, action, user, callback });
-                        }
-                    }).catch((err) => {throw err});
-                }
-            } else {
-                response.json({user: 'anonimus'});
-            }
+            // TODO: should be moved into Base module (or separate layer?)
+            // if(user) {
+            //     let username = user.username;
+
+            //     // TODO: user is authorized, but has no roles ??
+            //     user.isAllowedP(resource, action).then((allowed) => {
+            //         if(allowed) {
+            //             module[action]({ url, data, query, user, callback });
+            //         } else {
+            //             // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
+            //             module.decline({ url, resource, action, user, callback });
+            //         }
+            //     }).catch((err) => {throw err});
+            // } else {
+            //     response.json({user: 'anonimus'});
+            // }
 
             
         });
