@@ -13,8 +13,6 @@ function createCrudAspects(target) {
             let user = joinpoint.args[0].user;
             let uid = user._id;
 
-            console.log('USER', user, uid);
-
             // let actionGroup = _.filter(permissionKeys, (key) => {
             //     let match = action.match(new RegExp(`^${key}_`));
             //     return match;
