@@ -29,9 +29,7 @@ function riseCrudActionsAccess(target) {
         meld.around(target, action, function(joinpoint) {
 
             let url = joinpoint.args[0].url;
-            let query = joinpoint.args[0].query;
             let user = joinpoint.args[0].user;
-            let uid = user._id;
             let callback = joinpoint.args[0].callback;
 
             user.getActionRelativePermissionsP(resource, action).then((permissions) => {
