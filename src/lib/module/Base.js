@@ -37,6 +37,7 @@ function riseCrudActionsAccess(target) {
             user.getActionRelativePermissionsP(resource, action).then((permissions) => {
                 if(!permissions.length) {
                     // user has no permissions for current action
+                    // TODO: prevent decline for authorized users without roles
                     return target.decline({ url, resource, action, user, callback });
                 } else {
                     let actionRestrictions = _.map(permissions, (key) => {
@@ -47,15 +48,6 @@ function riseCrudActionsAccess(target) {
                     })
                 }
             })
-
-            // user.isAllowedP(resource, action).then((allowed) => {
-            //     if(allowed) {
-            //         joinpoint.proceedApply(joinpoint.args);
-            //     } else {
-            //         // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
-            //         target.decline({ url, resource, action, user, callback });
-            //     }
-            // }).catch((err) => {throw err});
         });
     }, target);
 }
