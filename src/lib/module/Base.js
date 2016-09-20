@@ -104,7 +104,6 @@ class BaseModule {
 
     // findOneAndUpdate callback returns updated document (options {new: true})
     update({url, data, query, user, callback}) {
-        console.log('UPDATE QUERY', query);
         // TODO: for many?
         this.Model.findOneAndUpdate(query, data, {new: true}, (err, result) => {
             if (err) return console.error(err);
