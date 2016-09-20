@@ -68,9 +68,8 @@ UserSchema.methods.comparePasswordP = function(candidatePassword) {
 UserSchema.methods.isAllowedP = function(resource, permissions) {
     let acl = getAcl();
     let user = this;
-    let userId = user._id;
     return Promise((resolve, reject) => {
-        acl.isAllowed(userId, resource, permissions, (err, allowed) => {
+        acl.isAllowed(user.username, resource, permissions, (err, allowed) => {
             if(err) {
                 reject(err);
             } else {

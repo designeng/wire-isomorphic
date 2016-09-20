@@ -46,31 +46,27 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
                 let username = user.username;
 
                 if(user.role) {
-                    acl.whatResources(user.role, (err, resources) => {
-                        if(_.isEmpty(resources)) {
-                            // user is authorized, but has no roles
+                    // TODO: user is authorized, but has no roles ??
+                    user.isAllowedP(resource, action).then((allowed) => {
+                        if(allowed) {
+                            module[action]({
+                                url, 
+                                data, 
+                                query,
+                                user,
+                                callback
+                            });
                         } else {
-                            // user has permission
-                            if(inArray(resources[resource], action)) {
-                                module[action]({
-                                    url, 
-                                    data, 
-                                    query,
-                                    user,
-                                    callback
-                                });
-                            } else {
-                                // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit 
-                                module.decline({
-                                    url, 
-                                    resource, 
-                                    action, 
-                                    user,
-                                    callback
-                                });
-                            }
+                            // TODO: prevent decline for authorized users without roles! e.g. "admin" role can inherit (???????)
+                            module.decline({
+                                url, 
+                                resource, 
+                                action, 
+                                user,
+                                callback
+                            });
                         }
-                    })
+                    }).catch((err) => {throw err});
                 }
             } else {
                 response.json({user: 'anonimus'});
