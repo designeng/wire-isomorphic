@@ -18,7 +18,7 @@ const publishedRestriction = (options) => {
 
 function riseCrudActionsAccess(target) {
     let resource = target.getRootToken();
-    let permissions = target.getAdditionalPermissions();
+    let permissions = target.getRestrictions();
     let permissionKeys = _.keys(permissions);
 
     _.each(crudActions, function(action) {
@@ -29,6 +29,10 @@ function riseCrudActionsAccess(target) {
             let user = joinpoint.args[0].user;
             let uid = user._id;
 
+            user.getActionRelativePermissionsP(resource, action).then((res) => {
+                console.log('RES:::::', res);
+            })
+
             user.isAllowedP(resource, action).then((allowed) => {
                 if(allowed) {
                     joinpoint.proceedApply(joinpoint.args);
@@ -37,14 +41,6 @@ function riseCrudActionsAccess(target) {
                     target.decline({ url, resource, action, user, callback });
                 }
             }).catch((err) => {throw err});
-
-            // let actionGroup = _.filter(permissionKeys, (key) => {
-            //     let match = action.match(new RegExp(`^${key}_`));
-            //     return match;
-            // });
-
-            // console.log('actionGroup:', actionGroup);
-            
         });
     }, target);
 }
@@ -59,8 +55,12 @@ class BaseModule {
     // override
     getRootToken() {}
 
-    getAdditionalPermissions() {
+    getRestrictions() {
         return {
+            'create': null,
+            'read': null,
+            'update': null,
+            'delete': null,
             'read_own': ownRestriction,
             'update_own': ownRestriction,
             'delete_own': ownRestriction,
@@ -78,7 +78,6 @@ class BaseModule {
             baseUrl: `/api/v1/${this.getRootToken()}`,
             module: this
         });
-        this.additionalPermissions = this.getAdditionalPermissions();
     }
 
     // CRUD methods

@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import when from 'when';
@@ -64,6 +65,28 @@ UserSchema.methods.comparePasswordP = function(candidatePassword) {
         });
     });
 };
+
+// Example: action: 'update', possible user permissions: 'update'(any), 'update_own', 'update_published'
+// @return {Array} permissions
+UserSchema.methods.getActionRelativePermissionsP = function(resource, action) {
+    let acl = getAcl();
+    let user = this;
+    return Promise((resolve, reject) => {
+        acl.allowedPermissions(user.username, resource, (err, result) => {
+            if(err) {
+                reject(err);
+            } else {
+                let actionGroup = _.filter(result[resource], (permission) => {
+                    let match = permission.match(new RegExp(`^${action}_`));
+                    return match;
+                });
+                console.log('action & group:::', action, actionGroup);
+                
+                resolve(actionGroup);
+            }
+        });
+    });
+}
 
 UserSchema.methods.isAllowedP = function(resource, permissions) {
     let acl = getAcl();
