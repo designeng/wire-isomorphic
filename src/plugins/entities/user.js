@@ -59,7 +59,7 @@ function createGuestUser(resolver, compDef, wire) {
             addDefaultRoleToGuestUserP
         ], url).then((res) => {
             resolver.resolve();
-        });
+        }).catch((err) => {resolver.reject(err)});
 }
 
 export default function UserPlugin(options) {
