@@ -53,9 +53,9 @@ function createGuestUser(resolver, compDef, wire) {
     let url = `mongodb://localhost:27017/${database}`;
 
     pipeline([
-            connectP, 
-            createUsersCollectionP, 
-            createGuestUserP, 
+            connectP,
+            createUsersCollectionP,
+            createGuestUserP,
             addDefaultRoleToGuestUserP
         ], url).then((res) => {
             resolver.resolve();
