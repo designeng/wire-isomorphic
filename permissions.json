@@ -3,7 +3,13 @@
         {
             "roles": ["guest"],
             "allows": [
-                {"resources": "comments", "permissions": ["read"]}
+                {   
+                    "resources": "comments", 
+                    "permissions": [
+                        "create",
+                        "read"
+                    ]
+                }
             ]
         },
         {

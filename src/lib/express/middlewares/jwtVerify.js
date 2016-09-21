@@ -1,5 +1,13 @@
 import jwt from 'jwt-simple';
 
+const applyVirtualUser = (request, User, next) => {
+    User.findOne({ username: `guest` }, function(err, user) {
+        // attach user object to request
+        request.user = user;
+        next();
+    });
+}
+
 export default function jwtVerify(app, User) {
     return function(request, response, next) {
         let token = (request.body && request.body.access_token) 
@@ -14,9 +22,13 @@ export default function jwtVerify(app, User) {
                     return response.end('Access token has expired', 400);
                 } else {
                     User.findOne({ _id: decoded.iss }, function(err, user) {
-                        // attach user object to request
-                        request.user = user;
-                        next();
+                        if(!user) {
+                            applyVirtualUser(request, User, next);
+                        } else {
+                            // attach real user object to request
+                            request.user = user;
+                            next();
+                        }
                     });
                 }
 
@@ -24,7 +36,8 @@ export default function jwtVerify(app, User) {
                 return next();
             }
         } else {
-            next();
+            // anonimus user?
+            applyVirtualUser(request, User, next);
         }
     }
 }
