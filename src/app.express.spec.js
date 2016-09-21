@@ -3,6 +3,7 @@ import expressAppPlugin from './plugins/express/application';
 import cleanCookieMiddlewarePlugin from './plugins/express/cookie/clean';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 import mongoExpressPlugin from './plugins/mongo';
+import userPlugin from './plugins/entities/user';
 import readFilePlugin from './plugins/file/read';
 
 import staticAssetsPlugin from './plugins/express/static/index';
@@ -23,7 +24,7 @@ import Forum from './modules/forum/index.js';
 import Comments from './modules/comments/index.js';
 import Users from './modules/users/index.js';
 
-console.log(__dirname);
+const database = 'isomorphic_dev';
 
 export default {
     $plugins: [
@@ -34,6 +35,7 @@ export default {
         expressRoutingMiddlewarePlugin,
         staticAssetsPlugin,
         notFoundMiddlewarePlugin,
+        userPlugin,
     ],
 
     permissionsJSON: {
@@ -44,7 +46,7 @@ export default {
 
     Application: {
         expressApplication: {
-            database: 'isomorphic_dev',
+            database,
             aclPrefix: 'acl_',
             permissionsJSON: {'$ref': 'permissionsJSON'},
             secret: 'SOME_SECRET_STRING'
@@ -71,6 +73,16 @@ export default {
             port            : process.env.PORT || 3000,
             verbose         : true,
             naughtSupport   : true
+        }
+    },
+
+    anonimusUser: {
+        createUser: {
+            database,
+            data: {
+                username: 'guest',
+                password: ''
+            }
         }
     }
 }

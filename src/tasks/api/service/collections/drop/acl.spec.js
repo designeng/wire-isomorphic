@@ -5,7 +5,7 @@ export default {
     $plugins: [
     ],
 
-    // TODO
+    // TODO: remove later
     dropAclCollections: {
         create: {
             module: () => {
