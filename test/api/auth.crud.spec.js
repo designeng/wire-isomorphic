@@ -4,7 +4,10 @@ import moment from 'moment';
 import when from 'when';
 import _ from 'underscore';
 
-import { host, baseApiPath } from '../lib/config';
+import { protocol, host, port, baseApiPath } from '../lib/config';
+let base = `${protocol}://${host}:${port}`;
+
+console.log('BASE', base);
 
 let titleRegex = /FORUM_TITLE_/;
 let unixtime = moment().format('unix');
@@ -14,7 +17,7 @@ let access_token;
 
 before(() => {
     it('SHOULD PASS AUTH', (done) => {
-        request(host)
+        request(base)
             .post(`${baseApiPath}/auth`)
             .send({
                 username: 'admin',
@@ -36,7 +39,7 @@ describe('/forums', () => {
             access_token
         };
 
-        request(host)
+        request(base)
             .post(`${baseApiPath}/forums`)
             .send(forumData)
             .expect((res) => {
@@ -48,7 +51,7 @@ describe('/forums', () => {
     });
 
     it('READ', (done) => {
-        request(host)
+        request(base)
             .get(`${baseApiPath}/forums/${forumId}`)
             .set('x-access-token', access_token)
             .expect((res) => {
@@ -61,7 +64,7 @@ describe('/forums', () => {
     it('UPDATE', (done) => {
         let forum = { title : `FORUM_TITLE_${unixtime}`};
 
-        request(host)
+        request(base)
             .put(`${baseApiPath}/forums/${forumId}`)
             .set('x-access-token', access_token)
             .send(forum)
@@ -73,7 +76,7 @@ describe('/forums', () => {
     });
 
     it('DELETE', (done) => {
-        request(host)
+        request(base)
             .del(`${baseApiPath}/forums/${forumId}`)
             .set('x-access-token', access_token)
             .expect((res) => {

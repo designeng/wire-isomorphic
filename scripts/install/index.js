@@ -25,8 +25,9 @@ let authRequestConfig = {
 
 function connect() {
     let db = `mongodb://localhost:27017/isomorphic_dev`;
-    let options = { server: { socketOptions: { keepAlive: 1 }}};
-    return mongoose.connect(db, options).connection;
+    // let options = { server: { socketOptions: { keepAlive: 1 }}};
+    let options = {};
+    return mongoose.createConnection(db, options).connection;
 }
 
 const establishConnectionP = () => {

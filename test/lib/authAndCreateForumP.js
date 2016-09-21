@@ -1,8 +1,10 @@
+import _ from 'underscore';
 import when from 'when';
 import pipeline from 'when/pipeline';
 
 import mongoose from 'mongoose';
 import User from '../../src/modules/users/entities/User';
+import { host, baseApiPath } from './config';
 
 import axios from 'axios';
 
@@ -21,6 +23,11 @@ let authRequestConfig = {
     method: 'post',
     url: `http://${appHost}${baseApiPath}/auth`,
     data: userData
+};
+
+let createForumRequestConfig = {
+    method: 'post',
+    url: `http://${appHost}${baseApiPath}/forums`
 };
 
 function connect() {
@@ -44,6 +51,26 @@ const authAsAdminP = () => {
     return axios(authRequestConfig);
 }
 
+const createForumP = (response) => {
+    let access_token = response.data.token;
+
+    let forumData = {
+        title: 'SOME_FORUM',
+        access_token
+    };
+
+    _.extend(createForumRequestConfig, {data: forumData});
+
+    console.log("FORUM CREATED");
+    return axios(createForumRequestConfig);
+}
+
+const closeConnection = (res) => {
+    mongoose.connection.close();
+    console.log('CONNECTION CLOSED');
+    return res;
+}
+
 export default function authAndCreateForumP() {
-    return pipeline([establishConnectionP, authAsAdminP]);
+    return pipeline([establishConnectionP, authAsAdminP, createForumP, closeConnection]);
 }

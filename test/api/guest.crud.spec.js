@@ -12,6 +12,15 @@ let unixtime = moment().format('unix');
 
 let forumId;
 
+before(() => {
+    it('should return created forum', (done) => {
+        authAndCreateForumP().then((forum) => {
+            console.log('FORUM:::', forum);
+            done();
+        });
+    });
+});
+
 describe('/forums', () => {
 
     it('CREATE', (done) => {

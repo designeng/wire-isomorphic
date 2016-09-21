@@ -4,11 +4,10 @@ import _ from 'underscore';
 import User from '../../src/modules/users/entities/User';
 import { establishConnection, closeConnection } from '../lib/connect';
 
-let userId;
+import { protocol, host, port, baseApiPath } from '../lib/config';
+let base = `${protocol}://${host}:${port}`;
 
-// TODO: read from application config
-const host = `http://localhost:3000`;
-const baseApiPath = `/api/v1`;
+let userId;
 
 const userData = {
     username: 'dick',
@@ -32,7 +31,7 @@ describe('USER', () => {
     });
 
     it('SHOULD PASS AUTH', (done) => {
-        request(host)
+        request(base)
             .post(`${baseApiPath}/auth`)
             .send(userData)
             .expect((res) => {
