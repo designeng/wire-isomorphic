@@ -4,9 +4,11 @@ import pipeline from 'when/pipeline';
 
 import mongoose from 'mongoose';
 import User from '../../src/modules/users/entities/User';
-import { host, baseApiPath } from './config';
 
 import axios from 'axios';
+
+import { protocol, host, port, baseApiPath } from '../lib/config';
+let base = `${protocol}://${host}:${port}`;
 
 let Promise = when.promise;
 
@@ -16,18 +18,15 @@ let userData = {
     role: 'moderator'
 };
 
-const appHost = `localhost:3000`;
-const baseApiPath = `/api/v1`;
-
 let authRequestConfig = {
     method: 'post',
-    url: `http://${appHost}${baseApiPath}/auth`,
+    url: `${base}${baseApiPath}/auth`,
     data: userData
 };
 
 let createForumRequestConfig = {
     method: 'post',
-    url: `http://${appHost}${baseApiPath}/forums`
+    url: `${base}${baseApiPath}/forums`
 };
 
 function connect() {

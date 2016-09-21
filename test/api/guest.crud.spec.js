@@ -5,7 +5,9 @@ import when from 'when';
 import pipeline from 'when/pipeline';
 import _ from 'underscore';
 
-import { host, baseApiPath } from '../lib/config';
+import { protocol, host, port, baseApiPath } from '../lib/config';
+let base = `${protocol}://${host}:${port}`;
+
 import authAndCreateForumP from '../lib/authAndCreateForumP';
 
 let unixtime = moment().format('unix');
@@ -28,14 +30,14 @@ describe('/forums', () => {
             title : `FORUM_TITLE_${unixtime}`
         };
 
-        request(host)
+        request(base)
             .post(`${baseApiPath}/forums`)
             .send(forumData)
             .expect(401, done)
     });
 
     it('READ', (done) => {
-        request(host)
+        request(base)
             .get(`${baseApiPath}/forums/${forumId}`)
             .expect((res) => {
                 expect(res.body.data[0]._id).to.be.ok;
@@ -46,14 +48,14 @@ describe('/forums', () => {
     it('UPDATE', (done) => {
         let forum = { title : `FORUM_TITLE_${unixtime}`};
 
-        request(host)
+        request(base)
             .put(`${baseApiPath}/forums/${forumId}`)
             .send(forum)
             .expect(401, done)
     });
 
     it('DELETE', (done) => {
-        request(host)
+        request(base)
             .del(`${baseApiPath}/forums/${forumId}`)
             .expect(401, done)
     });
