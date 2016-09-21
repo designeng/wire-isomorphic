@@ -122,7 +122,7 @@ class BaseModule {
     // Decline if user has no permissions
     // TODO: get resource name from module itself!
     decline({url, resource, action, user, callback}) {
-        callback(null, {MESSAGE: `You have no permissions for ${action} ${resource}`});
+        callback(null, {MESSAGE: `You have no permissions to ${action} ${resource}`});
     }
 }
 
