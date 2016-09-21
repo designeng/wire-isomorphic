@@ -25,7 +25,7 @@ const publishedRestriction = (options) => {
 }
 
 function setupCrudActionsAccess(target) {
-    let resource = target.getRootToken();
+    let resource = target.getResourceName();
     let targetRestrictions = target.getRestrictions();
 
     _.each(crudActions, function(action) {
@@ -61,7 +61,7 @@ class BaseModule {
     }
 
     // override
-    getRootToken() {}
+    getResourceName() {}
 
     // permissions & restrictions - two sides of the same coin
     getRestrictions() {
@@ -84,7 +84,7 @@ class BaseModule {
             target: this.router,
             routes: this.routes,
             // this.baseUrl 
-            baseUrl: `/api/v1/${this.getRootToken()}`,
+            baseUrl: `/api/v1/${this.getResourceName()}`,
             module: this
         });
     }

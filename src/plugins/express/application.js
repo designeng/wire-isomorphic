@@ -59,7 +59,7 @@ function registerModulesFacet(resolver, facet, wire) {
             baseUrl: apiRootPath
         });
         module.register();
-        target.use(apiRootPath + module.getRootToken(), jwtVerify(target, User), module.router);
+        target.use(apiRootPath + module.getResourceName(), jwtVerify(target, User), module.router);
     });
 
     resolver.resolve(target);

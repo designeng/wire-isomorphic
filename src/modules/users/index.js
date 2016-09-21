@@ -10,7 +10,7 @@ class Users extends Base {
         this.Model = Model;
     }
 
-    getRootToken() {
+    getResourceName() {
         return 'users';
     }
 }

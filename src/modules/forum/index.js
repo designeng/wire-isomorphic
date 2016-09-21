@@ -10,7 +10,7 @@ class Forum extends Base {
         this.Model = Model;
     }
 
-    getRootToken() {
+    getResourceName() {
         return 'forums';
     }
 }

@@ -21,9 +21,9 @@ function merge(a, b) {
     return a;
 }
 
-// TODO: conflict with target.use(apiRootPath + module.getRootToken(), module.router) ?
+// TODO: conflict with target.use(apiRootPath + module.getResourceName(), module.router) ?
 export default function createRouteCRUDHandler(target, url, baseUrl, module) {
-    let resource = module.getRootToken();
+    let resource = module.getResourceName();
     let acl = getAcl();
 
     _.each(_.keys(crudActions), (action) => {

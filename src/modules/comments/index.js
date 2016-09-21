@@ -10,7 +10,7 @@ class Comments extends Base {
         this.Model = Model;
     }
 
-    getRootToken() {
+    getResourceName() {
         return 'comments';
     }
 }
