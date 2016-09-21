@@ -2,8 +2,11 @@ import when from 'when';
 import pipeline from 'when/pipeline';
 
 import { MongoClient } from 'mongodb';
+import { getAcl } from '../../lib/acl';
 
 let Promise = when.promise;
+
+const DEFAULT_ROLE = 'guest';
 
 const guestUserData = {
     username: 'guest',
@@ -35,12 +38,21 @@ const createGuestUserP = (collection) => {
     });
 }
 
+const addDefaultRoleToGuestUserP = (res) => {
+    return Promise((resolve, reject) => {
+        let acl = getAcl();
+        acl.addUserRoles(guestUserData.username, DEFAULT_ROLE, (err, result) => {
+            resolve(result);
+        })
+    });
+}
+
 function createGuestUser(resolver, compDef, wire) {
     let database = compDef.options.database;
 
     let url = `mongodb://localhost:27017/${database}`;
 
-    pipeline([connectP, createUsersCollectionP, createGuestUserP], url).then((res) => {
+    pipeline([connectP, createUsersCollectionP, createGuestUserP, addDefaultRoleToGuestUserP], url).then((res) => {
         resolver.resolve();
     });
 }
