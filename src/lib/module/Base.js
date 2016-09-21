@@ -24,7 +24,7 @@ const publishedRestriction = (options) => {
     return _.extend(query, {published: true})
 }
 
-function riseCrudActionsAccess(target) {
+function setupCrudActionsAccess(target) {
     let resource = target.getRootToken();
     let targetRestrictions = target.getRestrictions();
 
@@ -57,7 +57,7 @@ class BaseModule {
 
     constructor() {
         this.router = express.Router();
-        riseCrudActionsAccess(this);
+        setupCrudActionsAccess(this);
     }
 
     // override
