@@ -53,13 +53,13 @@ function createGuestUser(resolver, compDef, wire) {
     let url = `mongodb://localhost:27017/${database}`;
 
     pipeline([
-            connectP,
-            createUsersCollectionP,
-            createGuestUserP,
-            addDefaultRoleToGuestUserP
-        ], url).then((res) => {
-            resolver.resolve();
-        }).catch((err) => {resolver.reject(err)});
+        connectP,
+        createUsersCollectionP,
+        createGuestUserP,
+        addDefaultRoleToGuestUserP
+    ], url).then((res) => {
+        resolver.resolve();
+    }).catch((err) => {resolver.reject(err)});
 }
 
 export default function UserPlugin(options) {
