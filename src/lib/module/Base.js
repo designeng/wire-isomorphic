@@ -6,6 +6,9 @@ import useRoutesStrategies from '../express/useRoutesStrategies';
 
 const crudActions = ['create', 'read', 'update', 'delete'];
 
+const SUCCESS_STATUS = 200;
+const UNAUTHORIZED_STATUS = 401;
+
 const nullRestriction = (options) => {
     return options;
 }
@@ -91,14 +94,14 @@ class BaseModule {
         data.uid = user._id;
         new this.Model(data).save((err, result) => {
             if (err) return console.error(err);
-            callback(200)(null, result);
+            callback(null, result, SUCCESS_STATUS);
         });
     }
 
     read({url, data, query, user, callback}) {
         this.Model.find(query, (err, result) => {
             if (err) return console.error(err);
-            callback(200)(null, result);
+            callback(null, result, SUCCESS_STATUS);
         });
     }
 
@@ -108,21 +111,21 @@ class BaseModule {
         this.Model.findOneAndUpdate(query, data, {new: true}, (err, result) => {
             if (err) return console.error(err);
             // TODO: return only id? or whole updated object?
-            callback(200)(null, result);
+            callback(null, result, SUCCESS_STATUS);
         });
     }
 
     delete({url, data, query, user, callback}) {
         this.Model.remove(query, (err, result) => {
             if (err) return console.error(err);
-            callback(200)(null, result);
+            callback(null, result, SUCCESS_STATUS);
         });
     }
 
     // Decline if user has no permissions
     // TODO: get resource name from module itself!
     decline({url, resource, action, user, callback}) {
-        callback(401)(null, {MESSAGE: `You have no permissions to ${action} ${resource}`});
+        callback(null, {message: `You have no permissions to ${action} ${resource}`}, UNAUTHORIZED_STATUS);
     }
 }
 

@@ -30,14 +30,12 @@ export default function createRouteCRUDHandler(target, url, baseUrl, module) {
         let method = crudActions[action];
         target[method](`${url}`, function(request, response, next) {
 
-            const callback = (status) => {
-                return (error, result) => {
-                    let obj = {
-                        error,
-                        data: result
-                    }
-                    response.status(status).json(obj);
+            const callback = (error, result, status) => {
+                let obj = {
+                    error,
+                    data: result
                 }
+                response.status(status).json(obj);
             }
 
             let data = request.body;
