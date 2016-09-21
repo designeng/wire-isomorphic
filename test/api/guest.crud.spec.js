@@ -24,9 +24,9 @@ before(() => {
     });
 });
 
+// TODO: run app before tests running with appropriate permissions
 describe('/comments', () => {
-
-    it('CREATE', (done) => {
+    it('CREATE should fail', (done) => {
         let commentData = { 
             title : `COMMENT_TITLE_${unixtime}`
         };
@@ -37,16 +37,16 @@ describe('/comments', () => {
             .expect(401, done)
     });
 
-    it('READ', (done) => {
+    it('READ should pass', (done) => {
         request(base)
-            .get(`${baseApiPath}/comments/${commentId}`)
+            .get(`${baseApiPath}/comments`)
             .expect((res) => {
                 expect(res.body.data[0]._id).to.be.ok;
             })
             .expect(200, done)
     });
 
-    it('UPDATE', (done) => {
+    it('UPDATE should fail', (done) => {
         let forum = { title : `COMMENT_TITLE_${unixtime}`};
 
         request(base)
@@ -55,7 +55,7 @@ describe('/comments', () => {
             .expect(401, done)
     });
 
-    it('DELETE', (done) => {
+    it('DELETE should fail', (done) => {
         request(base)
             .del(`${baseApiPath}/comments/${commentId}`)
             .expect(401, done)

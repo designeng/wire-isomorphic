@@ -91,14 +91,14 @@ class BaseModule {
         data.uid = user._id;
         new this.Model(data).save((err, result) => {
             if (err) return console.error(err);
-            callback(null, result);
+            callback(200)(null, result);
         });
     }
 
     read({url, data, query, user, callback}) {
         this.Model.find(query, (err, result) => {
             if (err) return console.error(err);
-            callback(null, result);
+            callback(200)(null, result);
         });
     }
 
@@ -108,21 +108,21 @@ class BaseModule {
         this.Model.findOneAndUpdate(query, data, {new: true}, (err, result) => {
             if (err) return console.error(err);
             // TODO: return only id? or whole updated object?
-            callback(null, result);
+            callback(200)(null, result);
         });
     }
 
     delete({url, data, query, user, callback}) {
         this.Model.remove(query, (err, result) => {
             if (err) return console.error(err);
-            callback(null, result);
+            callback(200)(null, result);
         });
     }
 
     // Decline if user has no permissions
     // TODO: get resource name from module itself!
     decline({url, resource, action, user, callback}) {
-        callback(null, {MESSAGE: `You have no permissions to ${action} ${resource}`});
+        callback(401)(null, {MESSAGE: `You have no permissions to ${action} ${resource}`});
     }
 }
 

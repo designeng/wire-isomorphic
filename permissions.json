@@ -6,7 +6,6 @@
                 {   
                     "resources": "comments", 
                     "permissions": [
-                        "create",
                         "read"
                     ]
                 }
