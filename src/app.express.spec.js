@@ -76,6 +76,7 @@ export default {
         }
     },
 
+    // anonimus user will be inserted bypass mongoose User model
     anonimusUser: {
         createUser: {
             database,
