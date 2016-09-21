@@ -30,16 +30,15 @@ function setupCrudActionsAccess(target) {
 
     _.each(crudActions, function(action) {
         meld.around(target, action, function(joinpoint) {
-
-            let url = joinpoint.args[0].url;
-            let user = joinpoint.args[0].user;
-            let callback = joinpoint.args[0].callback;
+            let options = joinpoint.args[0];
+            let user = options.user;
 
             user.getActionRelativePermissionsP(resource, action).then((permissions) => {
                 if(!permissions.length) {
                     // user has no permissions for current action
                     // TODO: prevent decline for authorized users without roles
-                    return target.decline({ url, resource, action, user, callback });
+                    _.extend(options, { action });
+                    return target.decline(options);
                 } else {
                     let actionRestrictions = _.map(permissions, (key) => {
                         return targetRestrictions[key];
@@ -123,9 +122,8 @@ class BaseModule {
     }
 
     // Decline if user has no permissions
-    // TODO: get resource name from module itself!
-    decline({url, resource, action, user, callback}) {
-        callback(null, {message: `You have no permissions to ${action} ${resource}`}, UNAUTHORIZED_STATUS);
+    decline({url, data, query, user, action, callback}) {
+        callback(null, {message: `You have no permissions to ${action} ${this.getResourceName()}`}, UNAUTHORIZED_STATUS);
     }
 }
 
