@@ -9,12 +9,24 @@
         {
             "roles": ["moderator"],
             "allows": [
-                {"resources": "forums", "permissions": [
-                    "create", 
-                    "read", 
-                    "update",
-                    "delete"
-                ]},
+                {
+                    "resources": "forums", 
+                    "permissions": [
+                        "create", 
+                        "read", 
+                        "update",
+                        "delete"
+                    ]
+                },
+                {
+                    "resources": "comments", 
+                    "permissions": [
+                        "create", 
+                        "read", 
+                        "update",
+                        "delete"
+                    ]
+                },
                 {"resources": "users", "permissions": ["create", "read", "update"]}
             ]
         },

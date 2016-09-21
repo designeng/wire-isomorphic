@@ -33,7 +33,7 @@ const authAsAdminP = () => {
     return axios(authRequestConfig);
 }
 
-const createForumP = (response) => {
+const createCommentP = (response) => {
     let access_token = response.data.token;
 
     let commentData = {
@@ -45,6 +45,6 @@ const createForumP = (response) => {
     return axios(createCommentRequestConfig);
 }
 
-export default function authAndCreateForumP() {
-    return pipeline([authAsAdminP, createForumP]);
+export default function authAndCreateCommentP() {
+    return pipeline([authAsAdminP, createCommentP]);
 }
