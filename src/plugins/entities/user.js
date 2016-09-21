@@ -22,7 +22,6 @@ const connectP = (url) => {
 const createUsersCollectionP = (db) => {
     return Promise((resolve, reject) => {
         db.createCollection('users', function(err, collection) {
-            console.log('Collection users created');
             resolve(collection);
         });
     });
@@ -31,7 +30,6 @@ const createUsersCollectionP = (db) => {
 const createGuestUserP = (collection) => {
     return Promise((resolve, reject) => {
         collection.insert(guestUserData, function(err, res) {
-            console.log('Inserted user');
             resolve(res);
         });
     });

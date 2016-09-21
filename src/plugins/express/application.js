@@ -75,7 +75,6 @@ function expressApplication(resolver, compDef, wire) {
 
     wire(compDef.options).then((options) => {
         let database = options.database;
-        let aclPrefix = options.aclPrefix || undefined;
         let permissionsJSON = options.permissionsJSON;
         let parsedPermissions;
 

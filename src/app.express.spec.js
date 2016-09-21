@@ -47,7 +47,6 @@ export default {
     Application: {
         expressApplication: {
             database,
-            aclPrefix: 'acl_',
             permissionsJSON: {'$ref': 'permissionsJSON'},
             secret: 'SOME_SECRET_STRING'
         },
