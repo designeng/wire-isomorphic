@@ -16,8 +16,9 @@ let commentId;
 
 before(() => {
     it('should return created comment', (done) => {
-        authAndCreateCommentP().then((response) => {
-            console.log('COMMENT:::', response.data);
+        authAndCreateCommentP().then((comment) => {
+            expect(comment._id).to.be.ok;
+            expect(comment.uid).to.be.ok;
             done();
         });
     });

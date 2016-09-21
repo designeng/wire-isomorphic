@@ -45,6 +45,10 @@ const createCommentP = (response) => {
     return axios(createCommentRequestConfig);
 }
 
+const extractCommentFromResponse = (response) => {
+    return response.data.data;
+}
+
 export default function authAndCreateCommentP() {
-    return pipeline([authAsAdminP, createCommentP]);
+    return pipeline([authAsAdminP, createCommentP, extractCommentFromResponse]);
 }
