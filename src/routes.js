@@ -16,6 +16,12 @@ const routes = [
         tasks: ['usersSpec', 'carcassSpec'],
     },
 
+    // TODO: remove after development
+    {
+        url: '/comments/form',
+        tasks: ['commentsSpec', 'carcassSpec'],
+    },
+
     // TODO: should be resolved via modules
     {
         url: '/api/v1/brands',
