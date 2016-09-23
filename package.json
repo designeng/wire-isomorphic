@@ -41,6 +41,9 @@
     "mongoose": "^4.5.8",
     "node-crud": "^2.1.1",
     "serve-favicon": "^2.3.0",
+    "snabbdom": "^0.5.3",
+    "snabbdom-jsx": "^0.3.1",
+    "snabbdom-to-html": "^3.0.0-beta.1",
     "underscore": "^1.8.3",
     "vidom": "^0.3.20"
   },

@@ -30,10 +30,10 @@ gulp.task('vidom-jsx', function(){
 });
 
 var wrapForExport = function() {
-    return wrap(`var h = require('virtual-dom/h'); module.exports = <%= contents %>`);
+    return wrap(`var h = require('snabbdom/h'); module.exports = <%= contents %>`);
 }
 
-gulp.task('hdom', function(){
+gulp.task('virtualdom', function(){
     return gulp.src('src/templates/**/*.jsx').
         pipe(babel({
             plugins: ["transform-remove-strict-mode", ['transform-react-jsx', {'pragma': 'h'}]]

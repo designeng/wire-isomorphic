@@ -15,6 +15,7 @@ function createComponent(resolver, compDef, wire) {
             }
         }
 
+        // TODO: find the way to work with tpl
         if(env === 'server') {
             let html = template;
             // const html = renderToString(template);
