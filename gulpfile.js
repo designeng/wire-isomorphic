@@ -1,7 +1,9 @@
 var gulp = require('gulp');
 var wrap = require('gulp-wrap');
-var exec = require('gulp-exec');
 var handlebars = require('gulp-handlebars');
+var babel = require('gulp-babel');
+
+var exec = require('child_process').exec;
 
 var buildTpl = function() {
     return wrap("module.exports = require('handlebars').template(<%= contents %>)");
@@ -19,8 +21,10 @@ gulp.task('tpl', function() {
         .pipe(gulp.dest('src/templates/build/'));
 });
 
-gulp.task('babel-cli', function() {
-    return gulp.src('src/templates/**/*.jsx')
-        .pipe(exec(`./node_modules/.bin/babel --plugins vidom-jsx <%= file.path %> --out-file some-test.js`))
-        // .pipe(gulp.dest('src/templates/build/'));
+gulp.task('vidom-jsx', function(){
+    return gulp.src('src/templates/**/*.jsx').
+        pipe(babel({
+            plugins: ['vidom-jsx']
+        })).
+        pipe(gulp.dest('src/templates/build/'));
 });
