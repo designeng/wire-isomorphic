@@ -19,7 +19,7 @@ const routes = [
     // TODO: remove after development
     {
         url: '/comments/form',
-        tasks: ['commentsSpec', 'carcassSpec'],
+        tasks: ['commentsSpec'],
     },
 
     // TODO: should be resolved via modules
