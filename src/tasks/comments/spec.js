@@ -1,11 +1,11 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
-import createComponentPlugin from '../../plugins/component';
+import vidomComponentPlugin from '../../plugins/component/vidom';
 import commentFormTpl from '../../templates/build/forms/commentFormTpl';
 import { client, server } from '../../decorators/environment';
 
 export default {
     $plugins: [
-        createComponentPlugin
+        vidomComponentPlugin
     ],
 
     commentForm: {
@@ -20,5 +20,5 @@ export default {
         
     },
 
-    pageContent: {$ref: 'commentForm'}
+    response: {$ref: 'commentForm'}
 }

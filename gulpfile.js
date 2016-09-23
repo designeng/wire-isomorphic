@@ -28,3 +28,16 @@ gulp.task('vidom-jsx', function(){
         })).
         pipe(gulp.dest('src/templates/build/'));
 });
+
+var wrapForExport = function() {
+    return wrap(`var h = require('virtual-dom/h'); module.exports = <%= contents %>`);
+}
+
+gulp.task('hdom', function(){
+    return gulp.src('src/templates/**/*.jsx').
+        pipe(babel({
+            plugins: ["transform-remove-strict-mode", ['transform-react-jsx', {'pragma': 'h'}]]
+        }))
+        .pipe(wrapForExport())
+        .pipe(gulp.dest('src/templates/build/'));
+});
