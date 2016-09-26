@@ -30,7 +30,7 @@ gulp.task('vidom-jsx', function(){
 });
 
 var wrapForExport = function() {
-    return wrap(`var h = require('snabbdom/h'); module.exports = <%= contents %>`);
+    return wrap(`import { html } from 'snabbdom-jsx'; module.exports = <%= contents %>`);
 }
 
 gulp.task('virtualdom', function(){

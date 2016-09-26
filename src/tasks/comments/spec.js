@@ -1,6 +1,6 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
 import snabbdomComponentPlugin from '../../plugins/component/snabbdom';
-import commentFormTpl from '../../templates/build/forms/commentFormTpl';
+import commentFormTpl from '../../templates/forms/commentFormTpl';
 import { client, server } from '../../decorators/environment';
 
 export default {
