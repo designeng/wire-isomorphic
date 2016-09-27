@@ -11,8 +11,6 @@ function createComponent(resolver, compDef, wire) {
         datasource = {},
     }) => {
 
-
-
         if(tags) {
             if(!_.isArray(tags)) throw new Error('[createComponentPlugin:] tags option should be an array!');
 
@@ -35,7 +33,6 @@ function createComponent(resolver, compDef, wire) {
             resolver.resolve(html);
         } else {
             if(env === 'server') {
-                console.log('datasource::::', datasource, template);
                 const html = renderToString(template(datasource));
                 resolver.resolve(html);
             }

@@ -29,20 +29,20 @@ export default {
         }
     },
 
-    // summary: {
-    //     createComponent: {
-    //         template: summaryTpl,
-    //         tags: [
-    //             {CommentsList: {$ref: 'commentsList'}},
-    //             {CommentForm: {$ref: 'commentForm'}},
-    //         ]
-    //     }
-    // },
+    summary: {
+        createComponent: {
+            template: summaryTpl,
+            tags: [
+                {CommentsList: {$ref: 'commentsList'}},
+                {CommentForm: {$ref: 'commentForm'}},
+            ]
+        }
+    },
 
     @client
     commentFormEvents: {
         
     },
 
-    response: {$ref: 'commentsList'}
+    response: {$ref: 'summary'}
 }
