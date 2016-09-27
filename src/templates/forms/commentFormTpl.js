@@ -1,4 +1,4 @@
-const view = (val) =>
+const view = ({ val }) =>
 
 <form>
     <input type='text' value={val}></input>
