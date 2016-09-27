@@ -10,6 +10,7 @@ const routes = [
         // plus something client-special
         webpack: ['clientSpecialSpec', 'mainPageSpec', 'carcassSpec'],
         routeId: 'main-page',
+        format: 'html'
     },
     {
         url: '/users',
@@ -20,36 +21,32 @@ const routes = [
     {
         url: '/comments/form',
         tasks: ['commentsSpec'],
+        format: 'html'
     },
 
     // TODO: should be resolved via modules
     {
         url: '/api/v1/brands',
         tasks: ['apiBrandsSpec'],
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        format: 'json'
     },
     {
         url: '/api/v1/cities',
         tasks: ['apiCitiesSpec'],
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        format: 'json'
     },
     // services
     // authentication server imitation, for https requests. Getting a Token
     {
         url: '/api/v1/auth',
         handler: auth,
-        method: 'POST'
+        method: 'POST',
+        format: 'json'
     },
     {
         url: '/acl/drop',
         tasks: ['dropAclCollectionsSpec'],
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        format: 'json'
     },
 ];
 

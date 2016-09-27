@@ -1,12 +1,12 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
-import snabbdomComponentPlugin from '../../plugins/component/snabbdom';
+import vidomComponentPlugin from '../../plugins/component/vidom';
 import commentFormTpl from '../../templates/forms/commentFormTpl';
 import { client, server } from '../../decorators/environment';
 
 export default {
     $plugins: [
-        wireDebugPlugin,
-        snabbdomComponentPlugin
+        // wireDebugPlugin,
+        vidomComponentPlugin
     ],
 
     commentForm: {

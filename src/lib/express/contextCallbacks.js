@@ -9,6 +9,17 @@ export function success(request, response) {
             _.extend(headers, context.headers);
         }
 
+        if(context.format) {
+            switch(context.format) {
+                case 'html' : 
+                    _.extend(headers, {'Content-Type': 'text/html'});
+                    break;
+                case 'json' : 
+                    _.extend(headers, {'Content-Type': 'application/json'});
+                    break;
+            }
+        }
+
         let result = context.response ? context.response : context.carcass;
 
         response.writeHead(200, headers);

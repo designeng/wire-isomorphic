@@ -33,6 +33,7 @@ export default function createRouteTasksHandler(route, specs, specSource) {
             requestUrl: requestUrl,
             hostname: request.hostname,
             headers: route.headers || null,
+            format: route.format || null,
             requestHeaders: request.headers,
         });
             
