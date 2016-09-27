@@ -20,6 +20,7 @@ export default {
     commentsListData: {
         request: {
             endpoint: getLocalEndpoint('/api/v1/comments'),
+            what: 'data'
         }
     },
 
