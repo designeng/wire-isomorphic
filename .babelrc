@@ -1,6 +1,7 @@
 {
     "presets": ["es2015"],
     "plugins": [
-        ["transform-decorators-legacy", "transform-react-jsx"]
+        "transform-decorators-legacy", 
+        "vidom-jsx"
     ]
 }
