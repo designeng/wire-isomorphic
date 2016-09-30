@@ -1,5 +1,5 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
-import vidomComponentPlugin from '../../plugins/component/vidom';
+import snabbdomComponentPlugin from '../../plugins/component/snabbdom';
 import requestPlugin from '../../plugins/api/request';
 
 import { getEndpoint, getLocalEndpoint } from '../../config/api';
@@ -14,7 +14,7 @@ export default {
     $plugins: [
         // wireDebugPlugin,
         requestPlugin,
-        vidomComponentPlugin
+        snabbdomComponentPlugin
     ],
 
     commentsListData: {

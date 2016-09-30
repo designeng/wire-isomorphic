@@ -16,7 +16,8 @@
     "test": "node ./runner && npm run karma-test",
     "karma-test": "karma start test/karma.config.js",
     "api-test": "./node_modules/mocha/bin/mocha ./test/api/runner",
-    "initial-run": "node ./scripts/install/runner"
+    "initial-run": "node ./scripts/install/runner",
+    "most-experiment": "node ./scripts/experiments/runner"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
@@ -33,6 +34,7 @@
     "express": "^4.14.0",
     "form-data": "^1.0.0-rc4",
     "handlebars": "^4.0.5",
+    "hyperscript-helpers": "^3.0.1",
     "jquery": "^2.2.0",
     "jwt-simple": "^0.5.0",
     "mkdirp": "^0.5.1",
