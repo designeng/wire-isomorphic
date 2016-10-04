@@ -1,5 +1,6 @@
 import _ from 'underscore';
 import auth from './tasks/api/service/auth';
+import compare from './tasks/compare';
 
 // tasks names should match exported ./specs.js objects names
 const routes = [
@@ -17,10 +18,16 @@ const routes = [
         tasks: ['usersSpec', 'carcassSpec'],
     },
 
-    // TODO: remove after development
+    // experiments with snabbdom
     {
         url: '/comments/form',
         tasks: ['commentsSpec'],
+        format: 'html'
+    },
+
+    {
+        url: '/compare',
+        handler: compare,
         format: 'html'
     },
 

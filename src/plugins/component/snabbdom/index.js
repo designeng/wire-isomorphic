@@ -1,16 +1,5 @@
 import _ from 'underscore';
 import snabbdom from 'snabbdom';
-import modules from 'snabbdom-to-html/modules';
-
-// var init = require('snabbdom-to-html/init');
-
-// var toHTML = init([
-//     modules.class,
-//     modules.props,
-//     modules.attributes,
-//     modules.style
-// ])
-
 import toHTML from 'snabbdom-to-html';
 
 let env = process.env.ENVIRONMENT;
