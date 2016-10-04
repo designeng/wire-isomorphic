@@ -46,8 +46,7 @@
     "snabbdom": "^0.5.3",
     "snabbdom-jsx": "^0.3.1",
     "snabbdom-to-html": "^3.0.0-beta.1",
-    "underscore": "^1.8.3",
-    "vidom": "^0.3.20"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
@@ -55,7 +54,6 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
-    "babel-plugin-vidom-jsx": "^0.2.1",
     "babel-preset-es2015": "^6.3.13",
     "chai": "^3.5.0",
     "chalk": "^1.1.1",
