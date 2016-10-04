@@ -25,6 +25,18 @@ const routes = [
         format: 'html'
     },
 
+    // page with poll interface
+    {
+        url: '/polls',
+        tasks: ['pollsSpec'],
+        format: 'html'
+    },
+    {
+        url: '/polls/:id',
+        tasks: ['pollsSpec'],
+        format: 'html'
+    },
+
     {
         url: '/compare',
         handler: compare,

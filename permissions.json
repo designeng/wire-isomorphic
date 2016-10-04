@@ -8,6 +8,12 @@
                     "permissions": [
                         "read"
                     ]
+                },
+                {   
+                    "resources": "polls", 
+                    "permissions": [
+                        "read"
+                    ]
                 }
             ]
         },

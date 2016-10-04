@@ -22,6 +22,7 @@ import mongoExpressConfig from './config.mongo.js';
 import Nodes from './modules/nodes/index.js';
 import Forum from './modules/forum/index.js';
 import Comments from './modules/comments/index.js';
+import Polls from './modules/polls/index.js';
 import Users from './modules/users/index.js';
 
 const database = 'isomorphic_dev';
@@ -61,6 +62,7 @@ export default {
             modules: [
                 Forum,
                 Comments,
+                Polls,
                 Users,
             ]
         },

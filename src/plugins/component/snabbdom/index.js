@@ -7,7 +7,7 @@ let env = process.env.ENVIRONMENT;
 function createComponent(resolver, compDef, wire) {
     wire(compDef.options).then(({
         template,
-        datasource = {}
+        datasource
     }) => {
         if(env === 'server') {
             const html = toHTML(template(datasource));
