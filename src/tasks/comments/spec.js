@@ -7,7 +7,7 @@ import { getEndpoint, getLocalEndpoint } from '../../config/api';
 
 import commentFormTpl from '../../templates/forms/commentFormTpl';
 import commentsListTpl from '../../templates/commentsListTpl';
-import summaryTpl from '../../templates/build/summaryTpl';
+import summaryTpl from '../../templates/summaryTpl';
 
 import { client, server } from '../../decorators/environment';
 
