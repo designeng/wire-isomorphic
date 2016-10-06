@@ -22,7 +22,7 @@ export default {
         // all actions list
     },
 
-    @server
+    @server({otherwise: {items: []}})
     pollsListData: {
         request: {
             endpoint: getLocalEndpoint('/api/v1/polls'),
