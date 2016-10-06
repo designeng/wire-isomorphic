@@ -13,7 +13,8 @@ function createComponent(resolver, compDef, wire) {
             const html = toHTML(template(datasource));
             resolver.resolve(html);
         } else {
-            // TODO: client
+            /* client */
+            resolver.resolve(template);
         }
     });
 }
