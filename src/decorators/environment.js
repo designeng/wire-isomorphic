@@ -9,7 +9,8 @@ export function client(target, key, descriptor) {
 }
 
 export function server(target, key, descriptor) {
-    if (env === 'server') {
-        // nothing interesting here
+    if (env !== 'server') {
+        target[key] = null;
+        return target
     }
 }

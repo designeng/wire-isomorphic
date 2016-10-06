@@ -22,8 +22,6 @@ export function success(request, response) {
 
         let result = context.response ? context.response : context.carcass;
 
-        console.log("specToCompile:::", context.specToCompile);
-
         response.writeHead(200, headers);
         response.end(result);
         context.destroy();

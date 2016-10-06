@@ -1,11 +1,18 @@
 /* compilation for page: {{routeId}} */
 
+import wire from 'essential-wire';
 import pipeline from 'when/pipeline';
 
 let specs = [];
 
 {{#each specs}}
 import {{name}} from '../../src{{path}}';
+
+wire({{name}}).then((context) => {
+    console.log('Loaded spec context: ', context);
+}).otherwise((error) => {
+    console.log('ERROR:::', error);
+})
 {{/each}}
 
 console.log('Loaded compiled {{routeId}} script!');
