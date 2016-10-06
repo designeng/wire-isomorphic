@@ -7,7 +7,6 @@ export const snabbdomBottomScriptsTpl = (data) => {
     let result = script('.bottom-script', {
         props: {
             type: 'text/javascript',
-            sync: data.items[0].sync,
             async: data.items[0].async,
             src: data.items[0].src
         }
