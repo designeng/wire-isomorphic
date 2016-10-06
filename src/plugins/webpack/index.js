@@ -7,10 +7,10 @@ import fs from 'fs';
 
 // TODO: 
 // does not work:
-import mainJsTpl from '../../templates/build/js/client/main';
+// import mainJsTpl from '../../templates/build/js/client/main';
 // 
 // simple script works:
-// import mainJsTpl from '../../templates/build/js/client/main_simple';
+import mainJsTpl from '../../templates/build/js/client/main_simple';
 
 let config = {
     // TODO:
@@ -47,8 +47,6 @@ function createEntry(resolver, compDef, wire) {
             specs: specToCompile,
             routeId: routeId
         });
-
-        console.log('fileContent:::', fileContent);
 
         mkdirp(`${tempFolder}`, (err) => {
             let tempEntryPath = `${tempFolder}/index.js`;
