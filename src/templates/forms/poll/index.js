@@ -27,10 +27,13 @@ export const renderPollForm = (data) => {
 }
 
 const renderQuestionsList = () =>
-    ul('.poll-form--questions-list', [
-        li('.poll-form--questions-list-item', [renderPollQuestionInput()]),
-        li('.poll-form--questions-list-item', [renderPollQuestionInput()]),
-    ])
+    div('.poll-form--questions-list-wrapper', [
+        ul('.poll-form--questions-list', [
+            li('.poll-form--questions-list-item', [renderPollQuestionInput()]),
+            li('.poll-form--questions-list-item', [renderPollQuestionInput()]),
+        ]),
+        button('.poll-form--questions-list-extend', 'Add new question')
+    ]);
 
 const renderNoop = () => {
     return span('', 'noop element');

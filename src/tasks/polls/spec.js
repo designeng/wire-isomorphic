@@ -8,6 +8,7 @@ import { getLocalEndpoint } from '../../config/api';
 import { renderPollQuestionForm, renderPollForm, renderPollsList, summary } from '../../templates/forms/poll';
 
 import { client, server } from '../../decorators/environment';
+import pollActions from './pollActions';
 
 export default {
     $plugins: [
@@ -16,6 +17,10 @@ export default {
         snabbdomComponentPlugin,
         composeComponentPlugin
     ],
+
+    actions: {
+        // all actions list
+    },
 
     pollsListData: {
         request: {
@@ -33,8 +38,9 @@ export default {
 
     pollForm: {
         createComponent: {
-            template: renderPollForm
-        }
+            template: renderPollForm,
+            actions: pollActions
+        },
     },
 
     summary: {
