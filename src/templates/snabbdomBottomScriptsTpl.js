@@ -11,7 +11,6 @@ export const snabbdomBottomScriptsTpl = (data) => {
             src: data.items[0].src
         }
     })
-    console.log(result, data, data.src);
     return result;
 }
 
