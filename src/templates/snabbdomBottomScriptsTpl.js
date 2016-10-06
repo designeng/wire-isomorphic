@@ -4,14 +4,14 @@ import hh from 'hyperscript-helpers';
 const { script } = hh(h);
 
 export const snabbdomBottomScriptsTpl = (data) => {
-    let result = script('', {
+    let result = script('.bottom-script', {
         props: {
             type: 'text/javascript',
-            async: true,
-            src: data.src
+            sync: data.items[0].sync,
+            src: data.items[0].src
         }
     })
-    console.log(result);
+    console.log(result, data, data.src);
     return result;
 }
 
