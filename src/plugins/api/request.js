@@ -1,6 +1,5 @@
 import axios from 'axios';
 import _ from 'underscore';
-import chalk from 'chalk';
 
 import normalizeCookies from '../../lib/express/headers/cookie/normalizeCookies';
 import prepareData from '../../lib/prepareData';

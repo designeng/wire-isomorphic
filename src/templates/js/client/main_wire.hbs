@@ -1,0 +1,11 @@
+/* compilation for page: {{routeId}} */
+
+import wire from 'essential-wire';
+
+console.log('hello from compiled {{routeId}} script!.....');
+
+wire({
+    test: `{{routeId}}`
+}).then((context) => {
+    console.log('TEST:::', context.test);
+})

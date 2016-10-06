@@ -9,7 +9,8 @@ const routes = [
         tasks: ['mainPageSpec', 'carcassSpec'],
         // tasks for webpack compilation can include the server tasks (isomorphic mode!)
         // plus something client-special
-        webpack: ['clientSpecialSpec', 'mainPageSpec', 'carcassSpec'],
+        // webpack: ['clientSpecialSpec', 'mainPageSpec', 'carcassSpec'],
+        webpack: ['clientSpecialSpec', 'mainPageSpec'],
         routeId: 'main-page',
         format: 'html'
     },
