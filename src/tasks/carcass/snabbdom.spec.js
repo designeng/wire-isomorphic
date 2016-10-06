@@ -16,7 +16,7 @@ export default {
 
     bottomScriptsData: {
         items: [
-            {sync: true, src: {$ref: 'compiledScript'}}
+            {async: true, src: {$ref: 'compiledScript'}}
         ],
     },
 
