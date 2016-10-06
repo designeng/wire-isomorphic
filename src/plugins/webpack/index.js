@@ -30,7 +30,10 @@ let config = {
             }
         ]
     },
-    devtool: 'source-map',
+    plugins: [
+        // new webpack.optimize.UglifyJsPlugin()
+    ],
+    // devtool: 'source-map',
     node: {
         fs: "empty" // avoids error messages
     }
@@ -85,6 +88,13 @@ function webpackCompile(resolver, compDef, wire) {
                 resolver.reject(err);
             } else {
                 // relative path to compiled script
+                // console.log(stats.toJson({reasons: true}));
+                // console.log(stats.toJson('minimal'));
+                let statistics = stats.toString({
+                    chunks: true,
+                    colors: true
+                });
+                console.log(statistics);
                 resolver.resolve(`${outputPath}/index.js`);
             }
         });

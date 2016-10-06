@@ -2,6 +2,7 @@ import _ from 'underscore';
 
 const specs = [
     {name: 'carcassSpec', path: '/tasks/carcass/spec'},
+    {name: 'snabbdomCarcassSpec', path: '/tasks/carcass/snabbdom.spec'},
     {name: 'mainPageSpec', path: '/tasks/main/spec'},
     {name: 'clientSpecialSpec', path: '/tasks/client/special/spec'},
     {name: 'usersSpec', path: '/tasks/users/spec'},

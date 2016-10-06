@@ -1,10 +1,9 @@
 /* compilation for page: {{routeId}} */
 
-import wire from 'essential-wire';
 import pipeline from 'when/pipeline';
+
+let specs = [];
 
 {{#each specs}}
 import {{name}} from '../../src{{path}}';
 {{/each}}
-
-console.log('hello from compiled {{routeId}} script!');

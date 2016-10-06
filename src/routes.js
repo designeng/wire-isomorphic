@@ -11,25 +11,24 @@ const routes = [
         // plus something client-special
         // webpack: ['clientSpecialSpec', 'mainPageSpec', 'carcassSpec'],
         webpack: ['clientSpecialSpec', 'mainPageSpec'],
-        routeId: 'main-page',
         format: 'html'
     },
     {
         url: '/users',
-        tasks: ['usersSpec', 'carcassSpec'],
+        tasks: ['usersSpec', 'carcassSpec']
     },
 
     // experiments with snabbdom
     {
         url: '/comments/form',
-        tasks: ['commentsSpec'],
-        format: 'html'
+        tasks: ['commentsSpec']
     },
 
     // page with poll interface
     {
         url: '/polls',
-        tasks: ['pollsSpec'],
+        tasks: ['pollsSpec', 'snabbdomCarcassSpec'],
+        webpack: ['pollsSpec'],
         format: 'html'
     },
     {

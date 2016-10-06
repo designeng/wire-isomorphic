@@ -3,7 +3,7 @@
 import _ from 'underscore';
 import requestPlugin from '../../plugins/api/request';
 import createComponentPlugin from '../../plugins/component';
-import webpackCompilePlugin from '../../plugins/webpack'
+import webpackCompilePlugin from '../../plugins/webpack';
 
 import { getEndpoint, getLocalEndpoint } from '../../config/api';
 

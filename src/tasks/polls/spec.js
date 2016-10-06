@@ -1,4 +1,4 @@
-import wireDebugPlugin from 'essential-wire/source/debug';
+// import wireDebugPlugin from 'essential-wire/source/debug';
 import snabbdomComponentPlugin from '../../plugins/component/snabbdom';
 import composeComponentPlugin from '../../plugins/component/compose';
 import requestPlugin from '../../plugins/api/request';
@@ -53,5 +53,5 @@ export default {
         }
     },
 
-    response: {$ref: 'summary'}
+    pageContent: {$ref: 'summary'}
 }
