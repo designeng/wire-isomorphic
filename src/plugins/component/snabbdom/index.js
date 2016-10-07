@@ -14,7 +14,7 @@ function createComponent(resolver, compDef, wire) {
             resolver.resolve(html);
         } else {
             /* client */
-            resolver.resolve(template);
+            resolver.resolve(template(datasource));
         }
     });
 }

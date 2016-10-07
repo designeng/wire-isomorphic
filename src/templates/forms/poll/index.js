@@ -10,7 +10,7 @@ export const summary = () =>
      <PollForm />
     `;
 
-export const renderPollsList = (items) =>
+export const renderPollsList = (items) => 
     ul('.polls-list', items.map((item) => {
         return li('.polls-list-item', [
             span('.polls-list-item-title', item.title),
